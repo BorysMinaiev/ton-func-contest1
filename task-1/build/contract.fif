@@ -1,5 +1,5 @@
 "Asm.fif" include
-// automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/task-1-playground/func/code.fc` 
+// automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/ton-func-contest1/task-1/func/code.fc` 
 PROGRAM{
   DECLPROC recv_internal
   128253 DECLMETHOD get_total
