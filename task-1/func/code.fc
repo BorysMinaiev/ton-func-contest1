@@ -22,8 +22,6 @@ If the body of the incoming message is less than 32 bits then it should throw AN
   slice ds = get_data().begin_parse();
   int total = ds~load_uint(64);
 
-  ;; total += n;
-
   set_data(begin_cell().store_uint(total + n, 64).end_cell());
 }
 
