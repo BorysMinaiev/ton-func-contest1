@@ -35,9 +35,10 @@ slice load_data () {
 
 ;; testable
 () recv_internal (int balance, int msg_value, cell in_msg_full, slice in_msg_body) {
-  slice sender_address = parse_sender_address();
+  (slice sender_address, _) = parse_sender_address(in_msg_full);
   slice owner_address = load_data();
   var msg = begin_cell()
+  ;; TODO: fix mode to fwd grams
         .store_uint(0x10, 6)
         .store_slice(sender_address)
         .store_grams(0)
@@ -46,6 +47,7 @@ slice load_data () {
         .store_ref(in_msg_full)
       .end_cell();
    send_raw_message(msg, 0x64);
+
+   ;; why?
    save_data(owner_address);
-  }
 }

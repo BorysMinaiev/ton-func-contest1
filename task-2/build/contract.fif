@@ -1,32 +1,58 @@
 "Asm.fif" include
-// automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/ton-func-contest1/task-1/func/code.fc` 
+// automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/ton-func-contest1/task-2/func/code.fc` 
 PROGRAM{
+  DECLPROC load_data
+  DECLPROC save_data
+  DECLPROC parse_sender_address
   DECLPROC recv_internal
-  128253 DECLMETHOD get_total
-  recv_internal PROC:<{
-    //  in_msg_body
-    DUP	//  in_msg_body in_msg_body
-    SBITS	//  in_msg_body _2
-    32 LESSINT	//  in_msg_body _4
-    1 THROWIF
-    32 LDU	//  _24 _23
-    DROP	//  n
-    c4 PUSH	//  n _11
-    CTOS	//  n ds
-    64 LDU	//  n _26 _25
-    DROP	//  n total
-    SWAP	//  total n
-    ADD	//  _17
-    NEWC	//  _17 _18
-    64 STU	//  _20
-    ENDC	//  _21
-    c4 POP
-  }>
-  get_total PROC:<{
+  load_data PROC:<{
     // 
     c4 PUSH	//  _1
     CTOS	//  ds
-    64 LDU	//  _8 _7
-    DROP	//  total
+    LDMSGADDR	//  _6 _5
+    DROP	//  _3
+  }>
+  save_data PROC:<{
+    //  owner_address
+    NEWC	//  owner_address _1
+    SWAP	//  _1 owner_address
+    STSLICER	//  _2
+    ENDC	//  _3
+    c4 POP
+  }>
+  parse_sender_address PROC:<{
+    //  in_msg_full
+    CTOS	//  cs
+    4 LDU	//  flags cs
+    LDMSGADDR	//  flags _13 _12
+    DROP	//  flags sender_address
+    SWAP	//  sender_address flags
+  }>
+  recv_internal PROC:<{
+    //  balance msg_value in_msg_full in_msg_body
+    s1 s3 XCHG
+    3 BLKDROP	//  in_msg_full
+    DUP	//  in_msg_full in_msg_full
+    parse_sender_address CALLDICT	//  in_msg_full _38 _39
+    DROP	//  in_msg_full sender_address
+    load_data CALLDICT	//  in_msg_full sender_address owner_address
+    0 PUSHINT	//  in_msg_full sender_address owner_address _10=0
+    16 PUSHINT	//  in_msg_full sender_address owner_address _10=0 _11=16
+    NEWC	//  in_msg_full sender_address owner_address _10=0 _11=16 _12
+    6 STU	//  in_msg_full sender_address owner_address _10=0 _14
+    s0 s3 XCHG2	//  in_msg_full _10=0 owner_address _14 sender_address
+    STSLICER	//  in_msg_full _10=0 owner_address _15
+    s2 PUSH	//  in_msg_full _10=0 owner_address _15 _16=0
+    STGRAMS	//  in_msg_full _10=0 owner_address _17
+    s1 s2 XCHG	//  in_msg_full owner_address _10=0 _17
+    107 STU	//  in_msg_full owner_address _31
+    OVER	//  in_msg_full owner_address _31 owner_address
+    STSLICER	//  in_msg_full owner_address _32
+    s1 s2 XCHG	//  owner_address in_msg_full _32
+    STREF	//  owner_address _33
+    ENDC	//  owner_address msg
+    100 PUSHINT	//  owner_address msg _35=100
+    SENDRAWMSG
+    save_data CALLDICT
   }>
 }END>c
