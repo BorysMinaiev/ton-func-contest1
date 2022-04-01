@@ -24,22 +24,60 @@ PROGRAM{
   test_example_data PROC:<{
     // 
     0 PUSHINT	//  function_selector=0
-    10 PUSHINT	//  function_selector=0 _3=10
-    NEWC	//  function_selector=0 _3=10 _4
-    32 STU	//  function_selector=0 _6
-    ENDC	//  function_selector=0 message
-    CTOS	//  function_selector=0 _10
-    SINGLE	//  function_selector=0 stack
-    OVER	//  function_selector=0 stack _13=0
-    NEWC	//  function_selector=0 stack _13=0 _14
-    64 STU	//  function_selector=0 stack _16
-    ENDC	//  function_selector=0 stack data
-    get_c7 INLINECALLDICT	//  function_selector=0 stack data _19
-    PUSHNULL	//  function_selector=0 stack data _19 _20
-    5 TUPLE	//  _18
+    7 PUSHINT	//  function_selector=0 _3=7
+    5 PUSHINT	//  function_selector=0 _3=7 _4=5
+    1 PUSHINT	//  function_selector=0 _3=7 _4=5 _5=1
+    NEWC	//  function_selector=0 _3=7 _4=5 _5=1 _6
+    2 STU	//  function_selector=0 _3=7 _4=5 _8
+    9 STU	//  function_selector=0 _3=7 _10
+    5 STU	//  function_selector=0 _12
+    ENDC	//  function_selector=0 my_address
+    8 PUSHINT	//  function_selector=0 my_address _15=8
+    5 PUSHINT	//  function_selector=0 my_address _15=8 _16=5
+    1 PUSHINT	//  function_selector=0 my_address _15=8 _16=5 _17=1
+    NEWC	//  function_selector=0 my_address _15=8 _16=5 _17=1 _18
+    2 STU	//  function_selector=0 my_address _15=8 _16=5 _20
+    9 STU	//  function_selector=0 my_address _15=8 _22
+    5 STU	//  function_selector=0 my_address _24
+    ENDC	//  function_selector=0 my_address their_address
+    12345 PUSHINT	//  function_selector=0 my_address their_address _27=12345
+    NEWC	//  function_selector=0 my_address their_address _27=12345 _28
+    32 STU	//  function_selector=0 my_address their_address _30
+    ENDC	//  function_selector=0 my_address their_address _31
+    CTOS	//  function_selector=0 my_address their_address message_body
+    s3 PUSH	//  function_selector=0 my_address their_address message_body _34=0
+    24 PUSHINT	//  function_selector=0 my_address their_address message_body _34=0 _35=24
+    NEWC	//  function_selector=0 my_address their_address message_body _34=0 _35=24 _36
+    6 STU	//  function_selector=0 my_address their_address message_body _34=0 _38
+    s0 s3 XCHG	//  function_selector=0 my_address _38 message_body _34=0 their_address
+    CTOS	//  function_selector=0 my_address _38 message_body _34=0 _39
+    s1 s3 XCHG	//  function_selector=0 my_address _34=0 message_body _38 _39
+    STSLICER	//  function_selector=0 my_address _34=0 message_body _40
+    100 PUSHINT	//  function_selector=0 my_address _34=0 message_body _40 _41=100
+    STGRAMS	//  function_selector=0 my_address _34=0 message_body _42
+    s1 s2 XCHG	//  function_selector=0 my_address message_body _34=0 _42
+    107 STU	//  function_selector=0 my_address message_body _56
+    OVER	//  function_selector=0 my_address message_body _56 message_body
+    STSLICER	//  function_selector=0 my_address message_body _57
+    ENDC	//  function_selector=0 my_address message_body message
+    12345 PUSHINT	//  function_selector=0 my_address message_body message _61=12345
+    s0 s2 XCHG
+    100 PUSHINT
+    -ROT	//  function_selector=0 my_address _61=12345 _62=100 message message_body
+    4 TUPLE	//  function_selector=0 my_address stack
+    get_c7 INLINECALLDICT	//  function_selector=0 my_address stack _65
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack my_address _65 _66
+    5 TUPLE	//  _64
   }>
   test_example PROC:<{
     //  exit_code data stack actions gas
-    5 BLKDROP	// 
+    s1 s3 XCHG
+    3 BLKDROP	//  exit_code actions
+    SWAP	//  actions exit_code
+    0 NEQINT	//  actions _7
+    100 THROWIF
+    CTOS	//  actions
+    s0 DUMP DROP
   }>
 }END>c

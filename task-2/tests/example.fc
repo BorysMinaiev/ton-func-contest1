@@ -16,18 +16,33 @@
     ;; Funtion to run (recv_internal)
     int function_selector = 0;
 
+    cell my_address = begin_cell()
+                            .store_uint(1, 2) ;; 0x01 <- external
+                            .store_uint(5, 9) ;; len = 5
+                            .store_uint(7, 5) ;; let's say my address == "7"
+                            .end_cell();
+
+    cell their_address = begin_cell()
+                        .store_uint(1, 2) ;; 0x01 <- external
+                        .store_uint(5, 9) ;; len = 5
+                        .store_uint(8, 5) ;; let's say my address == "8"
+                        .end_cell();
+
+    slice message_body = begin_cell().store_uint(12345, 32).end_cell().begin_parse();
+
     ;; Example contract message body
-    cell message = begin_cell()     ;; external message body
-            .store_uint(10, 32)           ;; value to add
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_slice(their_address.begin_parse())
+            .store_grams(100)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
             .end_cell();
 
-    tuple stack = unsafe_tuple([message.begin_parse()]); ;; stack that will be passed to function
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
 
-    cell data = begin_cell()             ;; initial data of contract
-        .store_uint(0, 64)               ;; counter
-        .end_cell();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, my_address, get_c7(), null()];
 }
 
 
@@ -42,7 +57,15 @@
 ;; By default test is passed
 ;; You can use throw_if to fail test
 
+
+forall X -> () dump (X x) impure asm "s0 DUMP DROP";
+
 _ test_example(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(1) {
-    ;;
+     throw_if(100, exit_code != 0);
+
+     slice actions = actions.begin_parse();
+
+    ;; TODO: check actions...
+     dump(actions);
 }
 
