@@ -1,0 +1,89 @@
+"Asm.fif" include
+// automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/ton-func-contest1/task-3/func/code.fc` 
+PROGRAM{
+  DECLPROC load_data
+  DECLPROC save_data
+  DECLPROC parse_sender_address
+  DECLPROC recv_internal
+  load_data PROC:<{
+    // 
+    c4 PUSH	//  _1
+    CTOS	//  ds
+    LDMSGADDR	//  _3 ds
+    LDMSGADDR	//  _3 _10 _9
+    DROP	//  _3 _5
+  }>
+  save_data PROC:<{
+    //  manager_address memorized_address
+    NEWC
+    ROT	//  memorized_address _2 manager_address
+    STSLICER	//  memorized_address _3
+    SWAP	//  _3 memorized_address
+    STSLICER	//  _4
+    ENDC	//  _5
+    c4 POP
+  }>
+  parse_sender_address PROC:<{
+    //  in_msg_full
+    CTOS	//  cs
+    4 LDU	//  flags cs
+    LDMSGADDR	//  flags _13 _12
+    DROP	//  flags sender_address
+    SWAP	//  sender_address flags
+  }>
+  recv_internal PROC:<{
+    //  balance msg_value in_msg_full in_msg_body
+    s3 POP	//  in_msg_body msg_value in_msg_full
+    load_data CALLDICT	//  in_msg_body msg_value in_msg_full manager_address memorized_address
+    s0 s4 XCHG	//  memorized_address msg_value in_msg_full manager_address in_msg_body
+    32 LDI	//  memorized_address msg_value in_msg_full manager_address op in_msg_body
+    64 LDU	//  memorized_address msg_value in_msg_full manager_address op query_id in_msg_body
+    s0 s4 XCHG	//  memorized_address msg_value in_msg_body manager_address op query_id in_msg_full
+    parse_sender_address CALLDICT	//  memorized_address msg_value in_msg_body manager_address op query_id _71 _72
+    DROP	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address
+    s2 PUSH	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address op
+    1 EQINT	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address _19
+    IF:<{	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address
+      s5 POP
+      2DROP
+      s3 POP	//  manager_address sender_address in_msg_body
+      s2 s1 PUXC	//  manager_address in_msg_body manager_address sender_address
+      SDEQ	//  manager_address in_msg_body _21
+      NOT	//  manager_address in_msg_body _22
+      1001 THROWIF
+      LDMSGADDR	//  manager_address _74 _73
+      DROP	//  manager_address new_memorized_address
+      save_data CALLDICT
+    }>ELSE<{	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address
+      s4 POP	//  memorized_address msg_value sender_address manager_address op query_id
+      SWAP	//  memorized_address msg_value sender_address manager_address query_id op
+      2 EQINT	//  memorized_address msg_value sender_address manager_address query_id _29
+      IF:<{	//  memorized_address msg_value sender_address manager_address query_id
+        3 PUSHINT	//  memorized_address msg_value sender_address manager_address query_id _31=3
+        0 PUSHINT	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0
+        16 PUSHINT	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0 _33=16
+        NEWC	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0 _33=16 _34
+        6 STU	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0 _36
+        s0 s5 XCHG2	//  memorized_address msg_value _32=0 manager_address query_id _31=3 _36 sender_address
+        STSLICER	//  memorized_address msg_value _32=0 manager_address query_id _31=3 _37
+        s0 s5 XCHG2	//  memorized_address _31=3 _32=0 manager_address query_id _37 msg_value
+        STGRAMS	//  memorized_address _31=3 _32=0 manager_address query_id _38
+        s1 s3 XCHG	//  memorized_address _31=3 query_id manager_address _32=0 _38
+        107 STU	//  memorized_address _31=3 query_id manager_address _52
+        s1 s3 XCHG	//  memorized_address manager_address query_id _31=3 _52
+        32 STU	//  memorized_address manager_address query_id _54
+        64 STU	//  memorized_address manager_address _56
+        SWAP	//  memorized_address _56 manager_address
+        STSLICER	//  memorized_address _57
+        SWAP	//  _57 memorized_address
+        STSLICER	//  _58
+        ENDC	//  msg
+        64 PUSHINT	//  msg _60=64
+        SENDRAWMSG
+      }>ELSE<{	//  memorized_address msg_value sender_address manager_address query_id
+        5 BLKDROP	// 
+        1000 THROW
+      }>
+    }>
+  }>
+}END>c
