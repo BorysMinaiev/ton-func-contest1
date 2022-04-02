@@ -4,6 +4,8 @@ PROGRAM{
   85860 DECLMETHOD get_c7
   0 DECLMETHOD test_example_data
   1 DECLMETHOD test_example
+  2 DECLMETHOD test_same_addr_data
+  3 DECLMETHOD test_same_addr
   get_c7 PROC:<{
     // 
     124711402 PUSHINT	//  _2=124711402
@@ -145,5 +147,59 @@ PROGRAM{
     108 THROWIF
     ENDS
     ENDS
+  }>
+  test_same_addr_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    7 PUSHINT	//  function_selector=0 _3=7
+    5 PUSHINT	//  function_selector=0 _3=7 _4=5
+    1 PUSHINT	//  function_selector=0 _3=7 _4=5 _5=1
+    NEWC	//  function_selector=0 _3=7 _4=5 _5=1 _6
+    2 STU	//  function_selector=0 _3=7 _4=5 _8
+    9 STU	//  function_selector=0 _3=7 _10
+    5 STU	//  function_selector=0 _12
+    ENDC	//  function_selector=0 my_address
+    12345 PUSHINT	//  function_selector=0 my_address _15=12345
+    NEWC	//  function_selector=0 my_address _15=12345 _16
+    32 STU	//  function_selector=0 my_address _18
+    ENDC	//  function_selector=0 my_address _19
+    CTOS	//  function_selector=0 my_address message_body
+    s2 PUSH	//  function_selector=0 my_address message_body _22=0
+    6 PUSHINT	//  function_selector=0 my_address message_body _22=0 _23=6
+    NEWC	//  function_selector=0 my_address message_body _22=0 _23=6 _24
+    4 STU	//  function_selector=0 my_address message_body _22=0 _26
+    s3 PUSH	//  function_selector=0 my_address message_body _22=0 _26 my_address
+    CTOS	//  function_selector=0 my_address message_body _22=0 _26 _27
+    STSLICER	//  function_selector=0 my_address message_body _22=0 _28
+    s3 PUSH	//  function_selector=0 my_address message_body _22=0 _28 my_address
+    CTOS	//  function_selector=0 my_address message_body _22=0 _28 _29
+    STSLICER	//  function_selector=0 my_address message_body _22=0 _30
+    100 PUSHINT	//  function_selector=0 my_address message_body _22=0 _30 _31=100
+    STGRAMS	//  function_selector=0 my_address message_body _22=0 _32
+    107 STU	//  function_selector=0 my_address message_body _46
+    OVER	//  function_selector=0 my_address message_body _46 message_body
+    STSLICER	//  function_selector=0 my_address message_body _47
+    ENDC	//  function_selector=0 my_address message_body message
+    12345 PUSHINT	//  function_selector=0 my_address message_body message _51=12345
+    s0 s2 XCHG
+    100 PUSHINT
+    -ROT	//  function_selector=0 my_address _51=12345 _52=100 message message_body
+    4 TUPLE	//  function_selector=0 my_address stack
+    get_c7 INLINECALLDICT	//  function_selector=0 my_address stack _55
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack my_address _55 _56
+    5 TUPLE	//  _54
+  }>
+  test_same_addr PROC:<{
+    //  exit_code data stack actions gas
+    s1 s3 XCHG
+    3 BLKDROP	//  exit_code actions
+    SWAP	//  actions exit_code
+    0 NEQINT	//  actions _7
+    100 THROWIF
+    CTOS	//  _10
+    SEMPTY	//  _11
+    NOT	//  _12
+    102 THROWIF
   }>
 }END>c
