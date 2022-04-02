@@ -37,25 +37,20 @@ slice load_data () {
 
 ;; testable
 () recv_internal (int balance, int msg_value, cell in_msg_full, slice in_msg_body) {
-    ;;dump_stack();
     (slice sender_address, _) = parse_sender_address(in_msg_full);
     slice owner_address = load_data();
-
-    dump(sender_address);
-    dump(owner_address);
 
    ;; TODO: is `in_msg_full` copied?
   if ~ equal_slices(sender_address, owner_address) {
       cell msg_body_cell = begin_cell().store_slice(in_msg_body).end_cell();
 
       var msg = begin_cell()
-      ;; TODO: fix mode to fwd grams
             .store_uint(0x10, 6)
             .store_slice(owner_address)
             .store_grams(msg_value) ;; really?
             .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
             .store_slice(sender_address)
-            .store_ref(msg_body_cell) ;; TODO: body?
+            .store_ref(msg_body_cell)
             .end_cell();
        send_raw_message(msg, 64); ;; TODO: is it correct mode?
    }

@@ -102,19 +102,22 @@ PROGRAM{
   }>
   test_overflow PROC:<{
     //  exit_code data stack actions gas
-    2 1 BLKDROP2	//  exit_code data gas
-    s0 s2 XCHG	//  gas data exit_code
-    0 NEQINT	//  gas data _7
+    s2 POP	//  exit_code data gas actions
+    s0 s3 XCHG	//  actions data gas exit_code
+    0 NEQINT	//  actions data gas _7
     100 THROWIF
-    CTOS	//  gas ds
-    64 LDU	//  gas _23 _22
-    DROP	//  gas _12
-    6000000000 PUSHINT	//  gas _12 _15=6000000000
-    NEQ	//  gas _16
+    SWAP	//  actions gas data
+    CTOS	//  actions gas ds
+    64 LDU	//  actions gas _25 _24
+    DROP	//  actions gas _12
+    6000000000 PUSHINT	//  actions gas _12 _15=6000000000
+    NEQ	//  actions gas _16
     101 THROWIF
-    1000000 PUSHINT	//  gas _19=1000000
-    GREATER	//  _20
+    1000000 PUSHINT	//  actions gas _19=1000000
+    GREATER	//  actions _20
     102 THROWIF
+    CTOS	//  _22
+    s0 DUMP DROP
   }>
   test_exception_data PROC:<{
     // 

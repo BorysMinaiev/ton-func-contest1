@@ -46,29 +46,32 @@ PROGRAM{
     ENDC	//  function_selector=0 my_address their_address _31
     CTOS	//  function_selector=0 my_address their_address message_body
     s3 PUSH	//  function_selector=0 my_address their_address message_body _34=0
-    24 PUSHINT	//  function_selector=0 my_address their_address message_body _34=0 _35=24
-    NEWC	//  function_selector=0 my_address their_address message_body _34=0 _35=24 _36
-    6 STU	//  function_selector=0 my_address their_address message_body _34=0 _38
-    s0 s3 XCHG	//  function_selector=0 my_address _38 message_body _34=0 their_address
-    CTOS	//  function_selector=0 my_address _38 message_body _34=0 _39
-    s1 s3 XCHG	//  function_selector=0 my_address _34=0 message_body _38 _39
-    STSLICER	//  function_selector=0 my_address _34=0 message_body _40
-    100 PUSHINT	//  function_selector=0 my_address _34=0 message_body _40 _41=100
-    STGRAMS	//  function_selector=0 my_address _34=0 message_body _42
-    s1 s2 XCHG	//  function_selector=0 my_address message_body _34=0 _42
-    107 STU	//  function_selector=0 my_address message_body _56
-    OVER	//  function_selector=0 my_address message_body _56 message_body
-    STSLICER	//  function_selector=0 my_address message_body _57
+    6 PUSHINT	//  function_selector=0 my_address their_address message_body _34=0 _35=6
+    NEWC	//  function_selector=0 my_address their_address message_body _34=0 _35=6 _36
+    4 STU	//  function_selector=0 my_address their_address message_body _34=0 _38
+    s3 PUSH	//  function_selector=0 my_address their_address message_body _34=0 _38 their_address
+    CTOS	//  function_selector=0 my_address their_address message_body _34=0 _38 _39
+    STSLICER	//  function_selector=0 my_address their_address message_body _34=0 _40
+    s0 s3 XCHG	//  function_selector=0 my_address _40 message_body _34=0 their_address
+    CTOS	//  function_selector=0 my_address _40 message_body _34=0 _41
+    s1 s3 XCHG	//  function_selector=0 my_address _34=0 message_body _40 _41
+    STSLICER	//  function_selector=0 my_address _34=0 message_body _42
+    100 PUSHINT	//  function_selector=0 my_address _34=0 message_body _42 _43=100
+    STGRAMS	//  function_selector=0 my_address _34=0 message_body _44
+    s1 s2 XCHG	//  function_selector=0 my_address message_body _34=0 _44
+    107 STU	//  function_selector=0 my_address message_body _58
+    OVER	//  function_selector=0 my_address message_body _58 message_body
+    STSLICER	//  function_selector=0 my_address message_body _59
     ENDC	//  function_selector=0 my_address message_body message
-    12345 PUSHINT	//  function_selector=0 my_address message_body message _61=12345
+    12345 PUSHINT	//  function_selector=0 my_address message_body message _63=12345
     s0 s2 XCHG
     100 PUSHINT
-    -ROT	//  function_selector=0 my_address _61=12345 _62=100 message message_body
+    -ROT	//  function_selector=0 my_address _63=12345 _64=100 message message_body
     4 TUPLE	//  function_selector=0 my_address stack
-    get_c7 INLINECALLDICT	//  function_selector=0 my_address stack _65
+    get_c7 INLINECALLDICT	//  function_selector=0 my_address stack _67
     s1 s2 XCHG
-    PUSHNULL	//  function_selector=0 stack my_address _65 _66
-    5 TUPLE	//  _64
+    PUSHNULL	//  function_selector=0 stack my_address _67 _68
+    5 TUPLE	//  _66
   }>
   test_example PROC:<{
     //  exit_code data stack actions gas
@@ -78,6 +81,69 @@ PROGRAM{
     0 NEQINT	//  actions _7
     100 THROWIF
     CTOS	//  actions
-    s0 DUMP DROP
+    32 LDU	//  _12 actions
+    SWAP
+    247711853 PUSHINT	//  actions _12 _15=247711853
+    NEQ	//  actions _16
+    101 THROWIF
+    LDREF	//  _19 actions
+    SWAP	//  actions _19
+    CTOS	//  actions _21
+    SEMPTY	//  actions _22
+    NOT	//  actions _23
+    102 THROWIF
+    LDREF	//  _119 _118
+    DROP	//  _26
+    CTOS	//  msg
+    6 LDU	//  _30 msg
+    SWAP	//  msg _30
+    16 NEQINT	//  msg _34
+    103 THROWIF
+    LDMSGADDR	//  send_to_address msg
+    7 PUSHINT	//  send_to_address msg _40=7
+    5 PUSHINT	//  send_to_address msg _40=7 _41=5
+    1 PUSHINT	//  send_to_address msg _40=7 _41=5 _42=1
+    NEWC	//  send_to_address msg _40=7 _41=5 _42=1 _43
+    2 STU	//  send_to_address msg _40=7 _41=5 _45
+    9 STU	//  send_to_address msg _40=7 _47
+    5 STU	//  send_to_address msg _49
+    ENDC	//  send_to_address msg _50
+    CTOS	//  send_to_address msg expected_my_address
+    ROT	//  msg expected_my_address send_to_address
+    SDEQ	//  msg _53
+    NOT	//  msg _54
+    104 THROWIF
+    LDGRAMS	//  _57 msg
+    SWAP	//  msg _57
+    100 NEQINT	//  msg _60
+    105 THROWIF
+    107 LDU	//  _63 msg
+    SWAP	//  msg _63
+    0 NEQINT	//  msg _79
+    106 THROWIF
+    LDMSGADDR	//  sender_address msg
+    8 PUSHINT	//  sender_address msg _85=8
+    5 PUSHINT	//  sender_address msg _85=8 _86=5
+    1 PUSHINT	//  sender_address msg _85=8 _86=5 _87=1
+    NEWC	//  sender_address msg _85=8 _86=5 _87=1 _88
+    2 STU	//  sender_address msg _85=8 _86=5 _90
+    9 STU	//  sender_address msg _85=8 _92
+    5 STU	//  sender_address msg _94
+    ENDC	//  sender_address msg _95
+    CTOS	//  sender_address msg expected_sender_address
+    s1 s2 XCHG	//  msg sender_address expected_sender_address
+    SDEQ	//  msg _98
+    NOT	//  msg _99
+    107 THROWIF
+    LDREF	//  _102 msg
+    SWAP	//  msg _102
+    CTOS	//  msg fwd_msg
+    32 LDU	//  msg _106 fwd_msg
+    SWAP
+    12345 PUSHINT	//  msg fwd_msg _106 _109=12345
+    NEQ	//  msg fwd_msg _110
+    108 THROWIF
+    ENDS
+    ENDS
   }>
 }END>c

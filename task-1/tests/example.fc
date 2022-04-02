@@ -124,5 +124,5 @@ _ test_overflow(int exit_code, cell data, tuple stack, cell actions, int gas) me
 }
 
 _ test_exception(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(7) {
-    throw_if(100, exit_code == 0); ;; test need to be passed
+    throw_if(100, exit_code == 0);
 }
