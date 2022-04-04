@@ -8,6 +8,10 @@ PROGRAM{
   3 DECLMETHOD get_stored_value
   4 DECLMETHOD get_not_stored_value_data
   5 DECLMETHOD get_not_stored_value
+  6 DECLMETHOD wrong_op_data
+  7 DECLMETHOD wrong_op
+  8 DECLMETHOD bad_query_data
+  9 DECLMETHOD bad_query
   get_c7 PROC:<{
     // 
     124711402 PUSHINT	//  _2=124711402
@@ -109,6 +113,90 @@ PROGRAM{
     5 TUPLE	//  _9
   }>
   get_not_stored_value PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    100 THROWIF
+  }>
+  wrong_op_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    12345 PUSHINT	//  function_selector=0 _3=12345
+    1000 PUSHINT	//  function_selector=0 _3=12345 _4=1000
+    787788 PUSHINT	//  function_selector=0 _3=12345 _4=1000 _5=787788
+    s2 PUSH	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345
+    3 PUSHINT	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345 _7=3
+    NEWC	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345 _7=3 _8
+    32 STU	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345 _10
+    64 STU	//  function_selector=0 _3=12345 _4=1000 _5=787788 _12
+    256 STU	//  function_selector=0 _3=12345 _4=1000 _14
+    64 STU	//  function_selector=0 _3=12345 _16
+    128 STU	//  function_selector=0 _18
+    ENDC	//  function_selector=0 _19
+    CTOS	//  function_selector=0 message_body
+    s1 s1 PUSH2	//  function_selector=0 message_body _22=0 _23=0
+    24 PUSHINT	//  function_selector=0 message_body _22=0 _23=0 _24=24
+    NEWC	//  function_selector=0 message_body _22=0 _23=0 _24=24 _25
+    6 STU	//  function_selector=0 message_body _22=0 _23=0 _27
+    2 STU	//  function_selector=0 message_body _22=0 _29
+    OVER	//  function_selector=0 message_body _22=0 _29 _30=0
+    STGRAMS	//  function_selector=0 message_body _22=0 _31
+    107 STU	//  function_selector=0 message_body _45
+    OVER	//  function_selector=0 message_body _45 message_body
+    STSLICER	//  function_selector=0 message_body _46
+    ENDC	//  function_selector=0 message_body message
+    12345 PUSHINT	//  function_selector=0 message_body message _50=12345
+    s0 s2 XCHG
+    100 PUSHINT
+    -ROT	//  function_selector=0 _50=12345 _51=100 message message_body
+    4 TUPLE	//  function_selector=0 stack
+    NEWC	//  function_selector=0 stack _54
+    ENDC	//  function_selector=0 stack data
+    get_c7 INLINECALLDICT	//  function_selector=0 stack data _57
+    PUSHNULL	//  function_selector=0 stack data _57 _58
+    5 TUPLE	//  _56
+  }>
+  wrong_op PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    100 THROWIF
+  }>
+  bad_query_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    12345 PUSHINT	//  function_selector=0 _3=12345
+    DUP	//  function_selector=0 _3=12345 _4=12345
+    2 PUSHINT	//  function_selector=0 _3=12345 _4=12345 _5=2
+    NEWC	//  function_selector=0 _3=12345 _4=12345 _5=2 _6
+    32 STU	//  function_selector=0 _3=12345 _4=12345 _8
+    64 STU	//  function_selector=0 _3=12345 _10
+    128 STU	//  function_selector=0 _12
+    ENDC	//  function_selector=0 _13
+    CTOS	//  function_selector=0 message_body
+    s1 s1 PUSH2	//  function_selector=0 message_body _16=0 _17=0
+    24 PUSHINT	//  function_selector=0 message_body _16=0 _17=0 _18=24
+    NEWC	//  function_selector=0 message_body _16=0 _17=0 _18=24 _19
+    6 STU	//  function_selector=0 message_body _16=0 _17=0 _21
+    2 STU	//  function_selector=0 message_body _16=0 _23
+    OVER	//  function_selector=0 message_body _16=0 _23 _24=0
+    STGRAMS	//  function_selector=0 message_body _16=0 _25
+    107 STU	//  function_selector=0 message_body _39
+    OVER	//  function_selector=0 message_body _39 message_body
+    STSLICER	//  function_selector=0 message_body _40
+    ENDC	//  function_selector=0 message_body message
+    12345 PUSHINT	//  function_selector=0 message_body message _44=12345
+    s0 s2 XCHG
+    100 PUSHINT
+    -ROT	//  function_selector=0 _44=12345 _45=100 message message_body
+    4 TUPLE	//  function_selector=0 stack
+    NEWC	//  function_selector=0 stack _48
+    ENDC	//  function_selector=0 stack data
+    get_c7 INLINECALLDICT	//  function_selector=0 stack data _51
+    PUSHNULL	//  function_selector=0 stack data _51 _52
+    5 TUPLE	//  _50
+  }>
+  bad_query PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
     0 EQINT	//  _7

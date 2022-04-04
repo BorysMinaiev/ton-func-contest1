@@ -61,21 +61,21 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
     }
 
     if (op == 2) { ;; remove outdated
-
-        int key = -1;
-         do {
-           (key, slice cs, int f) = valid_until_dict.udict_get_next?(256, key);
-           if (f) {
-              int valid_until = cs~load_uint(64);
-              if (valid_until < now()) {
-                valid_until_dict~udict_delete?(256, key);
-                data_dict~udict_delete?(256, key);
-              }
-           }
-         } until (~ f);
-
+      in_msg_body.end_parse();
+      int key = -1;
+      do {
+        (key, slice cs, int f) = valid_until_dict.udict_get_next?(256, key);
+        if (f) {
+          int valid_until = cs~load_uint(64);
+          if (valid_until < now()) {
+            valid_until_dict~udict_delete?(256, key);
+            data_dict~udict_delete?(256, key);
+          }
+        }
+      } until (~ f);
     }
 
+    throw_if(1001, (op != 1) & (op != 2));
 
     save_data(data_dict, valid_until_dict);
 

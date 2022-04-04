@@ -85,3 +85,72 @@ _ get_stored_value(int exit_code, cell data, tuple stack, cell actions, int gas)
 _ get_not_stored_value(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(5) {
     throw_if(100, exit_code == 0);
 }
+
+
+;; wrong op
+
+[int, tuple, cell, tuple, int] wrong_op_data() method_id(6) {
+   ;; Funtion to run (recv_internal)
+   int function_selector = 0;
+
+   slice message_body = begin_cell()
+     .store_uint(3, 32) ;; add key
+     .store_uint(12345, 64) ;; query id
+     .store_uint(787788, 256) ;; key
+     .store_uint(1000, 64) ;; valid until
+     .store_uint(12345, 128) ;; 128-bit value
+     .end_cell().begin_parse();
+
+   cell message = begin_cell()
+           .store_uint(0x18, 6)
+           .store_uint(0, 2) ;; should be contract address
+           .store_grams(0)
+           .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+           .store_slice(message_body)
+           .end_cell();
+
+   ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+   tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+   cell data = begin_cell().end_cell();
+
+   return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ wrong_op(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(7) {
+    throw_if(100, exit_code == 0);
+}
+
+;; bad query
+
+[int, tuple, cell, tuple, int] bad_query_data() method_id(8) {
+   ;; Funtion to run (recv_internal)
+   int function_selector = 0;
+
+   slice message_body = begin_cell()
+     .store_uint(2, 32) ;; remove old
+     .store_uint(12345, 64) ;; query id
+     .store_uint(12345, 128) ;; 128-bit value
+     .end_cell().begin_parse();
+
+   cell message = begin_cell()
+           .store_uint(0x18, 6)
+           .store_uint(0, 2) ;; should be contract address
+           .store_grams(0)
+           .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+           .store_slice(message_body)
+           .end_cell();
+
+   ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+   tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+   cell data = begin_cell().end_cell();
+
+   return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ bad_query(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(9) {
+    throw_if(100, exit_code == 0);
+}
