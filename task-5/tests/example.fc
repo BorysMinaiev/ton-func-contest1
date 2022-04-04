@@ -1,0 +1,54 @@
+
+int equal_slices (slice a, slice b) asm "SDEQ";
+forall X -> () dump (X x) impure asm "s0 DUMP DROP";
+
+tuple get_c7_now(int now) inline method_id {
+    return unsafe_tuple([unsafe_tuple([
+        0x076ef1ea,           ;; magic
+        0,                    ;; actions
+        0,                    ;; msgs_sent
+        now,                ;; unixtime
+        1,                    ;; block_lt
+        1,                    ;; trans_lt
+        239,                  ;; randseed
+        unsafe_tuple([1000000000, null()]),  ;; balance_remaining
+        null(),               ;; myself
+        get_config()          ;; global_config
+    ])]);
+}
+
+int public_key1() inline method_id {
+  return 0xe7b27ec383a62b90c2aa9103724a26bbf51b6dba2fbfe0e6c68b98287a8d1d18;
+}
+
+int public_key2() inline method_id {
+  return 0xc9b4accd817e3d813fc829bc6104dcf926e196fea268b1166612d57cdc6e595f;
+}
+
+cell gen_keys_data() inline method_id {
+  return begin_cell().store_uint(public_key1(), 256).store_uint(public_key2(), 256).end_cell();
+}
+
+[int, tuple, cell, tuple, int] test_example_data() method_id(0) {
+    ;; Funtion to run: pack_data
+    int function_selector = 90427;
+
+    int public_key1 = public_key1();
+    int public_key2 = public_key2();
+
+    tuple stack = unsafe_tuple([public_key1, public_key2]);
+
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, data, get_c7_now(100), null()];
+}
+
+
+_ test_example(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(1) {
+  throw_if(101, exit_code != 0);
+
+  cell generated_data = first(stack);
+  cell expected_data = gen_keys_data();
+  throw_if(102, ~ equal_slices(generated_data.begin_parse(), expected_data.begin_parse()));
+}
+

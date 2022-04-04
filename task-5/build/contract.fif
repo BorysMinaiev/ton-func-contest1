@@ -1,0 +1,23 @@
+"Asm.fif" include
+// automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/ton-func-contest1/task-5/func/code.fc` 
+PROGRAM{
+  90427 DECLMETHOD pack_data
+  DECLPROC recv_external
+  DECLPROC recv_internal
+  pack_data PROC:<{
+    //  public_key1 public_key2
+    SWAP
+    NEWC	//  public_key2 public_key1 _2
+    256 STU	//  public_key2 _4
+    256 STU	//  _6
+    ENDC	//  _7
+  }>
+  recv_external PROC:<{
+    //  in_msg_body
+    DROP	// 
+    ACCEPT
+  }>
+  recv_internal PROC:<{
+    // 
+  }>
+}END>c
