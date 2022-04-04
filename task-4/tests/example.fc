@@ -1,0 +1,39 @@
+
+int equal_slices (slice a, slice b) asm "SDEQ";
+forall X -> () dump (X x) impure asm "s0 DUMP DROP";
+
+
+[int, tuple, cell, tuple, int] test_example_data() method_id(0) {
+    ;; Funtion to run (recv_internal)
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(787788, 256) ;; key
+      .store_uint(1000, 64) ;; valid until
+      .store_uint(12345, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = begin_cell().end_cell();
+
+    dump(123);
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_example(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(1) {
+    throw_if(100, exit_code != 0);
+}

@@ -1,0 +1,70 @@
+"Asm.fif" include
+// automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/.config/toncli/func-libs/tests-helpers.func` `/home/borys/ton-func-contest1/task-4/tests/example.fc` 
+PROGRAM{
+  85860 DECLMETHOD get_c7
+  0 DECLMETHOD test_example_data
+  1 DECLMETHOD test_example
+  get_c7 PROC:<{
+    // 
+    124711402 PUSHINT	//  _2=124711402
+    0 PUSHINT	//  _2=124711402 _3=0
+    DUP	//  _2=124711402 _3=0 _4=0
+    NOW	//  _2=124711402 _3=0 _4=0 _5
+    1 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1
+    DUP	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1
+    239 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239
+    1000000000 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000
+    PUSHNULL	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000 _11
+    PAIR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12
+    PUSHNULL	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13
+    CONFIGROOT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13 _14
+    10 TUPLE	//  _15
+    SINGLE	//  _16
+  }>
+  test_example_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    12345 PUSHINT	//  function_selector=0 _3=12345
+    1000 PUSHINT	//  function_selector=0 _3=12345 _4=1000
+    787788 PUSHINT	//  function_selector=0 _3=12345 _4=1000 _5=787788
+    s2 PUSH	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345
+    1 PUSHINT	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345 _7=1
+    NEWC	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345 _7=1 _8
+    32 STU	//  function_selector=0 _3=12345 _4=1000 _5=787788 _6=12345 _10
+    64 STU	//  function_selector=0 _3=12345 _4=1000 _5=787788 _12
+    256 STU	//  function_selector=0 _3=12345 _4=1000 _14
+    64 STU	//  function_selector=0 _3=12345 _16
+    128 STU	//  function_selector=0 _18
+    ENDC	//  function_selector=0 _19
+    CTOS	//  function_selector=0 message_body
+    s1 s1 PUSH2	//  function_selector=0 message_body _22=0 _23=0
+    24 PUSHINT	//  function_selector=0 message_body _22=0 _23=0 _24=24
+    NEWC	//  function_selector=0 message_body _22=0 _23=0 _24=24 _25
+    6 STU	//  function_selector=0 message_body _22=0 _23=0 _27
+    2 STU	//  function_selector=0 message_body _22=0 _29
+    OVER	//  function_selector=0 message_body _22=0 _29 _30=0
+    STGRAMS	//  function_selector=0 message_body _22=0 _31
+    107 STU	//  function_selector=0 message_body _45
+    OVER	//  function_selector=0 message_body _45 message_body
+    STSLICER	//  function_selector=0 message_body _46
+    ENDC	//  function_selector=0 message_body message
+    12345 PUSHINT	//  function_selector=0 message_body message _50=12345
+    s0 s2 XCHG
+    100 PUSHINT
+    -ROT	//  function_selector=0 _50=12345 _51=100 message message_body
+    4 TUPLE	//  function_selector=0 stack
+    NEWC	//  function_selector=0 stack _54
+    ENDC	//  function_selector=0 stack data
+    123 PUSHINT	//  function_selector=0 stack data _56=123
+    s0 DUMP DROP
+    get_c7 INLINECALLDICT	//  function_selector=0 stack data _59
+    PUSHNULL	//  function_selector=0 stack data _59 _60
+    5 TUPLE	//  _58
+  }>
+  test_example PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    100 THROWIF
+  }>
+}END>c
