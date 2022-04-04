@@ -66,6 +66,7 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
       do {
         (key, slice cs, int f) = valid_until_dict.udict_get_next?(256, key);
         if (f) {
+          slice cs = cs~load_ref().begin_parse();
           int valid_until = cs~load_uint(64);
           if (valid_until < now()) {
             valid_until_dict~udict_delete?(256, key);
@@ -78,8 +79,6 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
     throw_if(1001, (op != 1) & (op != 2));
 
     save_data(data_dict, valid_until_dict);
-
-    ;; TODO: throw
 }
 
 ;; testable
