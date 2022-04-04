@@ -28,12 +28,60 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
 
     cell data = begin_cell().end_cell();
 
-    dump(123);
-
     return [function_selector, stack, data, get_c7(), null()];
 }
 
 
 _ test_example(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(1) {
     throw_if(100, exit_code != 0);
+}
+
+
+;; get stored value
+
+[int, tuple, cell, tuple, int] get_stored_value_data() method_id(2) {
+    ;; Funtion to run (recv_internal)
+    int function_selector = 127977;
+
+    int key = 787788;
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([key]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ get_stored_value(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(3) {
+    throw_if(100, exit_code != 0);
+
+    var valid_until = first(stack);
+    throw_if(102, valid_until != 1000);
+    var value = second(stack);
+    throw_if(101, value~load_uint(128) != 12345);
+}
+
+
+
+;; get not stored value
+
+[int, tuple, cell, tuple, int] get_not_stored_value_data() method_id(4) {
+    ;; Funtion to run (recv_internal)
+    int function_selector = 127977;
+
+    int key = 787789; ;; random key
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([key]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ get_not_stored_value(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(5) {
+    throw_if(100, exit_code == 0);
 }

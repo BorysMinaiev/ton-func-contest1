@@ -48,7 +48,6 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
 () recv_internal(int balance, int msg_value, cell in_msg_full, slice in_msg_body) {
     int op = in_msg_body~load_uint(32);
     int query_id = in_msg_body~load_uint(64);
-    dump(op);
 
     (cell data_dict, cell valid_until_dict) = load_data();
 
@@ -59,7 +58,6 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
 
       data_dict~udict_set(256, key, value);
       valid_until_dict~udict_set_ref(256, key, begin_cell().store_uint(valid_until, 64).end_cell());
-
     }
 
     if (op == 2) { ;; remove outdated
@@ -87,11 +85,10 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
 ;; testable
 (int, slice) get_key(int key) method_id {
     (cell data_dict, cell valid_until_dict) = load_data();
-
-    (cell valid_until_cell, int succ) = valid_until_dict.udict_get_ref?(key, 256);
-    throw_if(2000, succ != 0);
+    (cell valid_until_cell, int succ) = valid_until_dict.udict_get_ref?(256, key);
+    throw_if(200, succ != -1);
     (_, int valid_until) = valid_until_cell.begin_parse().load_uint(64);
-    (slice value, _) = data_dict.udict_get?(key, 256);
+    (slice value, _) = data_dict.udict_get?(256, key);
 
     return (valid_until, value);
 }
