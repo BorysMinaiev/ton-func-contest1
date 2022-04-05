@@ -26,7 +26,50 @@ int public_key2() inline method_id {
 }
 
 cell gen_keys_data() inline method_id {
-  return begin_cell().store_uint(public_key1(), 256).store_uint(public_key2(), 256).end_cell();
+  return begin_cell().store_uint(public_key1(), 256).store_uint(public_key2(), 256).store_uint(0, 5 + 20).end_cell();
+}
+
+() check_no_actions(cell actions) inline method_id {
+  slice actions = actions.begin_parse();
+  throw_if(1002, ~ actions.slice_refs_empty?());
+}
+
+() check_one_action(cell actions, int request_id) inline method_id {
+  slice actions = actions.begin_parse();
+  actions~load_ref();
+  slice msg = actions~load_ref().begin_parse();
+  throw_if(1002, msg~load_uint(32) != request_id);
+}
+
+_ gen_test_now(int public_key, int request_id, int now, int expire) inline method_id {
+  ;; Funtion to run: recv_external
+  int function_selector = -1;
+
+  ;; not a valid msg_to_send, I know...
+  cell msg_to_send = begin_cell().store_uint(request_id, 32).end_cell();
+
+  cell request = begin_cell()
+    .store_uint(expire, 32) ;; valid until
+    .store_uint(64, 8) ;; mode
+    .store_ref(msg_to_send)
+    .end_cell();
+
+  slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+
+  cell message = begin_cell()
+    .store_uint(public_key, 256)
+    .store_slice(signature) ;; TODO: fix signature
+    .store_ref(request)
+    .end_cell();
+
+
+  tuple stack = unsafe_tuple([message.begin_parse()]);
+
+  return [function_selector, stack, get_prev_c4(), get_c7_now(now), null()];
+}
+
+_ gen_test(int public_key, int request_id) inline method_id {
+  return gen_test_now(public_key, request_id, 100, 160);
 }
 
 [int, tuple, cell, tuple, int] test_example_data() method_id(0) {
@@ -52,3 +95,403 @@ _ test_example(int exit_code, cell data, tuple stack, cell actions, int gas) met
   throw_if(102, ~ equal_slices(generated_data.begin_parse(), expected_data.begin_parse()));
 }
 
+{-
+
+request#_ valid_until:uint32 mode:uint8 msg_to_send:^Cell = Request;
+mdg_body#_ public_key:uint256 signature:(512 * Bit) request:^Request = MsgBody;
+
+-}
+
+[int, tuple, cell, tuple, int] send_query_data() method_id(2) {
+    ;; Funtion to run: recv_external
+    int function_selector = -1;
+
+    ;; not a valid msg_to_send, I know...
+    cell msg_to_send = begin_cell().store_uint(787788, 32).end_cell();
+
+    cell request = begin_cell()
+      .store_uint(110, 32) ;; valid until
+      .store_uint(64, 8) ;; mode
+      .store_ref(msg_to_send)
+      .end_cell();
+
+    slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+
+    cell message = begin_cell()
+      .store_uint(public_key1(), 256)
+      .store_slice(signature) ;; TODO: fix signature
+      .store_ref(request)
+      .end_cell();
+
+
+    tuple stack = unsafe_tuple([message.begin_parse()]);
+
+    return [function_selector, stack, gen_keys_data(), get_c7_now(100), null()];
+}
+
+
+
+_ send_query(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(3) {
+  throw_if(1001, exit_code != 0);
+
+  check_no_actions(actions);
+}
+
+
+;; should ignore same message
+
+[int, tuple, cell, tuple, int] send_query2_data() method_id(4) {
+    ;; Funtion to run: recv_external
+    int function_selector = -1;
+
+    ;; not a valid msg_to_send, I know...
+    cell msg_to_send = begin_cell().store_uint(787788, 32).end_cell();
+
+    cell request = begin_cell()
+      .store_uint(110, 32) ;; valid until
+      .store_uint(64, 8) ;; mode
+      .store_ref(msg_to_send)
+      .end_cell();
+
+    slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+
+    cell message = begin_cell()
+      .store_uint(public_key1(), 256)
+      .store_slice(signature) ;; TODO: fix signature
+      .store_ref(request)
+      .end_cell();
+
+
+    tuple stack = unsafe_tuple([message.begin_parse()]);
+
+    return [function_selector, stack, get_prev_c4(), get_c7_now(100), null()];
+}
+
+
+_ send_query2(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(5) {
+  throw_if(1001, exit_code == 0);
+}
+
+
+
+;; should send message, when second ack received
+
+[int, tuple, cell, tuple, int] send_query3_data() method_id(6) {
+  ;; Funtion to run: recv_external
+  int function_selector = -1;
+
+  ;; not a valid msg_to_send, I know...
+  cell msg_to_send = begin_cell().store_uint(787788, 32).end_cell();
+
+  cell request = begin_cell()
+    .store_uint(110, 32) ;; valid until
+    .store_uint(64, 8) ;; mode
+    .store_ref(msg_to_send)
+    .end_cell();
+
+  slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+
+  cell message = begin_cell()
+    .store_uint(public_key2(), 256)
+    .store_slice(signature) ;; TODO: fix signature
+    .store_ref(request)
+    .end_cell();
+
+
+  tuple stack = unsafe_tuple([message.begin_parse()]);
+
+  return [function_selector, stack, get_prev_c4(), get_c7_now(100), null()];
+}
+
+
+_ send_query3(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(7) {
+  throw_if(1001, exit_code != 0);
+
+  check_one_action(actions, 787788);
+}
+
+
+;; should NOT send message again, when second ack received twice
+
+[int, tuple, cell, tuple, int] send_query4_data() method_id(8) {
+  ;; Funtion to run: recv_external
+  int function_selector = -1;
+
+  ;; not a valid msg_to_send, I know...
+  cell msg_to_send = begin_cell().store_uint(787788, 32).end_cell();
+
+  cell request = begin_cell()
+    .store_uint(110, 32) ;; valid until
+    .store_uint(64, 8) ;; mode
+    .store_ref(msg_to_send)
+    .end_cell();
+
+  slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+
+  cell message = begin_cell()
+    .store_uint(public_key2(), 256)
+    .store_slice(signature) ;; TODO: fix signature
+    .store_ref(request)
+    .end_cell();
+
+
+  tuple stack = unsafe_tuple([message.begin_parse()]);
+
+  return [function_selector, stack, get_prev_c4(), get_c7_now(100), null()];
+}
+
+
+_ send_query4(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(9) {
+  throw_if(1001, exit_code == 0);
+}
+
+;; time < now
+
+[int, tuple, cell, tuple, int] send_query_before_data() method_id(10) {
+  ;; Funtion to run: recv_external
+  int function_selector = -1;
+
+  ;; not a valid msg_to_send, I know...
+  cell msg_to_send = begin_cell().store_uint(100500, 32).end_cell();
+
+  cell request = begin_cell()
+    .store_uint(99, 32) ;; valid until
+    .store_uint(64, 8) ;; mode
+    .store_ref(msg_to_send)
+    .end_cell();
+
+  slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+
+  cell message = begin_cell()
+    .store_uint(public_key2(), 256)
+    .store_slice(signature) ;; TODO: fix signature
+    .store_ref(request)
+    .end_cell();
+
+
+  tuple stack = unsafe_tuple([message.begin_parse()]);
+
+  return [function_selector, stack, get_prev_c4(), get_c7_now(100), null()];
+}
+
+
+_ send_query_before(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(11) {
+  throw_if(1001, exit_code == 0);
+}
+
+
+;; time > now + 60
+
+[int, tuple, cell, tuple, int] send_query_after_data() method_id(12) {
+  ;; Funtion to run: recv_external
+  int function_selector = -1;
+
+  ;; not a valid msg_to_send, I know...
+  cell msg_to_send = begin_cell().store_uint(100500, 32).end_cell();
+
+  cell request = begin_cell()
+    .store_uint(161, 32) ;; valid until
+    .store_uint(64, 8) ;; mode
+    .store_ref(msg_to_send)
+    .end_cell();
+
+  slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+
+  cell message = begin_cell()
+    .store_uint(public_key2(), 256)
+    .store_slice(signature) ;; TODO: fix signature
+    .store_ref(request)
+    .end_cell();
+
+
+  tuple stack = unsafe_tuple([message.begin_parse()]);
+
+  return [function_selector, stack, get_prev_c4(), get_c7_now(100), null()];
+}
+
+
+_ send_query_after(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(13) {
+  throw_if(1001, exit_code == 0);
+}
+
+;; time = now + 60
+
+[int, tuple, cell, tuple, int] send_query_after_ok_data() method_id(14) {
+  return gen_test(public_key2(), 100500);
+}
+
+
+_ send_query_after_ok(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(15) {
+  throw_if(1001, exit_code != 0);
+
+  check_no_actions(actions);
+}
+
+
+
+;; time = now + 60, get second sign
+
+[int, tuple, cell, tuple, int] send_query_after_ok2_data() method_id(16) {
+  return gen_test(public_key1(), 100500);
+}
+
+
+_ send_query_after_ok2(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(17) {
+  throw_if(1001, exit_code != 0);
+
+  check_one_action(actions, 100500);
+}
+
+;; 3rd query
+[int, tuple, cell, tuple, int] query3_data() method_id(18) {
+  return gen_test(public_key1(), 100500 + 3);
+}
+_ query3(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(19) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+
+;; 4th query
+[int, tuple, cell, tuple, int] query4_data() method_id(20) {
+  return gen_test(public_key1(), 100500 + 4);
+}
+_ query4(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(21) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 5th query
+[int, tuple, cell, tuple, int] query5_data() method_id(22) {
+  return gen_test(public_key1(), 100500 + 5);
+}
+_ query5(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(23) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 6th query
+[int, tuple, cell, tuple, int] query6_data() method_id(24) {
+  return gen_test(public_key1(), 100500 + 6);
+}
+_ query6(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(25) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 7th query
+[int, tuple, cell, tuple, int] query7_data() method_id(26) {
+  return gen_test(public_key1(), 100500 + 7);
+}
+_ query7(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(27) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 5th query x2 (same key)
+[int, tuple, cell, tuple, int] query52_data() method_id(28) {
+  return gen_test(public_key1(), 100500 + 5);
+}
+_ query52(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(29) {
+  throw_if(1001, exit_code == 0);
+  check_no_actions(actions);
+}
+
+;; 5th query x2 (should send)
+[int, tuple, cell, tuple, int] query53_data() method_id(30) {
+  return gen_test(public_key2(), 100500 + 5);
+}
+_ query53(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(31) {
+  throw_if(1001, exit_code != 0);
+  check_one_action(actions, 100500 + 5);
+}
+
+;; 8th query
+[int, tuple, cell, tuple, int] query8_data() method_id(32) {
+  return gen_test(public_key1(), 100500 + 8);
+}
+_ query8(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(33) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 9th query
+[int, tuple, cell, tuple, int] query9_data() method_id(34) {
+  return gen_test(public_key1(), 100500 + 9);
+}
+_ query9(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(35) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 10th query
+[int, tuple, cell, tuple, int] query10_data() method_id(36) {
+  return gen_test_now(public_key1(), 100500 + 10, 110, 159);
+}
+_ query10(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(37) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 11th query (too many queries)
+[int, tuple, cell, tuple, int] query11_data() method_id(38) {
+  return gen_test(public_key1(), 100500 + 11);
+}
+_ query11(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(39) {
+  throw_if(1001, exit_code == 0);
+  check_no_actions(actions);
+}
+
+;; 11th query, after changing now equal to first query
+[int, tuple, cell, tuple, int] query11_2_data() method_id(40) {
+  return gen_test_now(public_key1(), 100500 + 11, 110, 160);
+}
+_ query11_2(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(41) {
+  throw_if(1001, exit_code == 0);
+  check_no_actions(actions);
+}
+
+;; 11th query, after changing now equal to first query + 1
+[int, tuple, cell, tuple, int] query11_3_data() method_id(42) {
+  return gen_test_now(public_key1(), 100500 + 11, 111, 160);
+}
+_ query11_3(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(43) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 11th query, after changing now equal to first query + 1
+[int, tuple, cell, tuple, int] query11_4_data() method_id(44) {
+  return gen_test_now(public_key2(), 100500 + 11, 111, 160);
+}
+_ query11_4(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(45) {
+  throw_if(1001, exit_code != 0);
+  check_one_action(actions, 100500 + 11);
+}
+
+;; 12th query, not fit
+[int, tuple, cell, tuple, int] query12_data() method_id(46) {
+  return gen_test_now(public_key2(), 100500 + 12, 111, 160);
+}
+_ query12(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(47) {
+  throw_if(1001, exit_code == 0);
+  check_no_actions(actions);
+}
+
+;; 12th query, after wait
+[int, tuple, cell, tuple, int] query12_2_data() method_id(48) {
+  return gen_test_now(public_key2(), 100500 + 12, 160, 160);
+}
+_ query12_2(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(49) {
+  throw_if(1001, exit_code != 0);
+  check_no_actions(actions);
+}
+
+;; 12th query, second key
+[int, tuple, cell, tuple, int] query12_3_data() method_id(50) {
+  return gen_test_now(public_key1(), 100500 + 12, 160, 160);
+}
+_ query12_3(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(51) {
+  throw_if(1001, exit_code != 0);
+  check_one_action(actions, 100500 + 12);
+}

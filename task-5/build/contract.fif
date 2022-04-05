@@ -2,19 +2,338 @@
 // automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/ton-func-contest1/task-5/func/code.fc` 
 PROGRAM{
   90427 DECLMETHOD pack_data
+  DECLPROC load_data
+  DECLPROC find_request
+  DECLPROC replace_request
   DECLPROC recv_external
   DECLPROC recv_internal
   pack_data PROC:<{
     //  public_key1 public_key2
-    SWAP
-    NEWC	//  public_key2 public_key1 _2
-    256 STU	//  public_key2 _4
-    256 STU	//  _6
-    ENDC	//  _7
+    0 PUSHINT	//  public_key1 public_key2 _2=0
+    s0 s2 XCHG
+    NEWC	//  _2=0 public_key2 public_key1 _3
+    256 STU	//  _2=0 public_key2 _5
+    256 STU	//  _2=0 _7
+    25 STU	//  _11
+    ENDC	//  _12
+  }>
+  load_data PROC:<{
+    // 
+    c4 PUSH	//  _1
+    CTOS	//  ds
+    256 LDU	//  public_key1 ds
+    256 LDU	//  public_key1 public_key2 ds
+    -ROT	//  ds public_key1 public_key2
+  }>
+  find_request PROC:<{
+    //  s hash
+    -1 PUSHINT	//  s hash pos=-1
+    0 PUSHINT	//  s hash pos=-1 size=0
+    1 PUSHINT	//  s hash pos=-1 size=0 lvl=1
+    WHILE:<{
+      s2 PUSH	//  s hash pos size lvl pos
+      -1 EQINT	//  s hash pos size lvl _9
+      s5 PUSH	//  s hash pos size lvl _9 s
+      SREMPTY	//  s hash pos size lvl _9 _10
+      NOT	//  s hash pos size lvl _9 _11
+      AND	//  s hash pos size lvl _12
+    }>DO<{	//  s hash pos size lvl
+      SWAP	//  s hash pos lvl size
+      INC	//  s hash pos lvl size
+      s0 s4 XCHG	//  size hash pos lvl s
+      LDREF	//  size hash pos lvl ref s
+      s5 PUSH	//  size hash pos lvl ref s size
+      4 EQINT	//  size hash pos lvl ref s _19
+      s6 PUSH	//  size hash pos lvl ref s _19 size
+      8 EQINT	//  size hash pos lvl ref s _19 _21
+      OR	//  size hash pos lvl ref s _22
+      IF:<{	//  size hash pos lvl ref s
+        DROP	//  size hash pos lvl ref
+        SWAP	//  size hash pos ref lvl
+        INC	//  size hash pos ref lvl
+        SWAP	//  size hash pos lvl ref
+        CTOS	//  size hash pos lvl s
+      }>ELSE<{	//  size hash pos lvl ref s
+        SWAP	//  size hash pos lvl s ref
+        HASHCU	//  size hash pos lvl s _26
+        s4 PUSH	//  size hash pos lvl s _26 hash
+        EQUAL	//  size hash pos lvl s _27
+        IF:<{	//  size hash pos lvl s
+          s2 POP	//  size hash s lvl
+          s3 s0 PUSH2	//  size hash s lvl size lvl
+          SUB	//  size hash s lvl pos
+          s0 s2 XCHG	//  size hash pos lvl s
+        }>	//  size hash pos lvl s
+      }>
+      s4 s4 XCHG2	//  s hash pos size lvl
+    }>	//  s hash pos size lvl
+    s2 s4 XCHG
+    4 BLKDROP	//  pos
+  }>
+  replace_request PROCREF:<{
+    //  b old_slice pos lvl request
+    3 PUSHINT	//  b old_slice pos lvl request cnt_inplace=3
+    s2 PUSH	//  b old_slice pos lvl request cnt_inplace=3 lvl
+    2 EQINT	//  b old_slice pos lvl request cnt_inplace=3 _8
+    IF:<{	//  b old_slice pos lvl request cnt_inplace=3
+      DROP	//  b old_slice pos lvl request
+      4 PUSHINT	//  b old_slice pos lvl request cnt_inplace
+    }>	//  b old_slice pos lvl request cnt_inplace
+    s3 s(-1) PUXC	//  b old_slice pos lvl request pos cnt_inplace
+    LESS	//  b old_slice pos lvl request _11
+    IF:<{	//  b old_slice pos lvl request
+      NIP	//  b old_slice pos request
+      SWAP	//  b old_slice request pos
+      REPEAT:<{	//  b old_slice request
+        SWAP	//  b request old_slice
+        LDREF	//  b request _12 old_slice
+        s0 s3 XCHG	//  old_slice request _12 b
+        STREF	//  old_slice request b
+        -ROT	//  b old_slice request
+      }>
+      ROT	//  old_slice request b
+      STREF	//  old_slice b
+      OVER	//  old_slice b old_slice
+      ISNULL	//  old_slice b _16
+      NOT	//  old_slice b _17
+      IF:<{	//  old_slice b
+        OVER	//  old_slice b old_slice
+        SREMPTY	//  old_slice b _18
+        NOT	//  old_slice b _19
+        IF:<{	//  old_slice b
+          SWAP	//  b old_slice
+          LDREF	//  b _49 _48
+          NIP	//  b old_slice
+          SWAP	//  old_slice b
+        }>	//  old_slice b
+        OVER	//  old_slice b old_slice
+        SREFS	//  old_slice b _22
+        REPEAT:<{	//  old_slice b
+          SWAP	//  b old_slice
+          LDREF	//  b _23 old_slice
+          s0 s2 XCHG	//  old_slice _23 b
+          STREF	//  old_slice b
+        }>
+        NIP	//  b
+      }>ELSE<{
+        NIP	//  b
+      }>
+    }>ELSE<{	//  b old_slice pos lvl request
+      3 PUSHINT	//  b old_slice pos lvl request _26=3
+      REPEAT:<{	//  b old_slice pos lvl request
+        s0 s3 XCHG	//  b request pos lvl old_slice
+        LDREF	//  b request pos lvl _27 old_slice
+        s0 s5 XCHG	//  old_slice request pos lvl _27 b
+        STREF	//  old_slice request pos lvl b
+        s0 s4 XCHG
+        s0 s3 XCHG	//  b old_slice pos lvl request
+      }>
+      PUSHNULL	//  b old_slice pos lvl request children_old_slice
+      s4 PUSH	//  b old_slice pos lvl request children_old_slice old_slice
+      SREMPTY	//  b old_slice pos lvl request children_old_slice _32
+      NOT	//  b old_slice pos lvl request children_old_slice _33
+      IF:<{	//  b old_slice pos lvl request children_old_slice
+        DROP	//  b old_slice pos lvl request
+        s0 s3 XCHG	//  b request pos lvl old_slice
+        LDREF	//  b request pos lvl _55 _54
+        DROP	//  b request pos lvl _34
+        CTOS	//  b request pos lvl children_old_slice
+        s0 s3 XCHG	//  b children_old_slice pos lvl request
+      }>ELSE<{
+        s4 POP	//  b children_old_slice pos lvl request
+      }>
+      NEWC	//  b children_old_slice pos lvl request _38
+      s0 s3 XCHG	//  b children_old_slice _38 lvl request pos
+      -3 ADDCONST	//  b children_old_slice _38 lvl request _40
+      s0 s2 XCHG	//  b children_old_slice _38 _40 request lvl
+      INC	//  b children_old_slice _38 _40 request _42
+      s3 s4 XCHG
+      SWAP	//  b _38 children_old_slice _40 _42 request
+      replace_request INLINECALLDICT	//  b children
+      SWAP	//  children b
+      STREF	//  b
+    }>
+    ENDC	//  _45
   }>
   recv_external PROC:<{
     //  in_msg_body
-    DROP	// 
+    256 LDU	//  public_key in_msg_body
+    9 PUSHPOW2	//  public_key in_msg_body _7=512
+    LDSLICEX	//  public_key _168 _167
+    NIP	//  public_key in_msg_body
+    LDREF	//  public_key request_cell in_msg_body
+    ENDS
+    DUP	//  public_key request_cell request_cell
+    CTOS	//  public_key request_cell request
+    32 LDU	//  public_key request_cell valid_until request
+    OVER
+    NOW	//  public_key request_cell valid_until request valid_until _20
+    LESS	//  public_key request_cell valid_until request _21
+    101 THROWIF
+    NOW	//  public_key request_cell valid_until request _24
+    60 ADDCONST	//  public_key request_cell valid_until request _26
+    s2 s(-1) PUXC	//  public_key request_cell valid_until request valid_until _26
+    GREATER	//  public_key request_cell valid_until request _27
+    102 THROWIF
+    load_data CALLDICT	//  public_key request_cell valid_until request tree public_key1 public_key2
+    0 PUSHINT	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0
+    s7 s2 PUSH2	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0 public_key public_key1
+    EQUAL	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0 _35
+    IF:<{	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0
+      DROP
+      s6 POP	//  public_key2 request_cell valid_until request tree public_key1
+      1 PUSHINT	//  public_key2 request_cell valid_until request tree public_key1 key_mask=1
+    }>ELSE<{	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0
+      s7 s1 XCPU	//  key_mask=0 request_cell valid_until request tree public_key1 public_key2 public_key public_key2
+      EQUAL	//  key_mask=0 request_cell valid_until request tree public_key1 public_key2 _37
+      IF:<{	//  key_mask=0 request_cell valid_until request tree public_key1 public_key2
+        s6 POP	//  public_key2 request_cell valid_until request tree public_key1
+        2 PUSHINT	//  public_key2 request_cell valid_until request tree public_key1 key_mask=2
+      }>ELSE<{	//  key_mask=0 request_cell valid_until request tree public_key1 public_key2
+        103 THROW
+        s0 s6 XCHG	//  public_key2 request_cell valid_until request tree public_key1 key_mask
+      }>
+    }>
+    s0 s2 XCHG	//  public_key2 request_cell valid_until request key_mask public_key1 tree
+    5 LDU	//  public_key2 request_cell valid_until request key_mask public_key1 cnt tree
+    20 LDU	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask tree
+    s2 PUSH	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask tree cnt
+    5 LSHIFT#	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask tree _52
+    LDSLICEX	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree
+    s0 s8 PUSH2	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree tree_copy request_cell
+    HASHCU	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree tree_copy _56
+    s1 s2 XCHG	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree_copy tree _56
+    find_request INLINECALLDICT	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree_copy pos
+    s0 s5 XCHG
+    NEWC	//  public_key2 request_cell valid_until request key_mask pos cnt full_mask valid_untils tree_copy public_key1 _59
+    256 STU	//  public_key2 request_cell valid_until request key_mask pos cnt full_mask valid_untils tree_copy _61
+    s1 s10 XCHG	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils public_key2 _61
+    256 STU	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
+    s4 PUSH	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree pos
+    -1 EQINT	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree _65
+    IF:<{	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
+      s4 POP
+      s5 POP	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask
+      -1 PUSHINT	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos=-1
+      DUP	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos=-1 check_pos=-1
+      NEWC	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos=-1 check_pos=-1 new_valid_untils
+      WHILE:<{
+        s7 PUSH	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos check_pos new_valid_untils valid_untils
+        SEMPTY	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos check_pos new_valid_untils _72
+        NOT	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos check_pos new_valid_untils _73
+      }>DO<{	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos check_pos new_valid_untils
+        SWAP	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos new_valid_untils check_pos
+        INC	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos new_valid_untils check_pos
+        s0 s7 XCHG	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils valid_untils
+        32 LDU	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils
+        s3 PUSH	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils npos
+        -1 EQINT	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils _81
+        s2 PUSH
+        NOW	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils _81 cur_valid_until _82
+        LESS	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils _81 _83
+        AND	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils _84
+        IF:<{	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils
+          NIP
+          s2 POP	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask valid_untils new_valid_untils
+          s6 s7 s(-2) PU2XC	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask valid_untils npos valid_until new_valid_untils
+          32 STU	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask valid_untils npos new_valid_untils
+        }>ELSE<{	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos new_valid_untils cur_valid_until valid_untils
+          s0 s2 XCHG	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos valid_untils cur_valid_until new_valid_untils
+          32 STU	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask npos valid_untils new_valid_untils
+          s1 s2 XCHG	//  tree_copy request_cell valid_until check_pos key_mask new_tree cnt full_mask valid_untils npos new_valid_untils
+        }>
+        s1 s7 s0 XCHG3	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos check_pos new_valid_untils
+      }>	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask npos check_pos new_valid_untils
+      NIP
+      s6 POP	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree cnt full_mask npos
+      s2 s0 PUSH2	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree cnt full_mask npos ncnt npos
+      -1 EQINT	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree cnt full_mask npos ncnt _93
+      IF:<{	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree cnt full_mask npos ncnt
+        NIP	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree cnt full_mask ncnt
+        s2 PUSH	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree cnt full_mask ncnt cnt
+        10 EQINT	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree cnt full_mask ncnt _96
+        104 THROWIF	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree npos full_mask ncnt
+        INC	//  tree_copy request_cell valid_until new_valid_untils key_mask new_tree npos full_mask ncnt
+        s6 s5 XCHG2	//  tree_copy request_cell full_mask ncnt key_mask new_tree npos valid_until new_valid_untils
+        32 STU	//  tree_copy request_cell full_mask ncnt key_mask new_tree npos new_valid_untils
+        s4 s4 XCHG2
+        s0 s5 XCHG	//  tree_copy request_cell npos new_valid_untils key_mask new_tree ncnt full_mask
+      }>ELSE<{
+        s3 POP
+        s6 POP	//  tree_copy request_cell npos new_valid_untils key_mask new_tree ncnt full_mask
+      }>
+      s0 s2 XCHG	//  tree_copy request_cell npos new_valid_untils key_mask full_mask ncnt new_tree
+      5 STU	//  tree_copy request_cell npos new_valid_untils key_mask full_mask new_tree
+      3 PUSHINT	//  tree_copy request_cell npos new_valid_untils key_mask full_mask new_tree _107=3
+      s5 PUSH	//  tree_copy request_cell npos new_valid_untils key_mask full_mask new_tree _107=3 npos
+      1 LSHIFT#	//  tree_copy request_cell npos new_valid_untils key_mask full_mask new_tree _107=3 _109
+      LSHIFT	//  tree_copy request_cell npos new_valid_untils key_mask full_mask new_tree _110
+      NOT	//  tree_copy request_cell npos new_valid_untils key_mask full_mask new_tree _111
+      s1 s2 XCHG	//  tree_copy request_cell npos new_valid_untils key_mask new_tree full_mask _111
+      AND	//  tree_copy request_cell npos new_valid_untils key_mask new_tree next_full_mask
+      s4 PUSH	//  tree_copy request_cell npos new_valid_untils key_mask new_tree next_full_mask npos
+      1 LSHIFT#	//  tree_copy request_cell npos new_valid_untils key_mask new_tree next_full_mask _114
+      s1 s3 XCHG	//  tree_copy request_cell npos new_valid_untils next_full_mask new_tree key_mask _114
+      LSHIFT	//  tree_copy request_cell npos new_valid_untils next_full_mask new_tree _115
+      s1 s2 XCHG	//  tree_copy request_cell npos new_valid_untils new_tree next_full_mask _115
+      OR	//  tree_copy request_cell npos new_valid_untils new_tree next_full_mask
+      SWAP	//  tree_copy request_cell npos new_valid_untils next_full_mask new_tree
+      20 STU	//  tree_copy request_cell npos new_valid_untils new_tree
+      STB	//  tree_copy request_cell npos new_tree
+      s3 s1 s3 XCHG3
+      0 PUSHINT
+      SWAP	//  new_tree tree_copy npos _122=0 request_cell
+      replace_request INLINECALLDICT	//  root
+      c4 POP
+    }>ELSE<{	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
+      s7 POP
+      s7 POP	//  tree_copy valid_untils new_tree request key_mask pos cnt full_mask
+      s2 PUSH	//  tree_copy valid_untils new_tree request key_mask pos cnt full_mask pos
+      1 LSHIFT#	//  tree_copy valid_untils new_tree request key_mask pos cnt full_mask _127
+      s1 s(-1) PUXC	//  tree_copy valid_untils new_tree request key_mask pos cnt full_mask full_mask _127
+      RSHIFT	//  tree_copy valid_untils new_tree request key_mask pos cnt full_mask _128
+      3 PUSHINT	//  tree_copy valid_untils new_tree request key_mask pos cnt full_mask _128 _129=3
+      AND	//  tree_copy valid_untils new_tree request key_mask pos cnt full_mask cur_mask
+      s0 s4 PUXC	//  tree_copy valid_untils new_tree request cur_mask pos cnt full_mask cur_mask key_mask
+      OR	//  tree_copy valid_untils new_tree request cur_mask pos cnt full_mask next_mask
+      s4 s4 XCPU	//  tree_copy valid_untils new_tree request next_mask pos cnt full_mask cur_mask next_mask
+      EQUAL	//  tree_copy valid_untils new_tree request next_mask pos cnt full_mask _134
+      105 THROWIF
+      s3 PUSH	//  tree_copy valid_untils new_tree request next_mask pos cnt full_mask next_mask
+      3 EQINT	//  tree_copy valid_untils new_tree request next_mask pos cnt full_mask _137
+      IF:<{	//  tree_copy valid_untils new_tree request next_mask pos cnt full_mask
+        s0 s4 XCHG	//  tree_copy valid_untils new_tree full_mask next_mask pos cnt request
+        8 LDU	//  tree_copy valid_untils new_tree full_mask next_mask pos cnt mode request
+        LDREF	//  tree_copy valid_untils new_tree full_mask next_mask pos cnt mode _187 _186
+        DROP	//  tree_copy valid_untils new_tree full_mask next_mask pos cnt mode msg_to_send
+        SWAP	//  tree_copy valid_untils new_tree full_mask next_mask pos cnt msg_to_send mode
+        SENDRAWMSG
+      }>ELSE<{
+        s4 POP	//  tree_copy valid_untils new_tree full_mask next_mask pos cnt
+      }>
+      SWAP	//  tree_copy valid_untils new_tree full_mask next_mask cnt pos
+      1 LSHIFT#	//  tree_copy valid_untils new_tree full_mask next_mask cnt _148
+      s1 s2 XCHG	//  tree_copy valid_untils new_tree full_mask cnt next_mask _148
+      LSHIFT	//  tree_copy valid_untils new_tree full_mask cnt _149
+      s1 s2 XCHG	//  tree_copy valid_untils new_tree cnt full_mask _149
+      OR	//  tree_copy valid_untils new_tree cnt next_full_mask
+      s0 s2 XCHG	//  tree_copy valid_untils next_full_mask cnt new_tree
+      5 STU	//  tree_copy valid_untils next_full_mask new_tree
+      20 STU	//  tree_copy valid_untils new_tree
+      SWAP	//  tree_copy new_tree valid_untils
+      STSLICER	//  tree_copy new_tree
+      OVER	//  tree_copy new_tree tree_copy
+      SREFS	//  tree_copy new_tree _158
+      REPEAT:<{	//  tree_copy new_tree
+        SWAP	//  new_tree tree_copy
+        LDREF	//  new_tree _159 tree_copy
+        s0 s2 XCHG	//  tree_copy _159 new_tree
+        STREF	//  tree_copy new_tree
+      }>
+      NIP	//  new_tree
+      ENDC	//  _162
+      c4 POP
+    }>
     ACCEPT
   }>
   recv_internal PROC:<{

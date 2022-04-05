@@ -37,13 +37,166 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
 
 ;; testable
 cell pack_data(int public_key1, int public_key2) method_id {
-  return begin_cell().store_uint(public_key1, 256).store_uint(public_key2, 256).end_cell();
+  return begin_cell().store_uint(public_key1, 256).store_uint(public_key2, 256).store_uint(0, 5 + 20).end_cell();
 }
+
+{-
+
+First 3 requests are stored in-place.
+
+-}
+
+(slice, int, int) load_data() {
+  slice ds = get_data().begin_parse();
+  int public_key1 = ds~load_uint(256);
+  int public_key2 = ds~load_uint(256);
+  return (ds, public_key1, public_key2);
+}
+
+int find_request(slice s, int hash) inline {
+  int pos = -1;
+  int size = 0;
+  int lvl = 1;
+
+  while ((pos == -1) & (~ slice_refs_empty?(s))) {
+    size += 1;
+    cell ref = s~load_ref();
+    if ((size == 4) | (size == 8)) {
+      lvl += 1;
+      s = ref.begin_parse();
+    } else {
+      if (cell_hash(ref) == hash) {
+        pos = size - lvl;
+      }
+    }
+  }
+  return pos;
+}
+
+cell replace_request(builder b, slice old_slice, int pos, int lvl, cell request) inline_ref {
+  int cnt_inplace = 3;
+  if (lvl == 2) {
+    cnt_inplace += 1;
+  }
+  if (pos < cnt_inplace) {
+    repeat(pos) {
+      b = b.store_ref(old_slice~load_ref());
+    }
+    b = b.store_ref(request);
+    if (~ old_slice.null?()) {
+      if (~ old_slice.slice_refs_empty?()) {
+        old_slice~load_ref();
+      }
+      repeat(old_slice.slice_refs()) {
+        b = b.store_ref(old_slice~load_ref());
+      }
+    }
+  } else {
+    repeat(3) {
+      b = b.store_ref(old_slice~load_ref());
+    }
+    slice children_old_slice = null();
+    if (~ old_slice.slice_refs_empty?()) {
+      children_old_slice = old_slice~load_ref().begin_parse();
+    }
+    cell children = replace_request(begin_cell(), children_old_slice, pos - 3, lvl + 1, request);
+    b = b.store_ref(children);
+  }
+  return b.end_cell();
+}
+
+
+builder store_builder(builder to, builder what) asm(what to) "STB";
+
 
 ;; testable
 () recv_external (slice in_msg_body) {
-	;; Fill in
-	accept_message();
+  int public_key = in_msg_body~load_uint(256);
+  slice signature = in_msg_body~load_bits(512);
+  cell request_cell = in_msg_body~load_ref();
+  in_msg_body.end_parse();
+
+  slice request = request_cell.begin_parse();
+
+  ;; TODO: uncomment it
+  ;; throw_if(100, ~ check_data_signature(request, signature, public_key));
+  int valid_until = request~load_uint(32);
+  throw_if(101, valid_until < now());
+  throw_if(102, valid_until > now() + 60);
+
+  ;; TODO: validation
+  (slice tree, int public_key1, int public_key2) = load_data();
+
+  int key_mask = 0;
+  if (public_key == public_key1) {
+    key_mask = 1;
+  } else {
+    if (public_key == public_key2) {
+      key_mask = 2;
+    } else {
+      throw(103);
+    }
+  }
+
+  int cnt = tree~load_uint(5);
+  int full_mask = tree~load_uint(20);
+  slice valid_untils = tree~load_bits(32 * cnt);
+
+  ;; TODO: do I need it?
+  slice tree_copy = tree;
+  int pos = find_request(tree, cell_hash(request_cell));
+  builder new_tree = begin_cell().store_uint(public_key1, 256).store_uint(public_key2, 256);
+
+  if (pos == -1) {
+    int npos = -1;
+    int check_pos = -1;
+
+    builder new_valid_untils = begin_cell();
+    ;; TODO: change to repeat?
+    while (~ valid_untils.slice_empty?()) {
+      check_pos += 1;
+      int cur_valid_until = valid_untils~load_uint(32);
+      if ((npos == -1) & (cur_valid_until < now())) {
+        npos = check_pos;
+        new_valid_untils~store_uint(valid_until, 32);
+      } else {
+        new_valid_untils~store_uint(cur_valid_until, 32);
+      }
+    }
+    int ncnt = cnt;
+    if (npos == -1) {
+      throw_if(104, cnt == 10); ;; too many entries already
+      npos = cnt;
+      ncnt += 1;
+      new_valid_untils~store_uint(valid_until, 32);
+    }
+    new_tree~store_uint(ncnt, 5);
+    int next_full_mask = full_mask & (~ (3 << (npos * 2)));
+    next_full_mask |= (key_mask << (npos * 2));
+    new_tree~store_uint(next_full_mask, 20);
+    new_tree = new_tree.store_builder(new_valid_untils);
+    cell root = replace_request(new_tree, tree_copy, npos, 0, request_cell);
+    set_data(root);
+  } else {
+    int cur_mask = (full_mask >> (pos * 2)) & 3;
+    int next_mask = cur_mask | key_mask;
+    throw_if(105, cur_mask == next_mask);
+    if (next_mask == 3) {
+      int mode = request~load_uint(8);
+      cell msg_to_send = request~load_ref();
+      send_raw_message(msg_to_send, mode);
+    }
+    int next_full_mask = full_mask | ((next_mask << (pos * 2)));
+    new_tree~store_uint(cnt, 5);
+    new_tree~store_uint(next_full_mask, 20);
+    new_tree = new_tree.store_slice(valid_untils);
+    repeat(tree_copy.slice_refs()) {
+      new_tree = new_tree.store_ref(tree_copy~load_ref());
+    }
+    set_data(new_tree.end_cell());
+  }
+
+  accept_message();
 }
 
 ;; just to make toncli tests work

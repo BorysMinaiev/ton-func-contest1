@@ -6,8 +6,62 @@ PROGRAM{
   122414 DECLMETHOD public_key1
   126541 DECLMETHOD public_key2
   124921 DECLMETHOD gen_keys_data
+  96405 DECLMETHOD check_no_actions
+  116916 DECLMETHOD check_one_action
+  91233 DECLMETHOD gen_test_now
+  111723 DECLMETHOD gen_test
   0 DECLMETHOD test_example_data
   1 DECLMETHOD test_example
+  2 DECLMETHOD send_query_data
+  3 DECLMETHOD send_query
+  4 DECLMETHOD send_query2_data
+  5 DECLMETHOD send_query2
+  6 DECLMETHOD send_query3_data
+  7 DECLMETHOD send_query3
+  8 DECLMETHOD send_query4_data
+  9 DECLMETHOD send_query4
+  10 DECLMETHOD send_query_before_data
+  11 DECLMETHOD send_query_before
+  12 DECLMETHOD send_query_after_data
+  13 DECLMETHOD send_query_after
+  14 DECLMETHOD send_query_after_ok_data
+  15 DECLMETHOD send_query_after_ok
+  16 DECLMETHOD send_query_after_ok2_data
+  17 DECLMETHOD send_query_after_ok2
+  18 DECLMETHOD query3_data
+  19 DECLMETHOD query3
+  20 DECLMETHOD query4_data
+  21 DECLMETHOD query4
+  22 DECLMETHOD query5_data
+  23 DECLMETHOD query5
+  24 DECLMETHOD query6_data
+  25 DECLMETHOD query6
+  26 DECLMETHOD query7_data
+  27 DECLMETHOD query7
+  28 DECLMETHOD query52_data
+  29 DECLMETHOD query52
+  30 DECLMETHOD query53_data
+  31 DECLMETHOD query53
+  32 DECLMETHOD query8_data
+  33 DECLMETHOD query8
+  34 DECLMETHOD query9_data
+  35 DECLMETHOD query9
+  36 DECLMETHOD query10_data
+  37 DECLMETHOD query10
+  38 DECLMETHOD query11_data
+  39 DECLMETHOD query11
+  40 DECLMETHOD query11_2_data
+  41 DECLMETHOD query11_2
+  42 DECLMETHOD query11_3_data
+  43 DECLMETHOD query11_3
+  44 DECLMETHOD query11_4_data
+  45 DECLMETHOD query11_4
+  46 DECLMETHOD query12_data
+  47 DECLMETHOD query12
+  48 DECLMETHOD query12_2_data
+  49 DECLMETHOD query12_2
+  50 DECLMETHOD query12_3_data
+  51 DECLMETHOD query12_3
   get_c7 PROC:<{
     // 
     124711402 PUSHINT	//  _2=124711402
@@ -54,12 +108,81 @@ PROGRAM{
   }>
   gen_keys_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    public_key1 INLINECALLDICT	//  _0 _1
-    NEWC	//  _0 _1 _2
-    256 STU	//  _0 _4
-    256 STU	//  _6
-    ENDC	//  _7
+    0 PUSHINT	//  _0=0
+    public_key2 INLINECALLDICT	//  _0=0 _1
+    public_key1 INLINECALLDICT	//  _0=0 _1 _2
+    NEWC	//  _0=0 _1 _2 _3
+    256 STU	//  _0=0 _1 _5
+    256 STU	//  _0=0 _7
+    25 STU	//  _11
+    ENDC	//  _12
+  }>
+  check_no_actions PROC:<{
+    //  actions
+    CTOS	//  actions
+    SREMPTY	//  _4
+    NOT	//  _5
+    1002 THROWIF
+  }>
+  check_one_action PROC:<{
+    //  actions request_id
+    SWAP	//  request_id actions
+    CTOS	//  request_id actions
+    LDREF	//  request_id _17 _16
+    NIP	//  request_id actions
+    LDREF	//  request_id _19 _18
+    DROP	//  request_id _7
+    CTOS	//  request_id msg
+    32 LDU	//  request_id _21 _20
+    DROP	//  request_id _11
+    SWAP	//  _11 request_id
+    NEQ	//  _14
+    1002 THROWIF
+  }>
+  gen_test_now PROC:<{
+    //  public_key request_id now expire
+    -1 PUSHINT	//  public_key request_id now expire function_selector=-1
+    s0 s3 XCHG
+    NEWC	//  public_key function_selector=-1 now expire request_id _7
+    32 STU	//  public_key function_selector=-1 now expire _9
+    ENDC	//  public_key function_selector=-1 now expire msg_to_send
+    64 PUSHINT	//  public_key function_selector=-1 now expire msg_to_send _12=64
+    s0 s2 XCHG
+    NEWC	//  public_key function_selector=-1 now _12=64 msg_to_send expire _13
+    32 STU	//  public_key function_selector=-1 now _12=64 msg_to_send _15
+    s1 s2 XCHG	//  public_key function_selector=-1 now msg_to_send _12=64 _15
+    8 STU	//  public_key function_selector=-1 now msg_to_send _17
+    STREF	//  public_key function_selector=-1 now _18
+    ENDC	//  public_key function_selector=-1 now request
+    12355 PUSHINT	//  public_key function_selector=-1 now request _21=12355
+    12344 PUSHINT	//  public_key function_selector=-1 now request _21=12355 _22=12344
+    NEWC	//  public_key function_selector=-1 now request _21=12355 _22=12344 _23
+    256 STU	//  public_key function_selector=-1 now request _21=12355 _25
+    256 STU	//  public_key function_selector=-1 now request _27
+    ENDC	//  public_key function_selector=-1 now request _28
+    CTOS	//  public_key function_selector=-1 now request signature
+    s0 s4 XCHG
+    NEWC	//  signature function_selector=-1 now request public_key _31
+    256 STU	//  signature function_selector=-1 now request _33
+    s0 s4 XCHG2	//  request function_selector=-1 now _33 signature
+    STSLICER	//  request function_selector=-1 now _34
+    s1 s3 XCHG	//  now function_selector=-1 request _34
+    STREF	//  now function_selector=-1 _35
+    ENDC	//  now function_selector=-1 message
+    CTOS	//  now function_selector=-1 _39
+    SINGLE	//  now function_selector=-1 stack
+    10 GETPARAM UNPAIR DROP	//  now function_selector=-1 stack _42
+    s0 s3 XCHG	//  _42 function_selector=-1 stack now
+    get_c7_now INLINECALLDICT	//  _42 function_selector=-1 stack _43
+    s1 s3 s0 XCHG3
+    PUSHNULL	//  function_selector=-1 stack _42 _43 _44
+    5 TUPLE	//  _41
+  }>
+  gen_test PROC:<{
+    //  public_key request_id
+    100 PUSHINT	//  public_key request_id _2=100
+    160 PUSHINT	//  public_key request_id _2=100 _3=160
+    gen_test_now INLINECALLDICT	//  _4
   }>
   test_example_data PROC:<{
     // 
@@ -90,5 +213,499 @@ PROGRAM{
     SDEQ	//  _16
     NOT	//  _17
     102 THROWIF
+  }>
+  send_query_data PROC:<{
+    // 
+    -1 PUSHINT	//  function_selector=-1
+    787788 PUSHINT	//  function_selector=-1 _3=787788
+    NEWC	//  function_selector=-1 _3=787788 _4
+    32 STU	//  function_selector=-1 _6
+    ENDC	//  function_selector=-1 msg_to_send
+    64 PUSHINT	//  function_selector=-1 msg_to_send _9=64
+    110 PUSHINT	//  function_selector=-1 msg_to_send _9=64 _10=110
+    NEWC	//  function_selector=-1 msg_to_send _9=64 _10=110 _11
+    32 STU	//  function_selector=-1 msg_to_send _9=64 _13
+    8 STU	//  function_selector=-1 msg_to_send _15
+    STREF	//  function_selector=-1 _16
+    ENDC	//  function_selector=-1 request
+    12355 PUSHINT	//  function_selector=-1 request _19=12355
+    12344 PUSHINT	//  function_selector=-1 request _19=12355 _20=12344
+    NEWC	//  function_selector=-1 request _19=12355 _20=12344 _21
+    256 STU	//  function_selector=-1 request _19=12355 _23
+    256 STU	//  function_selector=-1 request _25
+    ENDC	//  function_selector=-1 request _26
+    CTOS	//  function_selector=-1 request signature
+    public_key1 INLINECALLDICT	//  function_selector=-1 request signature _29
+    NEWC	//  function_selector=-1 request signature _29 _30
+    256 STU	//  function_selector=-1 request signature _32
+    SWAP	//  function_selector=-1 request _32 signature
+    STSLICER	//  function_selector=-1 request _33
+    STREF	//  function_selector=-1 _34
+    ENDC	//  function_selector=-1 message
+    CTOS	//  function_selector=-1 _38
+    SINGLE	//  function_selector=-1 stack
+    gen_keys_data INLINECALLDICT	//  function_selector=-1 stack _41
+    100 PUSHINT	//  function_selector=-1 stack _41 _42=100
+    get_c7_now INLINECALLDICT	//  function_selector=-1 stack _41 _43
+    PUSHNULL	//  function_selector=-1 stack _41 _43 _44
+    5 TUPLE	//  _40
+  }>
+  send_query PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  send_query2_data PROC:<{
+    // 
+    -1 PUSHINT	//  function_selector=-1
+    787788 PUSHINT	//  function_selector=-1 _3=787788
+    NEWC	//  function_selector=-1 _3=787788 _4
+    32 STU	//  function_selector=-1 _6
+    ENDC	//  function_selector=-1 msg_to_send
+    64 PUSHINT	//  function_selector=-1 msg_to_send _9=64
+    110 PUSHINT	//  function_selector=-1 msg_to_send _9=64 _10=110
+    NEWC	//  function_selector=-1 msg_to_send _9=64 _10=110 _11
+    32 STU	//  function_selector=-1 msg_to_send _9=64 _13
+    8 STU	//  function_selector=-1 msg_to_send _15
+    STREF	//  function_selector=-1 _16
+    ENDC	//  function_selector=-1 request
+    12355 PUSHINT	//  function_selector=-1 request _19=12355
+    12344 PUSHINT	//  function_selector=-1 request _19=12355 _20=12344
+    NEWC	//  function_selector=-1 request _19=12355 _20=12344 _21
+    256 STU	//  function_selector=-1 request _19=12355 _23
+    256 STU	//  function_selector=-1 request _25
+    ENDC	//  function_selector=-1 request _26
+    CTOS	//  function_selector=-1 request signature
+    public_key1 INLINECALLDICT	//  function_selector=-1 request signature _29
+    NEWC	//  function_selector=-1 request signature _29 _30
+    256 STU	//  function_selector=-1 request signature _32
+    SWAP	//  function_selector=-1 request _32 signature
+    STSLICER	//  function_selector=-1 request _33
+    STREF	//  function_selector=-1 _34
+    ENDC	//  function_selector=-1 message
+    CTOS	//  function_selector=-1 _38
+    SINGLE	//  function_selector=-1 stack
+    10 GETPARAM UNPAIR DROP	//  function_selector=-1 stack _41
+    100 PUSHINT	//  function_selector=-1 stack _41 _42=100
+    get_c7_now INLINECALLDICT	//  function_selector=-1 stack _41 _43
+    PUSHNULL	//  function_selector=-1 stack _41 _43 _44
+    5 TUPLE	//  _40
+  }>
+  send_query2 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  send_query3_data PROC:<{
+    // 
+    -1 PUSHINT	//  function_selector=-1
+    787788 PUSHINT	//  function_selector=-1 _3=787788
+    NEWC	//  function_selector=-1 _3=787788 _4
+    32 STU	//  function_selector=-1 _6
+    ENDC	//  function_selector=-1 msg_to_send
+    64 PUSHINT	//  function_selector=-1 msg_to_send _9=64
+    110 PUSHINT	//  function_selector=-1 msg_to_send _9=64 _10=110
+    NEWC	//  function_selector=-1 msg_to_send _9=64 _10=110 _11
+    32 STU	//  function_selector=-1 msg_to_send _9=64 _13
+    8 STU	//  function_selector=-1 msg_to_send _15
+    STREF	//  function_selector=-1 _16
+    ENDC	//  function_selector=-1 request
+    12355 PUSHINT	//  function_selector=-1 request _19=12355
+    12344 PUSHINT	//  function_selector=-1 request _19=12355 _20=12344
+    NEWC	//  function_selector=-1 request _19=12355 _20=12344 _21
+    256 STU	//  function_selector=-1 request _19=12355 _23
+    256 STU	//  function_selector=-1 request _25
+    ENDC	//  function_selector=-1 request _26
+    CTOS	//  function_selector=-1 request signature
+    public_key2 INLINECALLDICT	//  function_selector=-1 request signature _29
+    NEWC	//  function_selector=-1 request signature _29 _30
+    256 STU	//  function_selector=-1 request signature _32
+    SWAP	//  function_selector=-1 request _32 signature
+    STSLICER	//  function_selector=-1 request _33
+    STREF	//  function_selector=-1 _34
+    ENDC	//  function_selector=-1 message
+    CTOS	//  function_selector=-1 _38
+    SINGLE	//  function_selector=-1 stack
+    10 GETPARAM UNPAIR DROP	//  function_selector=-1 stack _41
+    100 PUSHINT	//  function_selector=-1 stack _41 _42=100
+    get_c7_now INLINECALLDICT	//  function_selector=-1 stack _41 _43
+    PUSHNULL	//  function_selector=-1 stack _41 _43 _44
+    5 TUPLE	//  _40
+  }>
+  send_query3 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  send_query4_data PROC:<{
+    // 
+    -1 PUSHINT	//  function_selector=-1
+    787788 PUSHINT	//  function_selector=-1 _3=787788
+    NEWC	//  function_selector=-1 _3=787788 _4
+    32 STU	//  function_selector=-1 _6
+    ENDC	//  function_selector=-1 msg_to_send
+    64 PUSHINT	//  function_selector=-1 msg_to_send _9=64
+    110 PUSHINT	//  function_selector=-1 msg_to_send _9=64 _10=110
+    NEWC	//  function_selector=-1 msg_to_send _9=64 _10=110 _11
+    32 STU	//  function_selector=-1 msg_to_send _9=64 _13
+    8 STU	//  function_selector=-1 msg_to_send _15
+    STREF	//  function_selector=-1 _16
+    ENDC	//  function_selector=-1 request
+    12355 PUSHINT	//  function_selector=-1 request _19=12355
+    12344 PUSHINT	//  function_selector=-1 request _19=12355 _20=12344
+    NEWC	//  function_selector=-1 request _19=12355 _20=12344 _21
+    256 STU	//  function_selector=-1 request _19=12355 _23
+    256 STU	//  function_selector=-1 request _25
+    ENDC	//  function_selector=-1 request _26
+    CTOS	//  function_selector=-1 request signature
+    public_key2 INLINECALLDICT	//  function_selector=-1 request signature _29
+    NEWC	//  function_selector=-1 request signature _29 _30
+    256 STU	//  function_selector=-1 request signature _32
+    SWAP	//  function_selector=-1 request _32 signature
+    STSLICER	//  function_selector=-1 request _33
+    STREF	//  function_selector=-1 _34
+    ENDC	//  function_selector=-1 message
+    CTOS	//  function_selector=-1 _38
+    SINGLE	//  function_selector=-1 stack
+    10 GETPARAM UNPAIR DROP	//  function_selector=-1 stack _41
+    100 PUSHINT	//  function_selector=-1 stack _41 _42=100
+    get_c7_now INLINECALLDICT	//  function_selector=-1 stack _41 _43
+    PUSHNULL	//  function_selector=-1 stack _41 _43 _44
+    5 TUPLE	//  _40
+  }>
+  send_query4 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  send_query_before_data PROC:<{
+    // 
+    -1 PUSHINT	//  function_selector=-1
+    100500 PUSHINT	//  function_selector=-1 _3=100500
+    NEWC	//  function_selector=-1 _3=100500 _4
+    32 STU	//  function_selector=-1 _6
+    ENDC	//  function_selector=-1 msg_to_send
+    64 PUSHINT	//  function_selector=-1 msg_to_send _9=64
+    99 PUSHINT	//  function_selector=-1 msg_to_send _9=64 _10=99
+    NEWC	//  function_selector=-1 msg_to_send _9=64 _10=99 _11
+    32 STU	//  function_selector=-1 msg_to_send _9=64 _13
+    8 STU	//  function_selector=-1 msg_to_send _15
+    STREF	//  function_selector=-1 _16
+    ENDC	//  function_selector=-1 request
+    12355 PUSHINT	//  function_selector=-1 request _19=12355
+    12344 PUSHINT	//  function_selector=-1 request _19=12355 _20=12344
+    NEWC	//  function_selector=-1 request _19=12355 _20=12344 _21
+    256 STU	//  function_selector=-1 request _19=12355 _23
+    256 STU	//  function_selector=-1 request _25
+    ENDC	//  function_selector=-1 request _26
+    CTOS	//  function_selector=-1 request signature
+    public_key2 INLINECALLDICT	//  function_selector=-1 request signature _29
+    NEWC	//  function_selector=-1 request signature _29 _30
+    256 STU	//  function_selector=-1 request signature _32
+    SWAP	//  function_selector=-1 request _32 signature
+    STSLICER	//  function_selector=-1 request _33
+    STREF	//  function_selector=-1 _34
+    ENDC	//  function_selector=-1 message
+    CTOS	//  function_selector=-1 _38
+    SINGLE	//  function_selector=-1 stack
+    10 GETPARAM UNPAIR DROP	//  function_selector=-1 stack _41
+    100 PUSHINT	//  function_selector=-1 stack _41 _42=100
+    get_c7_now INLINECALLDICT	//  function_selector=-1 stack _41 _43
+    PUSHNULL	//  function_selector=-1 stack _41 _43 _44
+    5 TUPLE	//  _40
+  }>
+  send_query_before PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  send_query_after_data PROC:<{
+    // 
+    -1 PUSHINT	//  function_selector=-1
+    100500 PUSHINT	//  function_selector=-1 _3=100500
+    NEWC	//  function_selector=-1 _3=100500 _4
+    32 STU	//  function_selector=-1 _6
+    ENDC	//  function_selector=-1 msg_to_send
+    64 PUSHINT	//  function_selector=-1 msg_to_send _9=64
+    161 PUSHINT	//  function_selector=-1 msg_to_send _9=64 _10=161
+    NEWC	//  function_selector=-1 msg_to_send _9=64 _10=161 _11
+    32 STU	//  function_selector=-1 msg_to_send _9=64 _13
+    8 STU	//  function_selector=-1 msg_to_send _15
+    STREF	//  function_selector=-1 _16
+    ENDC	//  function_selector=-1 request
+    12355 PUSHINT	//  function_selector=-1 request _19=12355
+    12344 PUSHINT	//  function_selector=-1 request _19=12355 _20=12344
+    NEWC	//  function_selector=-1 request _19=12355 _20=12344 _21
+    256 STU	//  function_selector=-1 request _19=12355 _23
+    256 STU	//  function_selector=-1 request _25
+    ENDC	//  function_selector=-1 request _26
+    CTOS	//  function_selector=-1 request signature
+    public_key2 INLINECALLDICT	//  function_selector=-1 request signature _29
+    NEWC	//  function_selector=-1 request signature _29 _30
+    256 STU	//  function_selector=-1 request signature _32
+    SWAP	//  function_selector=-1 request _32 signature
+    STSLICER	//  function_selector=-1 request _33
+    STREF	//  function_selector=-1 _34
+    ENDC	//  function_selector=-1 message
+    CTOS	//  function_selector=-1 _38
+    SINGLE	//  function_selector=-1 stack
+    10 GETPARAM UNPAIR DROP	//  function_selector=-1 stack _41
+    100 PUSHINT	//  function_selector=-1 stack _41 _42=100
+    get_c7_now INLINECALLDICT	//  function_selector=-1 stack _41 _43
+    PUSHNULL	//  function_selector=-1 stack _41 _43 _44
+    5 TUPLE	//  _40
+  }>
+  send_query_after PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  send_query_after_ok_data PROC:<{
+    // 
+    public_key2 INLINECALLDICT	//  _0
+    100500 PUSHINT	//  _0 _1=100500
+    gen_test INLINECALLDICT	//  _2
+  }>
+  send_query_after_ok PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  send_query_after_ok2_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100500 PUSHINT	//  _0 _1=100500
+    gen_test INLINECALLDICT	//  _2
+  }>
+  send_query_after_ok2 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query3_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100503 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query3 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query4_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100504 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query4 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query5_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100505 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query5 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query6_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100506 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query6 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query7_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100507 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query7 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query52_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100505 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query52 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  query53_data PROC:<{
+    // 
+    public_key2 INLINECALLDICT	//  _0
+    100505 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query53 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query8_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100508 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query8 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query9_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100509 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query9 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query10_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100510 PUSHINT	//  _0 _3
+    110 PUSHINT	//  _0 _3 _4=110
+    159 PUSHINT	//  _0 _3 _4=110 _5=159
+    gen_test_now INLINECALLDICT	//  _6
+  }>
+  query10 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query11_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100511 PUSHINT	//  _0 _3
+    gen_test INLINECALLDICT	//  _4
+  }>
+  query11 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  query11_2_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100511 PUSHINT	//  _0 _3
+    110 PUSHINT	//  _0 _3 _4=110
+    160 PUSHINT	//  _0 _3 _4=110 _5=160
+    gen_test_now INLINECALLDICT	//  _6
+  }>
+  query11_2 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  query11_3_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100511 PUSHINT	//  _0 _3
+    111 PUSHINT	//  _0 _3 _4=111
+    160 PUSHINT	//  _0 _3 _4=111 _5=160
+    gen_test_now INLINECALLDICT	//  _6
+  }>
+  query11_3 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query11_4_data PROC:<{
+    // 
+    public_key2 INLINECALLDICT	//  _0
+    100511 PUSHINT	//  _0 _3
+    111 PUSHINT	//  _0 _3 _4=111
+    160 PUSHINT	//  _0 _3 _4=111 _5=160
+    gen_test_now INLINECALLDICT	//  _6
+  }>
+  query11_4 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query12_data PROC:<{
+    // 
+    public_key2 INLINECALLDICT	//  _0
+    100512 PUSHINT	//  _0 _3
+    111 PUSHINT	//  _0 _3 _4=111
+    160 PUSHINT	//  _0 _3 _4=111 _5=160
+    gen_test_now INLINECALLDICT	//  _6
+  }>
+  query12 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    1001 THROWIF
+  }>
+  query12_2_data PROC:<{
+    // 
+    public_key2 INLINECALLDICT	//  _0
+    100512 PUSHINT	//  _0 _3
+    160 PUSHINT	//  _0 _3 _4=160
+    DUP	//  _0 _3 _4=160 _5=160
+    gen_test_now INLINECALLDICT	//  _6
+  }>
+  query12_2 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
+  }>
+  query12_3_data PROC:<{
+    // 
+    public_key1 INLINECALLDICT	//  _0
+    100512 PUSHINT	//  _0 _3
+    160 PUSHINT	//  _0 _3 _4=160
+    DUP	//  _0 _3 _4=160 _5=160
+    gen_test_now INLINECALLDICT	//  _6
+  }>
+  query12_3 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 NEQINT	//  _7
+    1001 THROWIF
   }>
 }END>c
