@@ -175,7 +175,7 @@ PROGRAM{
     s2 s(-1) PUXC	//  public_key request_cell valid_until request valid_until _26
     GREATER	//  public_key request_cell valid_until request _27
     102 THROWIF
-    load_data CALLDICT	//  public_key request_cell valid_until request tree public_key1 public_key2
+    load_data INLINECALLDICT	//  public_key request_cell valid_until request tree public_key1 public_key2
     0 PUSHINT	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0
     s7 s2 PUSH2	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0 public_key public_key1
     EQUAL	//  public_key request_cell valid_until request tree public_key1 public_key2 key_mask=0 _35

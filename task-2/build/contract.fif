@@ -32,8 +32,8 @@ PROGRAM{
     //  balance msg_value in_msg_full in_msg_body
     s3 POP
     NIP	//  in_msg_body in_msg_full
-    parse_sender_address CALLDICT	//  in_msg_body sender_address
-    load_data CALLDICT	//  in_msg_body sender_address owner_address
+    parse_sender_address INLINECALLDICT	//  in_msg_body sender_address
+    load_data INLINECALLDICT	//  in_msg_body sender_address owner_address
     2DUP	//  in_msg_body sender_address owner_address sender_address owner_address
     SDEQ	//  in_msg_body sender_address owner_address _8
     NOT	//  in_msg_body sender_address owner_address _9

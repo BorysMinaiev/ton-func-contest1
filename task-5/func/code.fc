@@ -46,7 +46,7 @@ First 3 requests are stored in-place.
 
 -}
 
-(slice, int, int) load_data() {
+(slice, int, int) load_data() inline {
   slice ds = get_data().begin_parse();
   int public_key1 = ds~load_uint(256);
   int public_key2 = ds~load_uint(256);
