@@ -35,29 +35,29 @@ int equal_slices (slice a, slice b) asm "SDEQ";
 }
 
 ;; Parse sender address from incoming message
-(slice, int) parse_sender_address (cell in_msg_full) {
+slice parse_sender_address (cell in_msg_full) {
   var cs = in_msg_full.begin_parse();
   var flags = cs~load_uint(4);
   slice sender_address = cs~load_msg_addr();
-  return (sender_address, flags);
+  return sender_address;
 }
-
 
 forall X -> () dump (X x) impure asm "s0 DUMP DROP";
 
 ;; testable
 () recv_internal (int balance, int msg_value, cell in_msg_full, slice in_msg_body) {
-  ;; TODO: check for extra data in the end of the message?
-  (slice manager_address, slice memorized_address) = load_data();
   int op = in_msg_body~load_int(32);
   int query_id = in_msg_body~load_uint(64);
-  var (sender_address, _) = parse_sender_address(in_msg_full);
+  var sender_address = parse_sender_address(in_msg_full);
+
   if (op == 1) {
+    (slice manager_address, slice memorized_address) = load_data();
     throw_if(1001, ~ equal_slices(manager_address, sender_address));
     slice new_memorized_address = in_msg_body~load_msg_addr();
     save_data(manager_address, new_memorized_address);
   } else {
     if (op == 2) {
+      (slice manager_address, slice memorized_address) = load_data();
       var msg = begin_cell()
               .store_uint(0x10, 6)
               .store_slice(sender_address)
@@ -70,7 +70,7 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
             .end_cell();
       send_raw_message(msg, 64);
     } else {
-      throw_if(1000, 1); ;; unknown op
+      throw(3); ;; unknown op
     }
   }
 }

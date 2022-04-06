@@ -26,63 +26,63 @@ PROGRAM{
   parse_sender_address PROC:<{
     //  in_msg_full
     CTOS	//  cs
-    4 LDU	//  flags cs
-    LDMSGADDR	//  flags _13 _12
-    DROP	//  flags sender_address
-    SWAP	//  sender_address flags
+    4 LDU	//  _11 _10
+    NIP	//  cs
+    LDMSGADDR	//  _13 _12
+    DROP	//  sender_address
   }>
   recv_internal PROC:<{
     //  balance msg_value in_msg_full in_msg_body
     s3 POP	//  in_msg_body msg_value in_msg_full
-    load_data CALLDICT	//  in_msg_body msg_value in_msg_full manager_address memorized_address
-    s0 s4 XCHG	//  memorized_address msg_value in_msg_full manager_address in_msg_body
-    32 LDI	//  memorized_address msg_value in_msg_full manager_address op in_msg_body
-    64 LDU	//  memorized_address msg_value in_msg_full manager_address op query_id in_msg_body
-    s0 s4 XCHG	//  memorized_address msg_value in_msg_body manager_address op query_id in_msg_full
-    parse_sender_address CALLDICT	//  memorized_address msg_value in_msg_body manager_address op query_id _71 _72
-    DROP	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address
-    s2 PUSH	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address op
-    1 EQINT	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address _19
-    IF:<{	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address
-      s5 POP
-      2DROP
-      s3 POP	//  manager_address sender_address in_msg_body
-      s2 s1 PUXC	//  manager_address in_msg_body manager_address sender_address
-      SDEQ	//  manager_address in_msg_body _21
-      NOT	//  manager_address in_msg_body _22
+    s0 s2 XCHG	//  in_msg_full msg_value in_msg_body
+    32 LDI	//  in_msg_full msg_value op in_msg_body
+    64 LDU	//  in_msg_full msg_value op query_id in_msg_body
+    s0 s4 XCHG	//  in_msg_body msg_value op query_id in_msg_full
+    parse_sender_address CALLDICT	//  in_msg_body msg_value op query_id sender_address
+    s2 PUSH	//  in_msg_body msg_value op query_id sender_address op
+    1 EQINT	//  in_msg_body msg_value op query_id sender_address _15
+    IF:<{	//  in_msg_body msg_value op query_id sender_address
+      3 1 BLKDROP2	//  in_msg_body sender_address
+      load_data CALLDICT	//  in_msg_body sender_address _70 _71
+      DROP	//  in_msg_body sender_address manager_address
+      s0 s1 PUXC	//  in_msg_body manager_address manager_address sender_address
+      SDEQ	//  in_msg_body manager_address _20
+      NOT	//  in_msg_body manager_address _21
       1001 THROWIF
-      LDMSGADDR	//  manager_address _74 _73
+      SWAP	//  manager_address in_msg_body
+      LDMSGADDR	//  manager_address _73 _72
       DROP	//  manager_address new_memorized_address
       save_data CALLDICT
-    }>ELSE<{	//  memorized_address msg_value in_msg_body manager_address op query_id sender_address
-      s4 POP	//  memorized_address msg_value sender_address manager_address op query_id
-      SWAP	//  memorized_address msg_value sender_address manager_address query_id op
-      2 EQINT	//  memorized_address msg_value sender_address manager_address query_id _29
-      IF:<{	//  memorized_address msg_value sender_address manager_address query_id
-        3 PUSHINT	//  memorized_address msg_value sender_address manager_address query_id _31=3
-        0 PUSHINT	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0
-        16 PUSHINT	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0 _33=16
-        NEWC	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0 _33=16 _34
-        6 STU	//  memorized_address msg_value sender_address manager_address query_id _31=3 _32=0 _36
-        s0 s5 XCHG2	//  memorized_address msg_value _32=0 manager_address query_id _31=3 _36 sender_address
-        STSLICER	//  memorized_address msg_value _32=0 manager_address query_id _31=3 _37
-        s0 s5 XCHG2	//  memorized_address _31=3 _32=0 manager_address query_id _37 msg_value
-        STGRAMS	//  memorized_address _31=3 _32=0 manager_address query_id _38
-        s1 s3 XCHG	//  memorized_address _31=3 query_id manager_address _32=0 _38
-        107 STU	//  memorized_address _31=3 query_id manager_address _52
-        s1 s3 XCHG	//  memorized_address manager_address query_id _31=3 _52
-        32 STU	//  memorized_address manager_address query_id _54
-        64 STU	//  memorized_address manager_address _56
-        SWAP	//  memorized_address _56 manager_address
-        STSLICER	//  memorized_address _57
-        SWAP	//  _57 memorized_address
-        STSLICER	//  _58
+    }>ELSE<{	//  in_msg_body msg_value op query_id sender_address
+      s4 POP	//  sender_address msg_value op query_id
+      SWAP	//  sender_address msg_value query_id op
+      2 EQINT	//  sender_address msg_value query_id _28
+      IF:<{	//  sender_address msg_value query_id
+        load_data CALLDICT	//  sender_address msg_value query_id manager_address memorized_address
+        3 PUSHINT	//  sender_address msg_value query_id manager_address memorized_address _33=3
+        0 PUSHINT	//  sender_address msg_value query_id manager_address memorized_address _33=3 _34=0
+        16 PUSHINT	//  sender_address msg_value query_id manager_address memorized_address _33=3 _34=0 _35=16
+        NEWC	//  sender_address msg_value query_id manager_address memorized_address _33=3 _34=0 _35=16 _36
+        6 STU	//  sender_address msg_value query_id manager_address memorized_address _33=3 _34=0 _38
+        s0 s7 XCHG2	//  _34=0 msg_value query_id manager_address memorized_address _33=3 _38 sender_address
+        STSLICER	//  _34=0 msg_value query_id manager_address memorized_address _33=3 _39
+        s0 s5 XCHG2	//  _34=0 _33=3 query_id manager_address memorized_address _39 msg_value
+        STGRAMS	//  _34=0 _33=3 query_id manager_address memorized_address _40
+        s1 s5 XCHG	//  memorized_address _33=3 query_id manager_address _34=0 _40
+        107 STU	//  memorized_address _33=3 query_id manager_address _54
+        s1 s3 XCHG	//  memorized_address manager_address query_id _33=3 _54
+        32 STU	//  memorized_address manager_address query_id _56
+        64 STU	//  memorized_address manager_address _58
+        SWAP	//  memorized_address _58 manager_address
+        STSLICER	//  memorized_address _59
+        SWAP	//  _59 memorized_address
+        STSLICER	//  _60
         ENDC	//  msg
-        64 PUSHINT	//  msg _60=64
+        64 PUSHINT	//  msg _62=64
         SENDRAWMSG
-      }>ELSE<{	//  memorized_address msg_value sender_address manager_address query_id
-        5 BLKDROP	// 
-        1000 THROW
+      }>ELSE<{	//  sender_address msg_value query_id
+        3 BLKDROP	// 
+        3 THROW
       }>
     }>
   }>

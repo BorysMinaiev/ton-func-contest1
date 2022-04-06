@@ -149,3 +149,39 @@ _ query(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(
 }
 
 
+
+;;; check op 3
+
+[int, tuple, cell, tuple, int] query_op3_data() method_id(6) {
+    ;; Funtion to run (recv_internal)
+    int function_selector = 0;
+
+    cell manager_address = begin_cell().store_uint(1, 2).store_uint(5, 9).store_uint(1, 5).end_cell();
+    cell sender_address = begin_cell().store_uint(1, 2).store_uint(5, 9).store_uint(2, 5).end_cell();
+    cell stored_address = begin_cell().store_uint(1, 2).store_uint(5, 9).store_uint(3, 5).end_cell();
+
+    slice message_body = begin_cell().store_uint(3, 32).store_uint(12345, 64).store_slice(stored_address.begin_parse()).end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x6, 4)
+            .store_slice(sender_address.begin_parse()) ;; src address
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(100)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = begin_cell().store_slice(manager_address.begin_parse()).store_slice(stored_address.begin_parse()).end_cell();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ query_op3(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(7) {
+    throw_if(100, exit_code == 0); ;; it should not thow
+}
+
+

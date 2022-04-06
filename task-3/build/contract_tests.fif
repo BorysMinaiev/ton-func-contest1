@@ -8,6 +8,8 @@ PROGRAM{
   3 DECLMETHOD only_manager_can_change
   4 DECLMETHOD query_data
   5 DECLMETHOD query
+  6 DECLMETHOD query_op3_data
+  7 DECLMETHOD query_op3
   get_c7 PROC:<{
     // 
     124711402 PUSHINT	//  _2=124711402
@@ -20,7 +22,7 @@ PROGRAM{
     1000000000 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000
     PUSHNULL	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000 _11
     PAIR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12
-    PUSHNULL	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13
+    MYADDR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13
     CONFIGROOT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13 _14
     10 TUPLE	//  _15
     SINGLE	//  _16
@@ -396,5 +398,83 @@ PROGRAM{
     NOT	//  msg _136
     110 THROWIF
     ENDS
+  }>
+  query_op3_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    1 PUSHINT	//  function_selector=0 _3=1
+    5 PUSHINT	//  function_selector=0 _3=1 _4=5
+    OVER	//  function_selector=0 _3=1 _4=5 _5=1
+    NEWC	//  function_selector=0 _3=1 _4=5 _5=1 _6
+    2 STU	//  function_selector=0 _3=1 _4=5 _8
+    9 STU	//  function_selector=0 _3=1 _10
+    5 STU	//  function_selector=0 _12
+    ENDC	//  function_selector=0 manager_address
+    2 PUSHINT	//  function_selector=0 manager_address _15=2
+    5 PUSHINT	//  function_selector=0 manager_address _15=2 _16=5
+    1 PUSHINT	//  function_selector=0 manager_address _15=2 _16=5 _17=1
+    NEWC	//  function_selector=0 manager_address _15=2 _16=5 _17=1 _18
+    2 STU	//  function_selector=0 manager_address _15=2 _16=5 _20
+    9 STU	//  function_selector=0 manager_address _15=2 _22
+    5 STU	//  function_selector=0 manager_address _24
+    ENDC	//  function_selector=0 manager_address sender_address
+    3 PUSHINT	//  function_selector=0 manager_address sender_address _27=3
+    5 PUSHINT	//  function_selector=0 manager_address sender_address _27=3 _28=5
+    1 PUSHINT	//  function_selector=0 manager_address sender_address _27=3 _28=5 _29=1
+    NEWC	//  function_selector=0 manager_address sender_address _27=3 _28=5 _29=1 _30
+    2 STU	//  function_selector=0 manager_address sender_address _27=3 _28=5 _32
+    9 STU	//  function_selector=0 manager_address sender_address _27=3 _34
+    5 STU	//  function_selector=0 manager_address sender_address _36
+    ENDC	//  function_selector=0 manager_address sender_address stored_address
+    12345 PUSHINT	//  function_selector=0 manager_address sender_address stored_address _39=12345
+    3 PUSHINT	//  function_selector=0 manager_address sender_address stored_address _39=12345 _40=3
+    NEWC	//  function_selector=0 manager_address sender_address stored_address _39=12345 _40=3 _41
+    32 STU	//  function_selector=0 manager_address sender_address stored_address _39=12345 _43
+    64 STU	//  function_selector=0 manager_address sender_address stored_address _45
+    OVER	//  function_selector=0 manager_address sender_address stored_address _45 stored_address
+    CTOS	//  function_selector=0 manager_address sender_address stored_address _45 _46
+    STSLICER	//  function_selector=0 manager_address sender_address stored_address _47
+    ENDC	//  function_selector=0 manager_address sender_address stored_address _48
+    CTOS	//  function_selector=0 manager_address sender_address stored_address message_body
+    s4 s4 PUSH2	//  function_selector=0 manager_address sender_address stored_address message_body _51=0 _52=0
+    6 PUSHINT	//  function_selector=0 manager_address sender_address stored_address message_body _51=0 _52=0 _53=6
+    NEWC	//  function_selector=0 manager_address sender_address stored_address message_body _51=0 _52=0 _53=6 _54
+    4 STU	//  function_selector=0 manager_address sender_address stored_address message_body _51=0 _52=0 _56
+    s0 s5 XCHG	//  function_selector=0 manager_address _56 stored_address message_body _51=0 _52=0 sender_address
+    CTOS	//  function_selector=0 manager_address _56 stored_address message_body _51=0 _52=0 _57
+    s1 s5 XCHG	//  function_selector=0 manager_address _52=0 stored_address message_body _51=0 _56 _57
+    STSLICER	//  function_selector=0 manager_address _52=0 stored_address message_body _51=0 _58
+    s1 s4 XCHG	//  function_selector=0 manager_address _51=0 stored_address message_body _52=0 _58
+    2 STU	//  function_selector=0 manager_address _51=0 stored_address message_body _60
+    100 PUSHINT	//  function_selector=0 manager_address _51=0 stored_address message_body _60 _61=100
+    STGRAMS	//  function_selector=0 manager_address _51=0 stored_address message_body _62
+    s1 s3 XCHG	//  function_selector=0 manager_address message_body stored_address _51=0 _62
+    107 STU	//  function_selector=0 manager_address message_body stored_address _76
+    s2 PUSH	//  function_selector=0 manager_address message_body stored_address _76 message_body
+    STSLICER	//  function_selector=0 manager_address message_body stored_address _77
+    ENDC	//  function_selector=0 manager_address message_body stored_address message
+    12345 PUSHINT	//  function_selector=0 manager_address message_body stored_address message _81=12345
+    s0 s2 XCHG
+    100 PUSHINT
+    s0 s0 s4 XCHG3	//  function_selector=0 manager_address stored_address _81=12345 _82=100 message message_body
+    4 TUPLE	//  function_selector=0 manager_address stored_address stack
+    NEWC	//  function_selector=0 manager_address stored_address stack _85
+    s0 s3 XCHG	//  function_selector=0 _85 stored_address stack manager_address
+    CTOS	//  function_selector=0 _85 stored_address stack _86
+    s1 s3 XCHG	//  function_selector=0 stack stored_address _85 _86
+    STSLICER	//  function_selector=0 stack stored_address _87
+    SWAP	//  function_selector=0 stack _87 stored_address
+    CTOS	//  function_selector=0 stack _87 _88
+    STSLICER	//  function_selector=0 stack _89
+    ENDC	//  function_selector=0 stack data
+    get_c7 INLINECALLDICT	//  function_selector=0 stack data _92
+    PUSHNULL	//  function_selector=0 stack data _92 _93
+    5 TUPLE	//  _91
+  }>
+  query_op3 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    100 THROWIF
   }>
 }END>c
