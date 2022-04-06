@@ -117,7 +117,7 @@ PROGRAM{
     104 THROWIF
     LDGRAMS	//  _57 msg
     SWAP	//  msg _57
-    100 NEQINT	//  msg _60
+    0 NEQINT	//  msg _60
     105 THROWIF
     107 LDU	//  _63 msg
     SWAP	//  msg _63

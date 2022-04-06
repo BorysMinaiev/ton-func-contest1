@@ -77,7 +77,7 @@ _ test_example(int exit_code, cell data, tuple stack, cell actions, int gas) met
     slice expected_my_address = begin_cell().store_uint(1, 2).store_uint(5, 9).store_uint(7, 5).end_cell().begin_parse();
 
     throw_if(104, ~ equal_slices(expected_my_address, send_to_address));
-    throw_if(105, msg~load_grams() != 100);
+    throw_if(105, msg~load_grams() != 0);
     throw_if(106, msg~load_uint(1 + 4 + 4 + 64 + 32 + 1 + 1) != 0);
 
     slice sender_address = msg~load_msg_addr();

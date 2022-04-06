@@ -46,7 +46,7 @@ slice parse_sender_address (cell in_msg_full) {
     var msg = begin_cell()
           .store_uint(0x10, 6)
           .store_slice(owner_address)
-          .store_grams(msg_value) ;; really?
+          .store_grams(0)
           .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
           .store_slice(sender_address)
           .store_ref(msg_body_cell)
