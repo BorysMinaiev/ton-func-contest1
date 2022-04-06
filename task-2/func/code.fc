@@ -28,33 +28,29 @@ slice load_data () {
 }
 
 ;; Parse sender address from incoming message
-(slice, int) parse_sender_address (cell in_msg_full) {
+slice parse_sender_address (cell in_msg_full) {
   var cs = in_msg_full.begin_parse();
   var flags = cs~load_uint(4);
   slice sender_address = cs~load_msg_addr();
-  return (sender_address, flags);
+  return sender_address;
 }
 
 ;; testable
 () recv_internal (int balance, int msg_value, cell in_msg_full, slice in_msg_body) {
-    (slice sender_address, _) = parse_sender_address(in_msg_full);
-    slice owner_address = load_data();
+  slice sender_address = parse_sender_address(in_msg_full);
+  slice owner_address = load_data();
 
-   ;; TODO: is `in_msg_full` copied?
   if ~ equal_slices(sender_address, owner_address) {
-      cell msg_body_cell = begin_cell().store_slice(in_msg_body).end_cell();
+    cell msg_body_cell = begin_cell().store_slice(in_msg_body).end_cell();
 
-      var msg = begin_cell()
-            .store_uint(0x10, 6)
-            .store_slice(owner_address)
-            .store_grams(msg_value) ;; really?
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(sender_address)
-            .store_ref(msg_body_cell)
-            .end_cell();
-       send_raw_message(msg, 64); ;; TODO: is it correct mode?
+    var msg = begin_cell()
+          .store_uint(0x10, 6)
+          .store_slice(owner_address)
+          .store_grams(msg_value) ;; really?
+          .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+          .store_slice(sender_address)
+          .store_ref(msg_body_cell)
+          .end_cell();
+     send_raw_message(msg, 64);
    }
-
-   ;; why?
-   ;; save_data(owner_address);
 }
