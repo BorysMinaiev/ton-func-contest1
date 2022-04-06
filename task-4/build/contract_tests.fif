@@ -21,6 +21,8 @@ PROGRAM{
   15 DECLMETHOD remove_outdated2
   16 DECLMETHOD get_stored_value_after_remove2_data
   17 DECLMETHOD get_stored_value_after_remove2
+  18 DECLMETHOD get_not_stored_value2_data
+  19 DECLMETHOD get_not_stored_value2
   get_c7 PROC:<{
     // 
     124711402 PUSHINT	//  _2=124711402
@@ -345,6 +347,23 @@ PROGRAM{
     5 TUPLE	//  _7
   }>
   get_stored_value_after_remove2 PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    0 EQINT	//  _7
+    100 THROWIF
+  }>
+  get_not_stored_value2_data PROC:<{
+    // 
+    127977 PUSHINT	//  function_selector=127977
+    787789 PUSHINT	//  function_selector=127977 key=787789
+    SINGLE	//  function_selector=127977 stack
+    NEWC	//  function_selector=127977 stack _8
+    ENDC	//  function_selector=127977 stack data
+    get_c7 INLINECALLDICT	//  function_selector=127977 stack data _11
+    PUSHNULL	//  function_selector=127977 stack data _11 _12
+    5 TUPLE	//  _10
+  }>
+  get_not_stored_value2 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
     0 EQINT	//  _7

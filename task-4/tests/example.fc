@@ -266,3 +266,24 @@ _ remove_outdated2(int exit_code, cell data, tuple stack, cell actions, int gas)
 _ get_stored_value_after_remove2(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(17) {
     throw_if(100, exit_code == 0);
 }
+
+;; get not stored value from empty storage
+
+[int, tuple, cell, tuple, int] get_not_stored_value2_data() method_id(18) {
+    ;; Funtion to run (recv_internal)
+    int function_selector = 127977;
+
+    int key = 787789; ;; random key
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([key]);
+
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ get_not_stored_value2(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(19) {
+    throw_if(100, exit_code == 0);
+}
