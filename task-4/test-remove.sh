@@ -1,1 +1,1 @@
-toncli run_tests 2>/dev/null | grep remove
+toncli run_tests 2>&1 | grep 'remove\|DEBUG'

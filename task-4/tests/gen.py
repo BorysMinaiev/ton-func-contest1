@@ -139,25 +139,25 @@ values = {}
 for _ in range(200):
     typ = random.randint(0, 10)
     if typ <= 4:
-        key = random.randint(0, 10)
+        key = random.randint(0, 1000)
         value = random.randint(0, 10)
         valid_until = random.randint(now, now + 100)
         change_fun(use_prev_c4=True, key=key, value=value, valid_until=valid_until)
         values[key] = (value, valid_until)
-    elif typ <= 9:
-        key = random.randint(0, 10)
+    elif typ <= 7:
+        key = random.randint(0, 1000)
         if key in values:
             (expected_value, expected_value_until) = values[key]
             get_fun(key, expected_value=expected_value, expected_valid_until=expected_value_until)
         else:
             get_fun_absent(key)
     else:
-        now = now + 50
-        remove_old(now)
+        new_now = random.randint(now, now + 100)
+        remove_old(new_now)
         to_remove = {}
         for key, vv in values.items():
             (value, valid_until) = vv
-            if valid_until < now:
+            if valid_until < new_now:
                 to_remove[key] = True
         for key in to_remove.keys():
             del values[key]
