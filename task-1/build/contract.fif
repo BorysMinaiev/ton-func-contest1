@@ -5,21 +5,17 @@ PROGRAM{
   128253 DECLMETHOD get_total
   recv_internal PROC:<{
     //  in_msg_body
-    DUP	//  in_msg_body in_msg_body
-    SBITS	//  in_msg_body _2
-    32 LESSINT	//  in_msg_body _4
-    1 THROWIF
-    32 LDU	//  _24 _23
+    32 LDU	//  _19 _18
     DROP	//  n
-    c4 PUSH	//  n _11
+    c4 PUSH	//  n _6
     CTOS	//  n ds
-    64 LDU	//  n _26 _25
+    64 LDU	//  n _21 _20
     DROP	//  n total
     SWAP	//  total n
-    ADD	//  _17
-    NEWC	//  _17 _18
-    64 STU	//  _20
-    ENDC	//  _21
+    ADD	//  _12
+    NEWC	//  _12 _13
+    64 STU	//  _15
+    ENDC	//  _16
     c4 POP
   }>
   get_total PROC:<{
