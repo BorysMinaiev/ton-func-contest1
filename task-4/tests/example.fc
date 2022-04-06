@@ -287,3 +287,33 @@ _ get_stored_value_after_remove2(int exit_code, cell data, tuple stack, cell act
 _ get_not_stored_value2(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(19) {
     throw_if(100, exit_code == 0);
 }
+
+;; remove outdated (but with now < all keys)
+
+[int, tuple, cell, tuple, int] remove_outdated3_data() method_id(20) {
+   ;; Funtion to run (recv_internal)
+   int function_selector = 0;
+
+   slice message_body = begin_cell()
+     .store_uint(2, 32) ;; remove old
+     .store_uint(12345, 64) ;; query id
+     .end_cell().begin_parse();
+
+   cell message = begin_cell()
+           .store_uint(0x18, 6)
+           .store_uint(0, 2) ;; should be contract address
+           .store_grams(0)
+           .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+           .store_slice(message_body)
+           .end_cell();
+
+   ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+   tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+   return [function_selector, stack, begin_cell().end_cell(), get_c7_now(1000), null()];
+}
+
+
+_ remove_outdated3(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(21) {
+    throw_if(100, exit_code != 0);
+}

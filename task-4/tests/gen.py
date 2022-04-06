@@ -1,6 +1,6 @@
 f = open("gen.fc", "w")
 
-test_id = 20
+test_id = 22
 
 
 def change_fun(use_prev_c4, key, valid_until, value):

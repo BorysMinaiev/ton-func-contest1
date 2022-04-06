@@ -1,122 +1,131 @@
 "Asm.fif" include
 // automatically generated from `/home/borys/.config/toncli/func-libs/stdlib-tests.func` `/home/borys/ton-func-contest1/task-4/func/code.fc` 
 PROGRAM{
-  DECLPROC load_data
   DECLPROC save_data
   DECLPROC recv_internal
   127977 DECLMETHOD get_key
-  load_data PROC:<{
-    // 
-    c4 PUSH	//  _1
-    CTOS	//  ds
-    DUP	//  ds ds
-    SBITS	//  ds _3
-    0 EQINT	//  ds _5
-    IFJMP:<{	//  ds
-      DROP	// 
-      PUSHNULL	//  _6
-      PUSHNULL	//  _6 _7
-    }>	//  ds
-    LDDICT	//  _8 ds
-    LDDICT	//  _8 _15 _14
-    DROP	//  _8 _10
-  }>
   save_data PROC:<{
-    //  data_dict valid_until_dict
-    SWAP
-    NEWC	//  valid_until_dict data_dict _2
-    STDICT	//  valid_until_dict _3
-    STDICT	//  _4
-    ENDC	//  _5
+    //  timestamp data_dict valid_until_dict
+    s0 s2 XCHG
+    NEWC	//  valid_until_dict data_dict timestamp _3
+    64 STU	//  valid_until_dict data_dict _5
+    STDICT	//  valid_until_dict _6
+    STDICT	//  _7
+    ENDC	//  _8
     c4 POP
   }>
   recv_internal PROC:<{
     //  balance msg_value in_msg_full in_msg_body
     3 1 BLKDROP2	//  in_msg_body
     32 LDU	//  op in_msg_body
-    64 LDU	//  op _85 _84
+    64 LDU	//  op _110 _109
     NIP	//  op in_msg_body
     c4 PUSH	//  op in_msg_body _13
     CTOS	//  op in_msg_body ds
     DUP	//  op in_msg_body ds ds
-    SBITS	//  op in_msg_body ds _17
-    0 EQINT	//  op in_msg_body ds _19
+    SBITS	//  op in_msg_body ds _18
+    0 EQINT	//  op in_msg_body ds _20
     IF:<{	//  op in_msg_body ds
       DROP	//  op in_msg_body
-      PUSHNULL	//  op in_msg_body _21
-      PUSHNULL	//  op in_msg_body _86 _87
+      0 PUSHINT	//  op in_msg_body _22=0
+      PUSHNULL	//  op in_msg_body _22=0 _23
+      PUSHNULL	//  op in_msg_body _111=0 _112 _113
     }>ELSE<{	//  op in_msg_body ds
-      LDDICT	//  op in_msg_body _23 ds
-      LDDICT	//  op in_msg_body _23 _91 _90
-      DROP	//  op in_msg_body _86 _87
-    }>	//  op in_msg_body data_dict valid_until_dict
-    s3 PUSH	//  op in_msg_body data_dict valid_until_dict op
-    1 EQINT	//  op in_msg_body data_dict valid_until_dict _28
-    IF:<{	//  op in_msg_body data_dict valid_until_dict
-      s0 s2 XCHG	//  op valid_until_dict data_dict in_msg_body
-      256 LDU	//  op valid_until_dict data_dict key in_msg_body
-      64 LDU	//  op valid_until_dict data_dict key valid_until in_msg_body
-      s0 s2 s3 PU2XC
-      8 PUSHPOW2	//  op valid_until_dict in_msg_body key valid_until value key data_dict _39=256
-      DICTUSET	//  op valid_until_dict in_msg_body key valid_until data_dict
-      SWAP
-      NEWC	//  op valid_until_dict in_msg_body key data_dict valid_until _42
-      64 STU	//  op valid_until_dict in_msg_body key data_dict _44
-      ENDC	//  op valid_until_dict in_msg_body key data_dict _45
+      64 LDU	//  op in_msg_body _25 ds
+      LDDICT	//  op in_msg_body _25 _28 ds
+      LDDICT	//  op in_msg_body _25 _28 _119 _118
+      DROP	//  op in_msg_body _111 _112 _113
+    }>	//  op in_msg_body timestamp data_dict valid_until_dict
+    s4 PUSH	//  op in_msg_body timestamp data_dict valid_until_dict op
+    1 EQINT	//  op in_msg_body timestamp data_dict valid_until_dict _33
+    IF:<{	//  op in_msg_body timestamp data_dict valid_until_dict
+      s0 s2 XCHG	//  op in_msg_body valid_until_dict data_dict timestamp
+      INC	//  op in_msg_body valid_until_dict data_dict timestamp
+      s0 s3 XCHG	//  op timestamp valid_until_dict data_dict in_msg_body
+      256 LDU	//  op timestamp valid_until_dict data_dict key in_msg_body
+      64 LDU	//  op timestamp valid_until_dict data_dict key valid_until in_msg_body
+      OVER
+      NEWC	//  op timestamp valid_until_dict data_dict key valid_until in_msg_body valid_until _45
+      64 STU	//  op timestamp valid_until_dict data_dict key valid_until in_msg_body _47
+      OVER	//  op timestamp valid_until_dict data_dict key valid_until in_msg_body _47 in_msg_body
+      STSLICER	//  op timestamp valid_until_dict data_dict key valid_until in_msg_body b
+      s0 s3 s4 XCPUXC
+      8 PUSHPOW2	//  op timestamp valid_until_dict in_msg_body key valid_until b key data_dict _50=256
+      DICTUSETB	//  op timestamp valid_until_dict in_msg_body key valid_until data_dict
+      SWAP	//  op timestamp valid_until_dict in_msg_body key data_dict valid_until
+      64 LSHIFT#	//  op timestamp valid_until_dict in_msg_body key data_dict _56
+      s5 PUSH	//  op timestamp valid_until_dict in_msg_body key data_dict _56 timestamp
+      ADD	//  op timestamp valid_until_dict in_msg_body key data_dict valid_until_key
+      s0 s2 XCHG
+      NEWC	//  op timestamp valid_until_dict in_msg_body valid_until_key data_dict key _59
+      256 STU	//  op timestamp valid_until_dict in_msg_body valid_until_key data_dict _61
       s0 s0 s4 XCHG3
-      8 PUSHPOW2	//  op data_dict in_msg_body _45 key valid_until_dict _46=256
-      DICTUSETREF	//  op data_dict in_msg_body valid_until_dict
-      s1 s2 XCHG	//  op in_msg_body data_dict valid_until_dict
-    }>	//  op in_msg_body data_dict valid_until_dict
-    s3 PUSH	//  op in_msg_body data_dict valid_until_dict op
-    2 EQINT	//  op in_msg_body data_dict valid_until_dict _49
-    IF:<{	//  op in_msg_body data_dict valid_until_dict
-      s0 s2 XCHG	//  op valid_until_dict data_dict in_msg_body
+      7 PUSHPOW2	//  op timestamp data_dict in_msg_body _61 valid_until_key valid_until_dict _62=128
+      DICTUSETB	//  op timestamp data_dict in_msg_body valid_until_dict
+      s3 s3 s0 XCHG3	//  op in_msg_body timestamp data_dict valid_until_dict
+    }>	//  op in_msg_body timestamp data_dict valid_until_dict
+    s4 PUSH	//  op in_msg_body timestamp data_dict valid_until_dict op
+    2 EQINT	//  op in_msg_body timestamp data_dict valid_until_dict _65
+    IF:<{	//  op in_msg_body timestamp data_dict valid_until_dict
+      s0 s3 XCHG	//  op valid_until_dict timestamp data_dict in_msg_body
       ENDS
-      -1 PUSHINT	//  op valid_until_dict data_dict key=-1
       UNTIL:<{
         s2 PUSH
-        8 PUSHPOW2	//  op valid_until_dict data_dict key valid_until_dict _55=256
-        DICTUGETNEXT
-        NULLSWAPIFNOT2	//  op valid_until_dict data_dict cs key f
-        DUP	//  op valid_until_dict data_dict cs key f f
-        IF:<{	//  op valid_until_dict data_dict cs key f
-          s0 s2 XCHG	//  op valid_until_dict data_dict f key cs
-          LDREF	//  op valid_until_dict data_dict f key _100 _99
-          DROP	//  op valid_until_dict data_dict f key _58
-          CTOS	//  op valid_until_dict data_dict f key cs
-          64 LDU	//  op valid_until_dict data_dict f key _102 _101
-          DROP	//  op valid_until_dict data_dict f key valid_until
-          NOW	//  op valid_until_dict data_dict f key valid_until _65
-          LESS	//  op valid_until_dict data_dict f key _66
-          IF:<{	//  op valid_until_dict data_dict f key
-            s0 s3 PUXC
-            8 PUSHPOW2	//  op key data_dict f key valid_until_dict _68=256
-            DICTUDEL	//  op key data_dict f _103 _104
-            DROP	//  op key data_dict f valid_until_dict
-            s3 s2 PUXC
-            8 PUSHPOW2	//  op key valid_until_dict f key data_dict _71=256
-            DICTUDEL	//  op key valid_until_dict f _105 _106
-            DROP	//  op key valid_until_dict f data_dict
-            s0 s1 s3 XCHG3	//  op valid_until_dict data_dict f key
-          }>	//  op valid_until_dict data_dict f key
+        7 PUSHPOW2	//  op valid_until_dict timestamp data_dict valid_until_dict _73=128
+        DICTUREMMIN
+        NULLSWAPIFNOT2	//  op valid_until_dict timestamp data_dict new_dict value valid_until_key succ
+        DUP	//  op valid_until_dict timestamp data_dict new_dict value valid_until_key succ succ
+        IF:<{	//  op valid_until_dict timestamp data_dict new_dict value valid_until_key succ
+          SWAP	//  op valid_until_dict timestamp data_dict new_dict value succ valid_until_key
+          64 RSHIFT#	//  op valid_until_dict timestamp data_dict new_dict value succ valid_until
+          NOW	//  op valid_until_dict timestamp data_dict new_dict value succ valid_until _78
+          GEQ	//  op valid_until_dict timestamp data_dict new_dict value succ _79
+          IF:<{	//  op valid_until_dict timestamp data_dict new_dict value succ
+            3 BLKDROP	//  op valid_until_dict timestamp data_dict
+            0 PUSHINT	//  op valid_until_dict timestamp data_dict succ=0
+          }>ELSE<{	//  op valid_until_dict timestamp data_dict new_dict value succ
+            s5 POP	//  op succ timestamp data_dict valid_until_dict value
+            256 LDU	//  op succ timestamp data_dict valid_until_dict _129 _128
+            DROP	//  op succ timestamp data_dict valid_until_dict key
+            s0 s2 PUSH2
+            8 PUSHPOW2	//  op succ timestamp data_dict valid_until_dict key key data_dict _87=256
+            DICTUGET
+            NULLSWAPIFNOT	//  op succ timestamp data_dict valid_until_dict key value2 succ2
+            IF:<{	//  op succ timestamp data_dict valid_until_dict key value2
+              64 LDU	//  op succ timestamp data_dict valid_until_dict key _133 _132
+              DROP	//  op succ timestamp data_dict valid_until_dict key real_value_until
+              NOW	//  op succ timestamp data_dict valid_until_dict key real_value_until _93
+              LESS	//  op succ timestamp data_dict valid_until_dict key _94
+              IF:<{	//  op succ timestamp data_dict valid_until_dict key
+                ROT
+                8 PUSHPOW2	//  op succ timestamp valid_until_dict key data_dict _96=256
+                DICTUDEL	//  op succ timestamp valid_until_dict _134 _135
+                DROP	//  op succ timestamp valid_until_dict data_dict
+                SWAP	//  op succ timestamp data_dict valid_until_dict
+              }>ELSE<{
+                DROP	//  op succ timestamp data_dict valid_until_dict
+              }>
+            }>ELSE<{
+              2DROP	//  op succ timestamp data_dict valid_until_dict
+            }>
+            s0 s3 XCHG	//  op valid_until_dict timestamp data_dict succ
+          }>
         }>ELSE<{
-          s2 POP	//  op valid_until_dict data_dict f key
+          3 1 BLKDROP2	//  op valid_until_dict timestamp data_dict succ
         }>
-        SWAP	//  op valid_until_dict data_dict key f
-        NOT	//  op valid_until_dict data_dict key _73
-      }>	//  op valid_until_dict data_dict key
-      DROP	//  op valid_until_dict data_dict
+        NOT	//  op valid_until_dict timestamp data_dict _98
+      }>	//  op valid_until_dict timestamp data_dict
     }>ELSE<{
-      s2 POP	//  op valid_until_dict data_dict
+      s3 POP	//  op valid_until_dict timestamp data_dict
     }>
-    s2 PUSH	//  op valid_until_dict data_dict op
-    1 NEQINT	//  op valid_until_dict data_dict _76
-    s0 s3 XCHG	//  _76 valid_until_dict data_dict op
-    2 NEQINT	//  _76 valid_until_dict data_dict _78
-    s1 s3 XCHG	//  data_dict valid_until_dict _76 _78
-    AND	//  data_dict valid_until_dict _79
+    s3 PUSH	//  op valid_until_dict timestamp data_dict op
+    1 NEQINT	//  op valid_until_dict timestamp data_dict _101
+    s0 s4 XCHG	//  _101 valid_until_dict timestamp data_dict op
+    2 NEQINT	//  _101 valid_until_dict timestamp data_dict _103
+    s1 s4 XCHG	//  data_dict valid_until_dict timestamp _101 _103
+    AND	//  data_dict valid_until_dict timestamp _104
     1001 THROWIF
+    -ROT	//  timestamp data_dict valid_until_dict
     save_data INLINECALLDICT
   }>
   get_key PROC:<{
@@ -128,25 +137,18 @@ PROGRAM{
     0 EQINT	//  key ds _8
     IF:<{	//  key ds
       DROP	//  key
-      PUSHNULL	//  key _10
-      PUSHNULL	//  key _33 _34
+      PUSHNULL	//  key _29
     }>ELSE<{	//  key ds
-      LDDICT	//  key _12 ds
-      LDDICT	//  key _12 _38 _37
-      DROP	//  key _33 _34
-    }>	//  key data_dict valid_until_dict
-    s2 s(-1) PUXC
-    8 PUSHPOW2	//  key data_dict key valid_until_dict _18=256
-    DICTUGETREF	//  key data_dict valid_until_cell succ
-    -1 NEQINT	//  key data_dict valid_until_cell _22
-    200 THROWIF
-    CTOS	//  key data_dict _26
-    64 LDU	//  key data_dict _42 _41
-    DROP	//  key data_dict valid_until
-    -ROT
-    8 PUSHPOW2	//  valid_until key data_dict _31=256
+      64 LDU	//  key _31 _30
+      NIP	//  key ds
+      LDDICT	//  key _33 _32
+      DROP	//  key _29
+    }>	//  key data_dict
+    8 PUSHPOW2	//  key data_dict _19=256
     DICTUGET
-    NULLSWAPIFNOT	//  valid_until _43 _44
-    DROP	//  valid_until value
+    NULLSWAPIFNOT	//  value succ
+    -1 NEQINT	//  value _23
+    200 THROWIF
+    64 LDU	//  _25 value
   }>
 }END>c
