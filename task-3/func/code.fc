@@ -61,7 +61,7 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
       var msg = begin_cell()
               .store_uint(0x10, 6)
               .store_slice(sender_address)
-              .store_grams(msg_value)
+              .store_grams(0)
               .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
               .store_uint(3, 32)
               .store_uint(query_id, 64)

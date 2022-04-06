@@ -367,7 +367,7 @@ PROGRAM{
     s0 s2 XCHG	//  manager_address stored_address msg
     LDGRAMS	//  manager_address stored_address _86 msg
     SWAP	//  manager_address stored_address msg _86
-    100 NEQINT	//  manager_address stored_address msg _89
+    0 NEQINT	//  manager_address stored_address msg _89
     105 THROWIF
     107 LDU	//  manager_address stored_address _92 msg
     SWAP	//  manager_address stored_address msg _92

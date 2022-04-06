@@ -137,7 +137,7 @@ _ query(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(
     slice send_to_address = msg~load_msg_addr();
 
     throw_if(104, ~ equal_slices(sender_address.begin_parse(), send_to_address));
-    throw_if(105, msg~load_grams() != 100);
+    throw_if(105, msg~load_grams() != 0);
     throw_if(106, msg~load_uint(1 + 4 + 4 + 64 + 32 + 1 + 1) != 0);
 
     throw_if(107, msg~load_uint(32) != 3);
