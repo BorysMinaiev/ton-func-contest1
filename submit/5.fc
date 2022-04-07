@@ -284,9 +284,8 @@ cell replace_request(builder b, slice old_slice, int pos, cell request) inline {
   in_msg_body.end_parse();
 
   slice request = request_cell.begin_parse();
-
   ;; TODO: uncomment it
-  throw_if(100, ~ check_data_signature(request, signature, public_key));
+  throw_if(100, ~ check_signature(cell_hash(request_cell), signature, public_key));
   int valid_until = request~load_uint(32);
   throw_if(101, valid_until < now());
   throw_if(102, valid_until > now() + 60);

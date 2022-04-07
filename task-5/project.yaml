@@ -4,4 +4,4 @@ contract:
     - func/code.fc
   tests:
     - tests/example.fc
-    - tests/gen.fc
+#    - tests/gen.fc

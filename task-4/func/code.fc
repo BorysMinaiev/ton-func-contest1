@@ -56,7 +56,6 @@ forall X -> () dump (X x) impure asm "s0 DUMP DROP";
 
     if (op == 2) { ;; remove outdated
       in_msg_body.end_parse();
-      int key = -1;
       do {
         (cell new_dict, int valid_until_key, slice value, int succ) = udict_delete_get_min(valid_until_dict, 128);
         if (succ) {

@@ -18,7 +18,7 @@ tuple get_c7_now(int now) inline method_id {
 }
 
 int public_key1() inline method_id {
-  return 0xe7b27ec383a62b90c2aa9103724a26bbf51b6dba2fbfe0e6c68b98287a8d1d18;
+  return 0xd9ac7c0682a097dbe84a53df6a72a11135be337b71445a056406a37cc024cd0a;
 }
 
 int public_key2() inline method_id {
@@ -103,7 +103,7 @@ mdg_body#_ public_key:uint256 signature:(512 * Bit) request:^Request = MsgBody;
 -}
 
 [int, tuple, cell, tuple, int] send_query_data() method_id(2) {
-    ;; Funtion to run: recv_external
+    ;; Function to run: recv_external
     int function_selector = -1;
 
     ;; not a valid msg_to_send, I know...
@@ -115,7 +115,9 @@ mdg_body#_ public_key:uint256 signature:(512 * Bit) request:^Request = MsgBody;
       .store_ref(msg_to_send)
       .end_cell();
 
-    slice signature = begin_cell().store_uint(12344, 256).store_uint(12355, 256).end_cell().begin_parse();
+    slice signature = begin_cell()
+        .store_uint(0xa0d8ee43dce04665e8a0086751b8a0570591b03d93dadbd59913304afd4dbb97, 256)
+        .store_uint(0xb60fef4b67c0fbb6a528e9b03e9668f9b3b4366da069735508bc667c4d30ae03, 256).end_cell().begin_parse();
 
     cell message = begin_cell()
       .store_uint(public_key1(), 256)
