@@ -76,39 +76,39 @@ PROGRAM{
     4 BLKDROP	//  pos
   }>
   find_request_inline PROCREF:<{
-    //  s2 hash
-    OVER	//  s2 hash s2
-    SREFS	//  s2 hash _2
-    4 EQINT	//  s2 hash _4
-    IFJMP:<{	//  s2 hash
-      SWAP	//  hash s2
-      LDREF	//  hash _5 s2
-      SWAP	//  hash s2 _5
-      HASHCU	//  hash s2 _7
-      s2 PUSH	//  hash s2 _7 hash
-      EQUAL	//  hash s2 _8
-      IFJMP:<{	//  hash s2
+    //  s hash
+    OVER	//  s hash s
+    SREFS	//  s hash _2
+    4 EQINT	//  s hash _4
+    IFJMP:<{	//  s hash
+      SWAP	//  hash s
+      LDREF	//  hash _5 s
+      SWAP	//  hash s _5
+      HASHCU	//  hash s _7
+      s2 PUSH	//  hash s _7 hash
+      EQUAL	//  hash s _8
+      IFJMP:<{	//  hash s
         2DROP	// 
         0 PUSHINT	//  _9=0
-      }>	//  hash s2
-      LDREF	//  hash _10 s2
-      SWAP	//  hash s2 _10
-      HASHCU	//  hash s2 _12
-      s2 PUSH	//  hash s2 _12 hash
-      EQUAL	//  hash s2 _13
-      IFJMP:<{	//  hash s2
+      }>	//  hash s
+      LDREF	//  hash _10 s
+      SWAP	//  hash s _10
+      HASHCU	//  hash s _12
+      s2 PUSH	//  hash s _12 hash
+      EQUAL	//  hash s _13
+      IFJMP:<{	//  hash s
         2DROP	// 
         1 PUSHINT	//  _14=1
-      }>	//  hash s2
-      LDREF	//  hash _15 s2
-      SWAP	//  hash s2 _15
-      HASHCU	//  hash s2 _17
-      s2 PUSH	//  hash s2 _17 hash
-      EQUAL	//  hash s2 _18
-      IFJMP:<{	//  hash s2
+      }>	//  hash s
+      LDREF	//  hash _15 s
+      SWAP	//  hash s _15
+      HASHCU	//  hash s _17
+      s2 PUSH	//  hash s _17 hash
+      EQUAL	//  hash s _18
+      IFJMP:<{	//  hash s
         2DROP	// 
         2 PUSHINT	//  _19=2
-      }>	//  hash s2
+      }>	//  hash s
       LDREF	//  hash _76 _75
       DROP	//  hash _20
       HASHCU	//  hash _22
@@ -118,30 +118,30 @@ PROGRAM{
         3 PUSHINT	//  _24=3
       }>	// 
       -100 PUSHINT	//  _25=-100
-    }>	//  s2 hash
-    OVER	//  s2 hash s2
-    SREFS	//  s2 hash _26
-    3 EQINT	//  s2 hash _28
-    IFJMP:<{	//  s2 hash
-      SWAP	//  hash s2
-      LDREF	//  hash _29 s2
-      SWAP	//  hash s2 _29
-      HASHCU	//  hash s2 _31
-      s2 PUSH	//  hash s2 _31 hash
-      EQUAL	//  hash s2 _32
-      IFJMP:<{	//  hash s2
+    }>	//  s hash
+    OVER	//  s hash s
+    SREFS	//  s hash _26
+    3 EQINT	//  s hash _28
+    IFJMP:<{	//  s hash
+      SWAP	//  hash s
+      LDREF	//  hash _29 s
+      SWAP	//  hash s _29
+      HASHCU	//  hash s _31
+      s2 PUSH	//  hash s _31 hash
+      EQUAL	//  hash s _32
+      IFJMP:<{	//  hash s
         2DROP	// 
         0 PUSHINT	//  _33=0
-      }>	//  hash s2
-      LDREF	//  hash _34 s2
-      SWAP	//  hash s2 _34
-      HASHCU	//  hash s2 _36
-      s2 PUSH	//  hash s2 _36 hash
-      EQUAL	//  hash s2 _37
-      IFJMP:<{	//  hash s2
+      }>	//  hash s
+      LDREF	//  hash _34 s
+      SWAP	//  hash s _34
+      HASHCU	//  hash s _36
+      s2 PUSH	//  hash s _36 hash
+      EQUAL	//  hash s _37
+      IFJMP:<{	//  hash s
         2DROP	// 
         1 PUSHINT	//  _38=1
-      }>	//  hash s2
+      }>	//  hash s
       LDREF	//  hash _82 _81
       DROP	//  hash _39
       HASHCU	//  hash _41
@@ -151,21 +151,21 @@ PROGRAM{
         2 PUSHINT	//  _43=2
       }>	// 
       -100 PUSHINT	//  _44=-100
-    }>	//  s2 hash
-    OVER	//  s2 hash s2
-    SREFS	//  s2 hash _45
-    2 EQINT	//  s2 hash _47
-    IFJMP:<{	//  s2 hash
-      SWAP	//  hash s2
-      LDREF	//  hash _48 s2
-      SWAP	//  hash s2 _48
-      HASHCU	//  hash s2 _50
-      s2 PUSH	//  hash s2 _50 hash
-      EQUAL	//  hash s2 _51
-      IFJMP:<{	//  hash s2
+    }>	//  s hash
+    OVER	//  s hash s
+    SREFS	//  s hash _45
+    2 EQINT	//  s hash _47
+    IFJMP:<{	//  s hash
+      SWAP	//  hash s
+      LDREF	//  hash _48 s
+      SWAP	//  hash s _48
+      HASHCU	//  hash s _50
+      s2 PUSH	//  hash s _50 hash
+      EQUAL	//  hash s _51
+      IFJMP:<{	//  hash s
         2DROP	// 
         0 PUSHINT	//  _52=0
-      }>	//  hash s2
+      }>	//  hash s
       LDREF	//  hash _86 _85
       DROP	//  hash _53
       HASHCU	//  hash _55
@@ -175,12 +175,12 @@ PROGRAM{
         1 PUSHINT	//  _57=1
       }>	// 
       -100 PUSHINT	//  _58=-100
-    }>	//  s2 hash
-    OVER	//  s2 hash s2
-    SREFS	//  s2 hash _59
-    1 EQINT	//  s2 hash _61
-    IFJMP:<{	//  s2 hash
-      SWAP	//  hash s2
+    }>	//  s hash
+    OVER	//  s hash s
+    SREFS	//  s hash _59
+    1 EQINT	//  s hash _61
+    IFJMP:<{	//  s hash
+      SWAP	//  hash s
       LDREF	//  hash _88 _87
       DROP	//  hash _62
       HASHCU	//  hash _64
@@ -190,7 +190,7 @@ PROGRAM{
         0 PUSHINT	//  _66=0
       }>	// 
       -100 PUSHINT	//  _67=-100
-    }>	//  s2 hash
+    }>	//  s hash
     2DROP	// 
     -100 PUSHINT	//  _68=-100
   }>

@@ -1,7 +1,7 @@
 owners 🙊
 Start tests
 Build [32m./build[0m
- /tmp/tmpsd2w8s00.fif
+ /tmp/tmpgc6zejkw.fif
 [[32mtest_example[0m] [[32m1041[0m]
 [[32msend_query[0m] [[32m5057[0m]
 [[32msend_query2[0m] [[32m3143[0m]

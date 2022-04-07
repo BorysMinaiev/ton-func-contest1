@@ -73,48 +73,48 @@ int find_request_old(slice s, int hash) inline {
   return pos;
 }
 
-int find_request_inline(slice s2, int hash) inline_ref {
-  if (s2.slice_refs() == 4) {
-    if (cell_hash(s2~load_ref()) == hash) {
+int find_request_inline(slice s, int hash) inline_ref {
+  if (s.slice_refs() == 4) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 0;
     }
-    if (cell_hash(s2~load_ref()) == hash) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 1;
     }
-    if (cell_hash(s2~load_ref()) == hash) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 2;
     }
-    if (cell_hash(s2~load_ref()) == hash) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 3;
     }
     return -100;
   }
 
-  if (s2.slice_refs() == 3) {
-    if (cell_hash(s2~load_ref()) == hash) {
+  if (s.slice_refs() == 3) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 0;
     }
-    if (cell_hash(s2~load_ref()) == hash) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 1;
     }
-    if (cell_hash(s2~load_ref()) == hash) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 2;
     }
     return -100;
   }
 
-  if (s2.slice_refs() == 2) {
-    if (cell_hash(s2~load_ref()) == hash) {
+  if (s.slice_refs() == 2) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 0;
     }
-    if (cell_hash(s2~load_ref()) == hash) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 1;
     }
    return -100;
   }
 
-  if (s2.slice_refs() == 1) {
-    if (cell_hash(s2~load_ref()) == hash) {
+  if (s.slice_refs() == 1) {
+    if (cell_hash(s~load_ref()) == hash) {
       return 0;
     }
      return -100;
@@ -151,12 +151,11 @@ int find_request(slice s, int hash) inline_ref {
 
       ;; start third lvl
       return 6 + find_request_inline(s, hash);
-    } else {
-      return 3 + find_request_inline(s, hash);
     }
-  } else {
-    return find_request_inline(s, hash);
+
+    return 3 + find_request_inline(s, hash);
   }
+  return find_request_inline(s, hash);
 }
 
 ;; inline_ref ???
