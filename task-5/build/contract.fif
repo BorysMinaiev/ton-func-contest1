@@ -3,6 +3,8 @@
 PROGRAM{
   90427 DECLMETHOD pack_data
   DECLPROC load_data
+  DECLPROC find_request_old
+  DECLPROC find_request_inline
   DECLPROC find_request
   DECLPROC replace_request
   DECLPROC recv_external
@@ -25,7 +27,7 @@ PROGRAM{
     256 LDU	//  public_key1 public_key2 ds
     -ROT	//  ds public_key1 public_key2
   }>
-  find_request PROC:<{
+  find_request_old PROC:<{
     //  s hash
     -1 PUSHINT	//  s hash pos=-1
     0 PUSHINT	//  s hash pos=-1 size=0
@@ -70,7 +72,207 @@ PROGRAM{
     s2 s4 XCHG
     4 BLKDROP	//  pos
   }>
-  replace_request PROCREF:<{
+  find_request_inline PROCREF:<{
+    //  s2 hash
+    OVER	//  s2 hash s2
+    SREFS	//  s2 hash _2
+    4 EQINT	//  s2 hash _4
+    IFJMP:<{	//  s2 hash
+      SWAP	//  hash s2
+      LDREF	//  hash _5 s2
+      SWAP	//  hash s2 _5
+      HASHCU	//  hash s2 _7
+      s2 PUSH	//  hash s2 _7 hash
+      EQUAL	//  hash s2 _8
+      IFJMP:<{	//  hash s2
+        2DROP	// 
+        0 PUSHINT	//  _9=0
+      }>	//  hash s2
+      LDREF	//  hash _10 s2
+      SWAP	//  hash s2 _10
+      HASHCU	//  hash s2 _12
+      s2 PUSH	//  hash s2 _12 hash
+      EQUAL	//  hash s2 _13
+      IFJMP:<{	//  hash s2
+        2DROP	// 
+        1 PUSHINT	//  _14=1
+      }>	//  hash s2
+      LDREF	//  hash _15 s2
+      SWAP	//  hash s2 _15
+      HASHCU	//  hash s2 _17
+      s2 PUSH	//  hash s2 _17 hash
+      EQUAL	//  hash s2 _18
+      IFJMP:<{	//  hash s2
+        2DROP	// 
+        2 PUSHINT	//  _19=2
+      }>	//  hash s2
+      LDREF	//  hash _76 _75
+      DROP	//  hash _20
+      HASHCU	//  hash _22
+      SWAP	//  _22 hash
+      EQUAL	//  _23
+      IFJMP:<{	// 
+        3 PUSHINT	//  _24=3
+      }>	// 
+      -100 PUSHINT	//  _25=-100
+    }>	//  s2 hash
+    OVER	//  s2 hash s2
+    SREFS	//  s2 hash _26
+    3 EQINT	//  s2 hash _28
+    IFJMP:<{	//  s2 hash
+      SWAP	//  hash s2
+      LDREF	//  hash _29 s2
+      SWAP	//  hash s2 _29
+      HASHCU	//  hash s2 _31
+      s2 PUSH	//  hash s2 _31 hash
+      EQUAL	//  hash s2 _32
+      IFJMP:<{	//  hash s2
+        2DROP	// 
+        0 PUSHINT	//  _33=0
+      }>	//  hash s2
+      LDREF	//  hash _34 s2
+      SWAP	//  hash s2 _34
+      HASHCU	//  hash s2 _36
+      s2 PUSH	//  hash s2 _36 hash
+      EQUAL	//  hash s2 _37
+      IFJMP:<{	//  hash s2
+        2DROP	// 
+        1 PUSHINT	//  _38=1
+      }>	//  hash s2
+      LDREF	//  hash _82 _81
+      DROP	//  hash _39
+      HASHCU	//  hash _41
+      SWAP	//  _41 hash
+      EQUAL	//  _42
+      IFJMP:<{	// 
+        2 PUSHINT	//  _43=2
+      }>	// 
+      -100 PUSHINT	//  _44=-100
+    }>	//  s2 hash
+    OVER	//  s2 hash s2
+    SREFS	//  s2 hash _45
+    2 EQINT	//  s2 hash _47
+    IFJMP:<{	//  s2 hash
+      SWAP	//  hash s2
+      LDREF	//  hash _48 s2
+      SWAP	//  hash s2 _48
+      HASHCU	//  hash s2 _50
+      s2 PUSH	//  hash s2 _50 hash
+      EQUAL	//  hash s2 _51
+      IFJMP:<{	//  hash s2
+        2DROP	// 
+        0 PUSHINT	//  _52=0
+      }>	//  hash s2
+      LDREF	//  hash _86 _85
+      DROP	//  hash _53
+      HASHCU	//  hash _55
+      SWAP	//  _55 hash
+      EQUAL	//  _56
+      IFJMP:<{	// 
+        1 PUSHINT	//  _57=1
+      }>	// 
+      -100 PUSHINT	//  _58=-100
+    }>	//  s2 hash
+    OVER	//  s2 hash s2
+    SREFS	//  s2 hash _59
+    1 EQINT	//  s2 hash _61
+    IFJMP:<{	//  s2 hash
+      SWAP	//  hash s2
+      LDREF	//  hash _88 _87
+      DROP	//  hash _62
+      HASHCU	//  hash _64
+      SWAP	//  _64 hash
+      EQUAL	//  _65
+      IFJMP:<{	// 
+        0 PUSHINT	//  _66=0
+      }>	// 
+      -100 PUSHINT	//  _67=-100
+    }>	//  s2 hash
+    2DROP	// 
+    -100 PUSHINT	//  _68=-100
+  }>
+  find_request PROCREF:<{
+    //  s hash
+    OVER	//  s hash s
+    SREFS	//  s hash _2
+    4 EQINT	//  s hash _4
+    IFJMP:<{	//  s hash
+      SWAP	//  hash s
+      LDREF	//  hash _5 s
+      SWAP	//  hash s _5
+      HASHCU	//  hash s _7
+      s2 PUSH	//  hash s _7 hash
+      EQUAL	//  hash s _8
+      IFJMP:<{	//  hash s
+        2DROP	// 
+        0 PUSHINT	//  _9=0
+      }>	//  hash s
+      LDREF	//  hash _10 s
+      SWAP	//  hash s _10
+      HASHCU	//  hash s _12
+      s2 PUSH	//  hash s _12 hash
+      EQUAL	//  hash s _13
+      IFJMP:<{	//  hash s
+        2DROP	// 
+        1 PUSHINT	//  _14=1
+      }>	//  hash s
+      LDREF	//  hash _15 s
+      SWAP	//  hash s _15
+      HASHCU	//  hash s _17
+      s2 PUSH	//  hash s _17 hash
+      EQUAL	//  hash s _18
+      IFJMP:<{	//  hash s
+        2DROP	// 
+        2 PUSHINT	//  _19=2
+      }>	//  hash s
+      LDREF	//  hash _58 _57
+      DROP	//  hash _20
+      CTOS	//  hash s
+      DUP	//  hash s s
+      SREFS	//  hash s _23
+      4 EQINT	//  hash s _25
+      IFJMP:<{	//  hash s
+        LDREF	//  hash _26 s
+        SWAP	//  hash s _26
+        HASHCU	//  hash s _28
+        s2 PUSH	//  hash s _28 hash
+        EQUAL	//  hash s _29
+        IFJMP:<{	//  hash s
+          2DROP	// 
+          3 PUSHINT	//  _30=3
+        }>	//  hash s
+        LDREF	//  hash _31 s
+        SWAP	//  hash s _31
+        HASHCU	//  hash s _33
+        s2 PUSH	//  hash s _33 hash
+        EQUAL	//  hash s _34
+        IFJMP:<{	//  hash s
+          2DROP	// 
+          4 PUSHINT	//  _35=4
+        }>	//  hash s
+        LDREF	//  hash _36 s
+        SWAP	//  hash s _36
+        HASHCU	//  hash s _38
+        s2 PUSH	//  hash s _38 hash
+        EQUAL	//  hash s _39
+        IFJMP:<{	//  hash s
+          2DROP	// 
+          5 PUSHINT	//  _40=5
+        }>	//  hash s
+        LDREF	//  hash _66 _65
+        DROP	//  hash _41
+        CTOS	//  hash s
+        SWAP	//  s hash
+        find_request_inline INLINECALLDICT	//  _45
+        6 ADDCONST	//  _46
+      }>	//  hash s
+      SWAP	//  s hash
+      find_request_inline INLINECALLDICT	//  _48
+      3 ADDCONST	//  _49
+    }>	//  s hash
+    find_request_inline INLINECALLDICT	//  _50
+  }>
+  replace_request PROC:<{
     //  b old_slice pos lvl request
     3 PUSHINT	//  b old_slice pos lvl request cnt_inplace=3
     s2 PUSH	//  b old_slice pos lvl request cnt_inplace=3 lvl
@@ -149,7 +351,7 @@ PROGRAM{
       INC	//  b children_old_slice _38 _40 request _42
       s3 s4 XCHG
       SWAP	//  b _38 children_old_slice _40 _42 request
-      replace_request INLINECALLDICT	//  b children
+      replace_request CALLDICT	//  b children
       SWAP	//  children b
       STREF	//  b
     }>
@@ -203,14 +405,14 @@ PROGRAM{
     s0 s8 PUSH2	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree tree_copy request_cell
     HASHCU	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree tree_copy _56
     s1 s2 XCHG	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree_copy tree _56
-    find_request INLINECALLDICT	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree_copy pos
+    find_request_old INLINECALLDICT	//  public_key2 request_cell valid_until request key_mask public_key1 cnt full_mask valid_untils tree_copy pos
     s0 s5 XCHG
     NEWC	//  public_key2 request_cell valid_until request key_mask pos cnt full_mask valid_untils tree_copy public_key1 _59
     256 STU	//  public_key2 request_cell valid_until request key_mask pos cnt full_mask valid_untils tree_copy _61
     s1 s10 XCHG	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils public_key2 _61
     256 STU	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
     s4 PUSH	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree pos
-    -1 EQINT	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree _65
+    0 LESSINT	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree _65
     IF:<{	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
       s4 POP
       s5 POP	//  tree_copy request_cell valid_until valid_untils key_mask new_tree cnt full_mask
@@ -283,7 +485,7 @@ PROGRAM{
       s3 s1 s3 XCHG3
       0 PUSHINT
       SWAP	//  new_tree tree_copy npos _122=0 request_cell
-      replace_request INLINECALLDICT	//  root
+      replace_request CALLDICT	//  root
       c4 POP
     }>ELSE<{	//  tree_copy request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
       s7 POP

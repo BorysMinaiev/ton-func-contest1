@@ -53,7 +53,7 @@ First 3 requests are stored in-place.
   return (ds, public_key1, public_key2);
 }
 
-int find_request(slice s, int hash) inline {
+int find_request_old(slice s, int hash) inline {
   int pos = -1;
   int size = 0;
   int lvl = 1;
@@ -73,7 +73,116 @@ int find_request(slice s, int hash) inline {
   return pos;
 }
 
-cell replace_request(builder b, slice old_slice, int pos, int lvl, cell request) inline_ref {
+int find_request_inline(slice s2, int hash) inline_ref {
+  if (s2.slice_refs() == 4) {
+    if (cell_hash(s2~load_ref()) == hash) {
+      return 0;
+    } else {
+      if (cell_hash(s2~load_ref()) == hash) {
+        return 1;
+      } else {
+        if (cell_hash(s2~load_ref()) == hash) {
+          return 2;
+        } else {
+          if (cell_hash(s2~load_ref()) == hash) {
+            return 3;
+          } else {
+            return -100;
+          }
+        }
+      }
+    }
+  } else {
+    if (s2.slice_refs() == 3) {
+      if (cell_hash(s2~load_ref()) == hash) {
+        return 0;
+      } else {
+        if (cell_hash(s2~load_ref()) == hash) {
+          return 1;
+        } else {
+          if (cell_hash(s2~load_ref()) == hash) {
+            return 2;
+          } else {
+            return -100;
+          }
+        }
+      }
+    } else {
+      if (s2.slice_refs() == 2) {
+        if (cell_hash(s2~load_ref()) == hash) {
+          return 0;
+        } else {
+          if (cell_hash(s2~load_ref()) == hash) {
+            return 1;
+          } else {
+            return -100;
+          }
+        }
+      } else {
+        if (s2.slice_refs() == 1) {
+          if (cell_hash(s2~load_ref()) == hash) {
+            return 0;
+          } else {
+            return -100;
+          }
+        } else {
+          return -100;
+        }
+      }
+    }
+  }
+}
+
+int find_request(slice s, int hash) inline_ref {
+  if (s.slice_refs() == 4) {
+    if (cell_hash(s~load_ref()) == hash) {
+      return 0;
+    } else {
+      if (cell_hash(s~load_ref()) == hash) {
+        return 1;
+      } else {
+        if (cell_hash(s~load_ref()) == hash) {
+          return 2;
+        } else {
+          s = s~load_ref().begin_parse();
+          ;; start second lvl
+
+
+  if (s.slice_refs() == 4) {
+    if (cell_hash(s~load_ref()) == hash) {
+      return 3;
+    } else {
+      if (cell_hash(s~load_ref()) == hash) {
+        return 4;
+      } else {
+        if (cell_hash(s~load_ref()) == hash) {
+          return 5;
+        } else {
+          s = s~load_ref().begin_parse();
+          ;; start third lvl
+
+          return 6 + find_request_inline(s, hash);
+
+        }
+      }
+    }
+  } else {
+    return 3 + find_request_inline(s, hash);
+  }
+
+
+
+
+        }
+      }
+    }
+  } else {
+    return find_request_inline(s, hash);
+  }
+}
+
+;; inline_ref ???
+cell replace_request(builder b, slice old_slice, int pos, int lvl, cell request) {
   int cnt_inplace = 3;
   if (lvl == 2) {
     cnt_inplace += 1;
@@ -147,7 +256,7 @@ builder store_builder(builder to, builder what) asm(what to) "STB";
   int pos = find_request(tree, cell_hash(request_cell));
   builder new_tree = begin_cell().store_uint(public_key1, 256).store_uint(public_key2, 256);
 
-  if (pos == -1) {
+  if (pos < 0) {
     int npos = -1;
     int check_pos = -1;
 

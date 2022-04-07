@@ -582,8 +582,12 @@ PROGRAM{
   }>
   query8 PROC:<{
     //  exit_code data stack actions gas
-    4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    OVER	//  exit_code stack exit_code
+    s0 DUMP DROP
+    s0 DUMP DROP
+    0 NEQINT	//  _9
     1001 THROWIF
   }>
   query9_data PROC:<{
