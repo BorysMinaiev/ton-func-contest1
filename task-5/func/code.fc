@@ -182,7 +182,7 @@ int find_request(slice s, int hash) inline_ref {
 }
 
 ;; inline_ref ???
-cell replace_request(builder b, slice old_slice, int pos, int lvl, cell request) {
+cell replace_request_old(builder b, slice old_slice, int pos, int lvl, cell request) {
   int cnt_inplace = 3;
   if (lvl == 2) {
     cnt_inplace += 1;
@@ -208,7 +208,79 @@ cell replace_request(builder b, slice old_slice, int pos, int lvl, cell request)
     if (~ old_slice.slice_refs_empty?()) {
       children_old_slice = old_slice~load_ref().begin_parse();
     }
-    cell children = replace_request(begin_cell(), children_old_slice, pos - 3, lvl + 1, request);
+    cell children = replace_request_old(begin_cell(), children_old_slice, pos - 3, lvl + 1, request);
+    b = b.store_ref(children);
+  }
+  return b.end_cell();
+}
+
+cell replace_request_2(builder b, slice old_slice, int pos, cell request) inline {
+  repeat(pos) {
+    b = b.store_ref(old_slice~load_ref());
+  }
+  b = b.store_ref(request);
+  if (~ old_slice.null?()) {
+    if (~ old_slice.slice_refs_empty?()) {
+      old_slice~load_ref();
+    }
+    repeat(old_slice.slice_refs()) {
+      b = b.store_ref(old_slice~load_ref());
+    }
+  }
+  return b.end_cell();
+}
+
+cell replace_request_1(builder b, slice old_slice, int pos, cell request) inline {
+  if (pos < 3) {
+    repeat(pos) {
+      b = b.store_ref(old_slice~load_ref());
+    }
+    b = b.store_ref(request);
+    if (~ old_slice.null?()) {
+      if (~ old_slice.slice_refs_empty?()) {
+        old_slice~load_ref();
+      }
+      repeat(old_slice.slice_refs()) {
+        b = b.store_ref(old_slice~load_ref());
+      }
+    }
+  } else {
+    repeat(3) {
+      b = b.store_ref(old_slice~load_ref());
+    }
+    slice children_old_slice = null();
+    if (~ old_slice.slice_refs_empty?()) {
+      children_old_slice = old_slice~load_ref().begin_parse();
+    }
+    cell children = replace_request_2(begin_cell(), children_old_slice, pos - 3, request);
+    b = b.store_ref(children);
+  }
+  return b.end_cell();
+}
+
+cell replace_request(builder b, slice old_slice, int pos, cell request) inline {
+  if (pos < 3) {
+    repeat(pos) {
+      b = b.store_ref(old_slice~load_ref());
+    }
+    b = b.store_ref(request);
+    if (~ old_slice.null?()) {
+      if (~ old_slice.slice_refs_empty?()) {
+        old_slice~load_ref();
+      }
+      repeat(old_slice.slice_refs()) {
+        b = b.store_ref(old_slice~load_ref());
+      }
+    }
+  } else {
+    repeat(3) {
+      b = b.store_ref(old_slice~load_ref());
+    }
+    slice children_old_slice = null();
+    if (~ old_slice.slice_refs_empty?()) {
+      children_old_slice = old_slice~load_ref().begin_parse();
+    }
+    cell children = replace_request_1(begin_cell(), children_old_slice, pos - 3, request);
     b = b.store_ref(children);
   }
   return b.end_cell();
@@ -283,7 +355,7 @@ builder store_builder(builder to, builder what) asm(what to) "STB";
     next_full_mask |= (key_mask << (npos * 2));
     new_tree~store_uint(next_full_mask, 20);
     new_tree = new_tree.store_builder(new_valid_untils);
-    cell root = replace_request(new_tree, tree, npos, 0, request_cell);
+    cell root = replace_request(new_tree, tree, npos, request_cell);
     set_data(root);
   } else {
     int cur_mask = (full_mask >> (pos * 2)) & 3;
