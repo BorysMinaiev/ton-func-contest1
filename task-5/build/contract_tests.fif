@@ -460,8 +460,6 @@ PROGRAM{
   447 DECLMETHOD test_change_446
   448 DECLMETHOD test_change_448_data
   449 DECLMETHOD test_change_448
-  450 DECLMETHOD test_change_450_data
-  451 DECLMETHOD test_change_450
   get_c7 PROC:<{
     // 
     124711402 PUSHINT	//  _2=124711402
@@ -1110,10 +1108,10 @@ PROGRAM{
   }>
   test_change_52_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1043 PUSHINT	//  _0 _1=1043
-    1003 PUSHINT	//  _0 _1=1043 _2=1003
-    OVER	//  _0 _1=1043 _2=1003 _3=1043
+    public_key1 INLINECALLDICT	//  _0
+    1030 PUSHINT	//  _0 _1=1030
+    1003 PUSHINT	//  _0 _1=1030 _2=1003
+    OVER	//  _0 _1=1030 _2=1003 _3=1030
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_52 PROC:<{
@@ -1124,7 +1122,7 @@ PROGRAM{
   }>
   test_change_54_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
+    public_key1 INLINECALLDICT	//  _0
     1022 PUSHINT	//  _0 _1=1022
     1006 PUSHINT	//  _0 _1=1022 _2=1006
     OVER	//  _0 _1=1022 _2=1006 _3=1022
@@ -1138,10 +1136,10 @@ PROGRAM{
   }>
   test_change_56_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1039 PUSHINT	//  _0 _1=1039
-    1009 PUSHINT	//  _0 _1=1039 _2=1009
-    OVER	//  _0 _1=1039 _2=1009 _3=1039
+    public_key2 INLINECALLDICT	//  _0
+    1032 PUSHINT	//  _0 _1=1032
+    1009 PUSHINT	//  _0 _1=1032 _2=1009
+    OVER	//  _0 _1=1032 _2=1009 _3=1032
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_56 PROC:<{
@@ -1153,9 +1151,9 @@ PROGRAM{
   test_change_58_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1032 PUSHINT	//  _0 _1=1032
-    1012 PUSHINT	//  _0 _1=1032 _2=1012
-    OVER	//  _0 _1=1032 _2=1012 _3=1032
+    1027 PUSHINT	//  _0 _1=1027
+    1012 PUSHINT	//  _0 _1=1027 _2=1012
+    OVER	//  _0 _1=1027 _2=1012 _3=1027
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_58 PROC:<{
@@ -1166,10 +1164,10 @@ PROGRAM{
   }>
   test_change_60_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1018 PUSHINT	//  _0 _1=1018
-    1015 PUSHINT	//  _0 _1=1018 _2=1015
-    OVER	//  _0 _1=1018 _2=1015 _3=1018
+    public_key2 INLINECALLDICT	//  _0
+    1034 PUSHINT	//  _0 _1=1034
+    1015 PUSHINT	//  _0 _1=1034 _2=1015
+    OVER	//  _0 _1=1034 _2=1015 _3=1034
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_60 PROC:<{
@@ -1180,10 +1178,10 @@ PROGRAM{
   }>
   test_change_62_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1048 PUSHINT	//  _0 _1=1048
-    1018 PUSHINT	//  _0 _1=1048 _2=1018
-    OVER	//  _0 _1=1048 _2=1018 _3=1048
+    public_key2 INLINECALLDICT	//  _0
+    1049 PUSHINT	//  _0 _1=1049
+    1018 PUSHINT	//  _0 _1=1049 _2=1018
+    OVER	//  _0 _1=1049 _2=1018 _3=1049
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_62 PROC:<{
@@ -1194,10 +1192,10 @@ PROGRAM{
   }>
   test_change_64_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1063 PUSHINT	//  _0 _1=1063
-    1021 PUSHINT	//  _0 _1=1063 _2=1021
-    OVER	//  _0 _1=1063 _2=1021 _3=1063
+    public_key2 INLINECALLDICT	//  _0
+    1080 PUSHINT	//  _0 _1=1080
+    1021 PUSHINT	//  _0 _1=1080 _2=1021
+    OVER	//  _0 _1=1080 _2=1021 _3=1080
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_64 PROC:<{
@@ -1208,10 +1206,10 @@ PROGRAM{
   }>
   test_change_66_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1045 PUSHINT	//  _0 _1=1045
-    10 PUSHPOW2	//  _0 _1=1045 _2=1024
-    OVER	//  _0 _1=1045 _2=1024 _3=1045
+    public_key1 INLINECALLDICT	//  _0
+    1057 PUSHINT	//  _0 _1=1057
+    10 PUSHPOW2	//  _0 _1=1057 _2=1024
+    OVER	//  _0 _1=1057 _2=1024 _3=1057
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_66 PROC:<{
@@ -1222,10 +1220,10 @@ PROGRAM{
   }>
   test_change_68_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1032 PUSHINT	//  _0 _1=1032
-    1027 PUSHINT	//  _0 _1=1032 _2=1027
-    OVER	//  _0 _1=1032 _2=1027 _3=1032
+    public_key2 INLINECALLDICT	//  _0
+    1063 PUSHINT	//  _0 _1=1063
+    1027 PUSHINT	//  _0 _1=1063 _2=1027
+    OVER	//  _0 _1=1063 _2=1027 _3=1063
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_68 PROC:<{
@@ -1236,10 +1234,10 @@ PROGRAM{
   }>
   test_change_70_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1075 PUSHINT	//  _0 _1=1075
-    1030 PUSHINT	//  _0 _1=1075 _2=1030
-    OVER	//  _0 _1=1075 _2=1030 _3=1075
+    public_key2 INLINECALLDICT	//  _0
+    1077 PUSHINT	//  _0 _1=1077
+    1030 PUSHINT	//  _0 _1=1077 _2=1030
+    OVER	//  _0 _1=1077 _2=1030 _3=1077
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_70 PROC:<{
@@ -1250,10 +1248,10 @@ PROGRAM{
   }>
   test_change_72_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1088 PUSHINT	//  _0 _1=1088
-    1033 PUSHINT	//  _0 _1=1088 _2=1033
-    OVER	//  _0 _1=1088 _2=1033 _3=1088
+    public_key1 INLINECALLDICT	//  _0
+    1042 PUSHINT	//  _0 _1=1042
+    1033 PUSHINT	//  _0 _1=1042 _2=1033
+    OVER	//  _0 _1=1042 _2=1033 _3=1042
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_72 PROC:<{
@@ -1264,10 +1262,10 @@ PROGRAM{
   }>
   test_change_74_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1064 PUSHINT	//  _0 _1=1064
-    1036 PUSHINT	//  _0 _1=1064 _2=1036
-    OVER	//  _0 _1=1064 _2=1036 _3=1064
+    public_key1 INLINECALLDICT	//  _0
+    1070 PUSHINT	//  _0 _1=1070
+    1036 PUSHINT	//  _0 _1=1070 _2=1036
+    OVER	//  _0 _1=1070 _2=1036 _3=1070
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_74 PROC:<{
@@ -1279,9 +1277,9 @@ PROGRAM{
   test_change_76_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1042 PUSHINT	//  _0 _1=1042
-    1039 PUSHINT	//  _0 _1=1042 _2=1039
-    OVER	//  _0 _1=1042 _2=1039 _3=1042
+    1061 PUSHINT	//  _0 _1=1061
+    1039 PUSHINT	//  _0 _1=1061 _2=1039
+    OVER	//  _0 _1=1061 _2=1039 _3=1061
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_76 PROC:<{
@@ -1293,51 +1291,51 @@ PROGRAM{
   test_change_78_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1064 PUSHINT	//  _0 _1=1064
-    1042 PUSHINT	//  _0 _1=1064 _2=1042
-    OVER	//  _0 _1=1064 _2=1042 _3=1064
+    1072 PUSHINT	//  _0 _1=1072
+    1042 PUSHINT	//  _0 _1=1072 _2=1042
+    OVER	//  _0 _1=1072 _2=1042 _3=1072
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_78 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_80_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1085 PUSHINT	//  _0 _1=1085
-    1045 PUSHINT	//  _0 _1=1085 _2=1045
-    OVER	//  _0 _1=1085 _2=1045 _3=1085
+    public_key1 INLINECALLDICT	//  _0
+    1070 PUSHINT	//  _0 _1=1070
+    1045 PUSHINT	//  _0 _1=1070 _2=1045
+    OVER	//  _0 _1=1070 _2=1045 _3=1070
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_80 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_82_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1088 PUSHINT	//  _0 _1=1088
-    1048 PUSHINT	//  _0 _1=1088 _2=1048
-    OVER	//  _0 _1=1088 _2=1048 _3=1088
+    public_key1 INLINECALLDICT	//  _0
+    1100 PUSHINT	//  _0 _1=1100
+    1048 PUSHINT	//  _0 _1=1100 _2=1048
+    OVER	//  _0 _1=1100 _2=1048 _3=1100
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_82 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_84_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1080 PUSHINT	//  _0 _1=1080
-    1051 PUSHINT	//  _0 _1=1080 _2=1051
-    OVER	//  _0 _1=1080 _2=1051 _3=1080
+    public_key1 INLINECALLDICT	//  _0
+    1075 PUSHINT	//  _0 _1=1075
+    1051 PUSHINT	//  _0 _1=1075 _2=1051
+    OVER	//  _0 _1=1075 _2=1051 _3=1075
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_84 PROC:<{
@@ -1348,10 +1346,10 @@ PROGRAM{
   }>
   test_change_86_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1107 PUSHINT	//  _0 _1=1107
-    1054 PUSHINT	//  _0 _1=1107 _2=1054
-    OVER	//  _0 _1=1107 _2=1054 _3=1107
+    public_key2 INLINECALLDICT	//  _0
+    1056 PUSHINT	//  _0 _1=1056
+    1054 PUSHINT	//  _0 _1=1056 _2=1054
+    OVER	//  _0 _1=1056 _2=1054 _3=1056
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_86 PROC:<{
@@ -1362,10 +1360,10 @@ PROGRAM{
   }>
   test_change_88_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1062 PUSHINT	//  _0 _1=1062
-    1057 PUSHINT	//  _0 _1=1062 _2=1057
-    OVER	//  _0 _1=1062 _2=1057 _3=1062
+    public_key2 INLINECALLDICT	//  _0
+    1081 PUSHINT	//  _0 _1=1081
+    1057 PUSHINT	//  _0 _1=1081 _2=1057
+    OVER	//  _0 _1=1081 _2=1057 _3=1081
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_88 PROC:<{
@@ -1376,10 +1374,10 @@ PROGRAM{
   }>
   test_change_90_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1065 PUSHINT	//  _0 _1=1065
-    1060 PUSHINT	//  _0 _1=1065 _2=1060
-    OVER	//  _0 _1=1065 _2=1060 _3=1065
+    public_key2 INLINECALLDICT	//  _0
+    1079 PUSHINT	//  _0 _1=1079
+    1060 PUSHINT	//  _0 _1=1079 _2=1060
+    OVER	//  _0 _1=1079 _2=1060 _3=1079
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_90 PROC:<{
@@ -1391,9 +1389,9 @@ PROGRAM{
   test_change_92_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1103 PUSHINT	//  _0 _1=1103
-    1063 PUSHINT	//  _0 _1=1103 _2=1063
-    OVER	//  _0 _1=1103 _2=1063 _3=1103
+    1064 PUSHINT	//  _0 _1=1064
+    1063 PUSHINT	//  _0 _1=1064 _2=1063
+    OVER	//  _0 _1=1064 _2=1063 _3=1064
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_92 PROC:<{
@@ -1405,9 +1403,9 @@ PROGRAM{
   test_change_94_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1116 PUSHINT	//  _0 _1=1116
-    1066 PUSHINT	//  _0 _1=1116 _2=1066
-    OVER	//  _0 _1=1116 _2=1066 _3=1116
+    1086 PUSHINT	//  _0 _1=1086
+    1066 PUSHINT	//  _0 _1=1086 _2=1066
+    OVER	//  _0 _1=1086 _2=1066 _3=1086
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_94 PROC:<{
@@ -1419,9 +1417,9 @@ PROGRAM{
   test_change_96_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1085 PUSHINT	//  _0 _1=1085
-    1069 PUSHINT	//  _0 _1=1085 _2=1069
-    OVER	//  _0 _1=1085 _2=1069 _3=1085
+    1090 PUSHINT	//  _0 _1=1090
+    1069 PUSHINT	//  _0 _1=1090 _2=1069
+    OVER	//  _0 _1=1090 _2=1069 _3=1090
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_96 PROC:<{
@@ -1433,9 +1431,9 @@ PROGRAM{
   test_change_98_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1112 PUSHINT	//  _0 _1=1112
-    1072 PUSHINT	//  _0 _1=1112 _2=1072
-    OVER	//  _0 _1=1112 _2=1072 _3=1112
+    1106 PUSHINT	//  _0 _1=1106
+    1072 PUSHINT	//  _0 _1=1106 _2=1072
+    OVER	//  _0 _1=1106 _2=1072 _3=1106
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_98 PROC:<{
@@ -1446,10 +1444,10 @@ PROGRAM{
   }>
   test_change_100_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1115 PUSHINT	//  _0 _1=1115
-    1075 PUSHINT	//  _0 _1=1115 _2=1075
-    OVER	//  _0 _1=1115 _2=1075 _3=1115
+    public_key2 INLINECALLDICT	//  _0
+    1098 PUSHINT	//  _0 _1=1098
+    1075 PUSHINT	//  _0 _1=1098 _2=1075
+    OVER	//  _0 _1=1098 _2=1075 _3=1098
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_100 PROC:<{
@@ -1460,10 +1458,10 @@ PROGRAM{
   }>
   test_change_102_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1097 PUSHINT	//  _0 _1=1097
-    1078 PUSHINT	//  _0 _1=1097 _2=1078
-    OVER	//  _0 _1=1097 _2=1078 _3=1097
+    public_key2 INLINECALLDICT	//  _0
+    1088 PUSHINT	//  _0 _1=1088
+    1078 PUSHINT	//  _0 _1=1088 _2=1078
+    OVER	//  _0 _1=1088 _2=1078 _3=1088
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_102 PROC:<{
@@ -1475,9 +1473,9 @@ PROGRAM{
   test_change_104_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1119 PUSHINT	//  _0 _1=1119
-    1081 PUSHINT	//  _0 _1=1119 _2=1081
-    OVER	//  _0 _1=1119 _2=1081 _3=1119
+    1110 PUSHINT	//  _0 _1=1110
+    1081 PUSHINT	//  _0 _1=1110 _2=1081
+    OVER	//  _0 _1=1110 _2=1081 _3=1110
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_104 PROC:<{
@@ -1489,9 +1487,9 @@ PROGRAM{
   test_change_106_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1114 PUSHINT	//  _0 _1=1114
-    1084 PUSHINT	//  _0 _1=1114 _2=1084
-    OVER	//  _0 _1=1114 _2=1084 _3=1114
+    1115 PUSHINT	//  _0 _1=1115
+    1084 PUSHINT	//  _0 _1=1115 _2=1084
+    OVER	//  _0 _1=1115 _2=1084 _3=1115
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_106 PROC:<{
@@ -1502,10 +1500,10 @@ PROGRAM{
   }>
   test_change_108_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1106 PUSHINT	//  _0 _1=1106
-    1087 PUSHINT	//  _0 _1=1106 _2=1087
-    OVER	//  _0 _1=1106 _2=1087 _3=1106
+    public_key2 INLINECALLDICT	//  _0
+    1121 PUSHINT	//  _0 _1=1121
+    1087 PUSHINT	//  _0 _1=1121 _2=1087
+    OVER	//  _0 _1=1121 _2=1087 _3=1121
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_108 PROC:<{
@@ -1516,10 +1514,10 @@ PROGRAM{
   }>
   test_change_110_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1101 PUSHINT	//  _0 _1=1101
-    1090 PUSHINT	//  _0 _1=1101 _2=1090
-    OVER	//  _0 _1=1101 _2=1090 _3=1101
+    public_key1 INLINECALLDICT	//  _0
+    1136 PUSHINT	//  _0 _1=1136
+    1090 PUSHINT	//  _0 _1=1136 _2=1090
+    OVER	//  _0 _1=1136 _2=1090 _3=1136
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_110 PROC:<{
@@ -1530,38 +1528,38 @@ PROGRAM{
   }>
   test_change_112_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1131 PUSHINT	//  _0 _1=1131
-    1093 PUSHINT	//  _0 _1=1131 _2=1093
-    OVER	//  _0 _1=1131 _2=1093 _3=1131
+    public_key2 INLINECALLDICT	//  _0
+    1153 PUSHINT	//  _0 _1=1153
+    1093 PUSHINT	//  _0 _1=1153 _2=1093
+    OVER	//  _0 _1=1153 _2=1093 _3=1153
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_112 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_114_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1118 PUSHINT	//  _0 _1=1118
-    1096 PUSHINT	//  _0 _1=1118 _2=1096
-    OVER	//  _0 _1=1118 _2=1096 _3=1118
+    1138 PUSHINT	//  _0 _1=1138
+    1096 PUSHINT	//  _0 _1=1138 _2=1096
+    OVER	//  _0 _1=1138 _2=1096 _3=1138
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_114 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_116_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1131 PUSHINT	//  _0 _1=1131
-    1099 PUSHINT	//  _0 _1=1131 _2=1099
-    OVER	//  _0 _1=1131 _2=1099 _3=1131
+    1158 PUSHINT	//  _0 _1=1158
+    1099 PUSHINT	//  _0 _1=1158 _2=1099
+    OVER	//  _0 _1=1158 _2=1099 _3=1158
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_116 PROC:<{
@@ -1573,9 +1571,9 @@ PROGRAM{
   test_change_118_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1126 PUSHINT	//  _0 _1=1126
-    1102 PUSHINT	//  _0 _1=1126 _2=1102
-    OVER	//  _0 _1=1126 _2=1102 _3=1126
+    1133 PUSHINT	//  _0 _1=1133
+    1102 PUSHINT	//  _0 _1=1133 _2=1102
+    OVER	//  _0 _1=1133 _2=1102 _3=1133
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_118 PROC:<{
@@ -1587,9 +1585,9 @@ PROGRAM{
   test_change_120_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1128 PUSHINT	//  _0 _1=1128
-    1105 PUSHINT	//  _0 _1=1128 _2=1105
-    OVER	//  _0 _1=1128 _2=1105 _3=1128
+    1165 PUSHINT	//  _0 _1=1165
+    1105 PUSHINT	//  _0 _1=1165 _2=1105
+    OVER	//  _0 _1=1165 _2=1105 _3=1165
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_120 PROC:<{
@@ -1601,9 +1599,9 @@ PROGRAM{
   test_change_122_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1111 PUSHINT	//  _0 _1=1111
-    1108 PUSHINT	//  _0 _1=1111 _2=1108
-    OVER	//  _0 _1=1111 _2=1108 _3=1111
+    1144 PUSHINT	//  _0 _1=1144
+    1108 PUSHINT	//  _0 _1=1144 _2=1108
+    OVER	//  _0 _1=1144 _2=1108 _3=1144
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_122 PROC:<{
@@ -1614,10 +1612,10 @@ PROGRAM{
   }>
   test_change_124_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1128 PUSHINT	//  _0 _1=1128
-    1111 PUSHINT	//  _0 _1=1128 _2=1111
-    OVER	//  _0 _1=1128 _2=1111 _3=1128
+    public_key2 INLINECALLDICT	//  _0
+    1151 PUSHINT	//  _0 _1=1151
+    1111 PUSHINT	//  _0 _1=1151 _2=1111
+    OVER	//  _0 _1=1151 _2=1111 _3=1151
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_124 PROC:<{
@@ -1628,24 +1626,24 @@ PROGRAM{
   }>
   test_change_126_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1152 PUSHINT	//  _0 _1=1152
-    1114 PUSHINT	//  _0 _1=1152 _2=1114
-    OVER	//  _0 _1=1152 _2=1114 _3=1152
+    public_key1 INLINECALLDICT	//  _0
+    1172 PUSHINT	//  _0 _1=1172
+    1114 PUSHINT	//  _0 _1=1172 _2=1114
+    OVER	//  _0 _1=1172 _2=1114 _3=1172
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_126 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_128_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1164 PUSHINT	//  _0 _1=1164
-    1117 PUSHINT	//  _0 _1=1164 _2=1117
-    OVER	//  _0 _1=1164 _2=1117 _3=1164
+    public_key2 INLINECALLDICT	//  _0
+    1120 PUSHINT	//  _0 _1=1120
+    1117 PUSHINT	//  _0 _1=1120 _2=1117
+    OVER	//  _0 _1=1120 _2=1117 _3=1120
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_128 PROC:<{
@@ -1657,9 +1655,9 @@ PROGRAM{
   test_change_130_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1128 PUSHINT	//  _0 _1=1128
-    1120 PUSHINT	//  _0 _1=1128 _2=1120
-    OVER	//  _0 _1=1128 _2=1120 _3=1128
+    1139 PUSHINT	//  _0 _1=1139
+    1120 PUSHINT	//  _0 _1=1139 _2=1120
+    OVER	//  _0 _1=1139 _2=1120 _3=1139
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_130 PROC:<{
@@ -1670,10 +1668,10 @@ PROGRAM{
   }>
   test_change_132_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1163 PUSHINT	//  _0 _1=1163
-    1123 PUSHINT	//  _0 _1=1163 _2=1123
-    OVER	//  _0 _1=1163 _2=1123 _3=1163
+    public_key1 INLINECALLDICT	//  _0
+    1139 PUSHINT	//  _0 _1=1139
+    1123 PUSHINT	//  _0 _1=1139 _2=1123
+    OVER	//  _0 _1=1139 _2=1123 _3=1139
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_132 PROC:<{
@@ -1685,9 +1683,9 @@ PROGRAM{
   test_change_134_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1158 PUSHINT	//  _0 _1=1158
-    1126 PUSHINT	//  _0 _1=1158 _2=1126
-    OVER	//  _0 _1=1158 _2=1126 _3=1158
+    1138 PUSHINT	//  _0 _1=1138
+    1126 PUSHINT	//  _0 _1=1138 _2=1126
+    OVER	//  _0 _1=1138 _2=1126 _3=1138
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_134 PROC:<{
@@ -1698,10 +1696,10 @@ PROGRAM{
   }>
   test_change_136_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1166 PUSHINT	//  _0 _1=1166
-    1129 PUSHINT	//  _0 _1=1166 _2=1129
-    OVER	//  _0 _1=1166 _2=1129 _3=1166
+    public_key2 INLINECALLDICT	//  _0
+    1142 PUSHINT	//  _0 _1=1142
+    1129 PUSHINT	//  _0 _1=1142 _2=1129
+    OVER	//  _0 _1=1142 _2=1129 _3=1142
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_136 PROC:<{
@@ -1713,23 +1711,23 @@ PROGRAM{
   test_change_138_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1186 PUSHINT	//  _0 _1=1186
-    1132 PUSHINT	//  _0 _1=1186 _2=1132
-    OVER	//  _0 _1=1186 _2=1132 _3=1186
+    1159 PUSHINT	//  _0 _1=1159
+    1132 PUSHINT	//  _0 _1=1159 _2=1132
+    OVER	//  _0 _1=1159 _2=1132 _3=1159
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_138 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_140_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1190 PUSHINT	//  _0 _1=1190
-    1135 PUSHINT	//  _0 _1=1190 _2=1135
-    OVER	//  _0 _1=1190 _2=1135 _3=1190
+    1159 PUSHINT	//  _0 _1=1159
+    1135 PUSHINT	//  _0 _1=1159 _2=1135
+    OVER	//  _0 _1=1159 _2=1135 _3=1159
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_140 PROC:<{
@@ -1741,9 +1739,9 @@ PROGRAM{
   test_change_142_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1172 PUSHINT	//  _0 _1=1172
-    1138 PUSHINT	//  _0 _1=1172 _2=1138
-    OVER	//  _0 _1=1172 _2=1138 _3=1172
+    1150 PUSHINT	//  _0 _1=1150
+    1138 PUSHINT	//  _0 _1=1150 _2=1138
+    OVER	//  _0 _1=1150 _2=1138 _3=1150
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_142 PROC:<{
@@ -1754,10 +1752,10 @@ PROGRAM{
   }>
   test_change_144_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1185 PUSHINT	//  _0 _1=1185
-    1141 PUSHINT	//  _0 _1=1185 _2=1141
-    OVER	//  _0 _1=1185 _2=1141 _3=1185
+    public_key1 INLINECALLDICT	//  _0
+    1184 PUSHINT	//  _0 _1=1184
+    1141 PUSHINT	//  _0 _1=1184 _2=1141
+    OVER	//  _0 _1=1184 _2=1141 _3=1184
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_144 PROC:<{
@@ -1768,10 +1766,10 @@ PROGRAM{
   }>
   test_change_146_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1179 PUSHINT	//  _0 _1=1179
-    1144 PUSHINT	//  _0 _1=1179 _2=1144
-    OVER	//  _0 _1=1179 _2=1144 _3=1179
+    public_key2 INLINECALLDICT	//  _0
+    1187 PUSHINT	//  _0 _1=1187
+    1144 PUSHINT	//  _0 _1=1187 _2=1144
+    OVER	//  _0 _1=1187 _2=1144 _3=1187
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_146 PROC:<{
@@ -1782,38 +1780,38 @@ PROGRAM{
   }>
   test_change_148_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1195 PUSHINT	//  _0 _1=1195
-    1147 PUSHINT	//  _0 _1=1195 _2=1147
-    OVER	//  _0 _1=1195 _2=1147 _3=1195
+    public_key1 INLINECALLDICT	//  _0
+    1153 PUSHINT	//  _0 _1=1153
+    1147 PUSHINT	//  _0 _1=1153 _2=1147
+    OVER	//  _0 _1=1153 _2=1147 _3=1153
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_148 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_150_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1162 PUSHINT	//  _0 _1=1162
-    1150 PUSHINT	//  _0 _1=1162 _2=1150
-    OVER	//  _0 _1=1162 _2=1150 _3=1162
+    1188 PUSHINT	//  _0 _1=1188
+    1150 PUSHINT	//  _0 _1=1188 _2=1150
+    OVER	//  _0 _1=1188 _2=1150 _3=1188
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_150 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_152_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1162 PUSHINT	//  _0 _1=1162
-    1153 PUSHINT	//  _0 _1=1162 _2=1153
-    OVER	//  _0 _1=1162 _2=1153 _3=1162
+    1208 PUSHINT	//  _0 _1=1208
+    1153 PUSHINT	//  _0 _1=1208 _2=1153
+    OVER	//  _0 _1=1208 _2=1153 _3=1208
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_152 PROC:<{
@@ -1824,10 +1822,10 @@ PROGRAM{
   }>
   test_change_154_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1172 PUSHINT	//  _0 _1=1172
-    1156 PUSHINT	//  _0 _1=1172 _2=1156
-    OVER	//  _0 _1=1172 _2=1156 _3=1172
+    public_key2 INLINECALLDICT	//  _0
+    1176 PUSHINT	//  _0 _1=1176
+    1156 PUSHINT	//  _0 _1=1176 _2=1156
+    OVER	//  _0 _1=1176 _2=1156 _3=1176
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_154 PROC:<{
@@ -1839,9 +1837,9 @@ PROGRAM{
   test_change_156_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1184 PUSHINT	//  _0 _1=1184
-    1159 PUSHINT	//  _0 _1=1184 _2=1159
-    OVER	//  _0 _1=1184 _2=1159 _3=1184
+    1160 PUSHINT	//  _0 _1=1160
+    1159 PUSHINT	//  _0 _1=1160 _2=1159
+    OVER	//  _0 _1=1160 _2=1159 _3=1160
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_156 PROC:<{
@@ -1853,23 +1851,23 @@ PROGRAM{
   test_change_158_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1170 PUSHINT	//  _0 _1=1170
-    1162 PUSHINT	//  _0 _1=1170 _2=1162
-    OVER	//  _0 _1=1170 _2=1162 _3=1170
+    1171 PUSHINT	//  _0 _1=1171
+    1162 PUSHINT	//  _0 _1=1171 _2=1162
+    OVER	//  _0 _1=1171 _2=1162 _3=1171
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_158 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_160_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1199 PUSHINT	//  _0 _1=1199
-    1165 PUSHINT	//  _0 _1=1199 _2=1165
-    OVER	//  _0 _1=1199 _2=1165 _3=1199
+    public_key2 INLINECALLDICT	//  _0
+    1166 PUSHINT	//  _0 _1=1166
+    1165 PUSHINT	//  _0 _1=1166 _2=1165
+    OVER	//  _0 _1=1166 _2=1165 _3=1166
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_160 PROC:<{
@@ -1880,10 +1878,10 @@ PROGRAM{
   }>
   test_change_162_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1203 PUSHINT	//  _0 _1=1203
-    1168 PUSHINT	//  _0 _1=1203 _2=1168
-    OVER	//  _0 _1=1203 _2=1168 _3=1203
+    public_key1 INLINECALLDICT	//  _0
+    1209 PUSHINT	//  _0 _1=1209
+    1168 PUSHINT	//  _0 _1=1209 _2=1168
+    OVER	//  _0 _1=1209 _2=1168 _3=1209
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_162 PROC:<{
@@ -1894,10 +1892,10 @@ PROGRAM{
   }>
   test_change_164_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1209 PUSHINT	//  _0 _1=1209
-    1171 PUSHINT	//  _0 _1=1209 _2=1171
-    OVER	//  _0 _1=1209 _2=1171 _3=1209
+    public_key2 INLINECALLDICT	//  _0
+    1184 PUSHINT	//  _0 _1=1184
+    1171 PUSHINT	//  _0 _1=1184 _2=1171
+    OVER	//  _0 _1=1184 _2=1171 _3=1184
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_164 PROC:<{
@@ -1909,8 +1907,9 @@ PROGRAM{
   test_change_166_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1174 PUSHINT	//  _0 _1=1174
-    s0 s0 PUSH2	//  _0 _1=1174 _2=1174 _3=1174
+    1217 PUSHINT	//  _0 _1=1217
+    1174 PUSHINT	//  _0 _1=1217 _2=1174
+    OVER	//  _0 _1=1217 _2=1174 _3=1217
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_166 PROC:<{
@@ -1922,23 +1921,23 @@ PROGRAM{
   test_change_168_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1203 PUSHINT	//  _0 _1=1203
-    1177 PUSHINT	//  _0 _1=1203 _2=1177
-    OVER	//  _0 _1=1203 _2=1177 _3=1203
+    1219 PUSHINT	//  _0 _1=1219
+    1177 PUSHINT	//  _0 _1=1219 _2=1177
+    OVER	//  _0 _1=1219 _2=1177 _3=1219
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_168 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_170_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1207 PUSHINT	//  _0 _1=1207
-    1180 PUSHINT	//  _0 _1=1207 _2=1180
-    OVER	//  _0 _1=1207 _2=1180 _3=1207
+    public_key1 INLINECALLDICT	//  _0
+    1181 PUSHINT	//  _0 _1=1181
+    1180 PUSHINT	//  _0 _1=1181 _2=1180
+    OVER	//  _0 _1=1181 _2=1180 _3=1181
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_170 PROC:<{
@@ -1950,23 +1949,23 @@ PROGRAM{
   test_change_172_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1207 PUSHINT	//  _0 _1=1207
-    1183 PUSHINT	//  _0 _1=1207 _2=1183
-    OVER	//  _0 _1=1207 _2=1183 _3=1207
+    1192 PUSHINT	//  _0 _1=1192
+    1183 PUSHINT	//  _0 _1=1192 _2=1183
+    OVER	//  _0 _1=1192 _2=1183 _3=1192
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_172 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_174_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1235 PUSHINT	//  _0 _1=1235
-    1186 PUSHINT	//  _0 _1=1235 _2=1186
-    OVER	//  _0 _1=1235 _2=1186 _3=1235
+    1190 PUSHINT	//  _0 _1=1190
+    1186 PUSHINT	//  _0 _1=1190 _2=1186
+    OVER	//  _0 _1=1190 _2=1186 _3=1190
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_174 PROC:<{
@@ -1978,9 +1977,9 @@ PROGRAM{
   test_change_176_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1200 PUSHINT	//  _0 _1=1200
-    1189 PUSHINT	//  _0 _1=1200 _2=1189
-    OVER	//  _0 _1=1200 _2=1189 _3=1200
+    1249 PUSHINT	//  _0 _1=1249
+    1189 PUSHINT	//  _0 _1=1249 _2=1189
+    OVER	//  _0 _1=1249 _2=1189 _3=1249
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_176 PROC:<{
@@ -1992,9 +1991,9 @@ PROGRAM{
   test_change_178_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1194 PUSHINT	//  _0 _1=1194
-    1192 PUSHINT	//  _0 _1=1194 _2=1192
-    OVER	//  _0 _1=1194 _2=1192 _3=1194
+    1224 PUSHINT	//  _0 _1=1224
+    1192 PUSHINT	//  _0 _1=1224 _2=1192
+    OVER	//  _0 _1=1224 _2=1192 _3=1224
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_178 PROC:<{
@@ -2005,10 +2004,10 @@ PROGRAM{
   }>
   test_change_180_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1250 PUSHINT	//  _0 _1=1250
-    1195 PUSHINT	//  _0 _1=1250 _2=1195
-    OVER	//  _0 _1=1250 _2=1195 _3=1250
+    public_key1 INLINECALLDICT	//  _0
+    1212 PUSHINT	//  _0 _1=1212
+    1195 PUSHINT	//  _0 _1=1212 _2=1195
+    OVER	//  _0 _1=1212 _2=1195 _3=1212
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_180 PROC:<{
@@ -2019,10 +2018,10 @@ PROGRAM{
   }>
   test_change_182_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1208 PUSHINT	//  _0 _1=1208
-    1198 PUSHINT	//  _0 _1=1208 _2=1198
-    OVER	//  _0 _1=1208 _2=1198 _3=1208
+    public_key1 INLINECALLDICT	//  _0
+    1230 PUSHINT	//  _0 _1=1230
+    1198 PUSHINT	//  _0 _1=1230 _2=1198
+    OVER	//  _0 _1=1230 _2=1198 _3=1230
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_182 PROC:<{
@@ -2033,10 +2032,10 @@ PROGRAM{
   }>
   test_change_184_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1220 PUSHINT	//  _0 _1=1220
-    1201 PUSHINT	//  _0 _1=1220 _2=1201
-    OVER	//  _0 _1=1220 _2=1201 _3=1220
+    public_key2 INLINECALLDICT	//  _0
+    1251 PUSHINT	//  _0 _1=1251
+    1201 PUSHINT	//  _0 _1=1251 _2=1201
+    OVER	//  _0 _1=1251 _2=1201 _3=1251
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_184 PROC:<{
@@ -2047,10 +2046,10 @@ PROGRAM{
   }>
   test_change_186_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1238 PUSHINT	//  _0 _1=1238
-    1204 PUSHINT	//  _0 _1=1238 _2=1204
-    OVER	//  _0 _1=1238 _2=1204 _3=1238
+    public_key1 INLINECALLDICT	//  _0
+    1205 PUSHINT	//  _0 _1=1205
+    1204 PUSHINT	//  _0 _1=1205 _2=1204
+    OVER	//  _0 _1=1205 _2=1204 _3=1205
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_186 PROC:<{
@@ -2062,9 +2061,9 @@ PROGRAM{
   test_change_188_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1215 PUSHINT	//  _0 _1=1215
-    1207 PUSHINT	//  _0 _1=1215 _2=1207
-    OVER	//  _0 _1=1215 _2=1207 _3=1215
+    1257 PUSHINT	//  _0 _1=1257
+    1207 PUSHINT	//  _0 _1=1257 _2=1207
+    OVER	//  _0 _1=1257 _2=1207 _3=1257
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_188 PROC:<{
@@ -2075,38 +2074,38 @@ PROGRAM{
   }>
   test_change_190_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1235 PUSHINT	//  _0 _1=1235
-    1210 PUSHINT	//  _0 _1=1235 _2=1210
-    OVER	//  _0 _1=1235 _2=1210 _3=1235
+    public_key2 INLINECALLDICT	//  _0
+    1226 PUSHINT	//  _0 _1=1226
+    1210 PUSHINT	//  _0 _1=1226 _2=1210
+    OVER	//  _0 _1=1226 _2=1210 _3=1226
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_190 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_192_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1215 PUSHINT	//  _0 _1=1215
-    1213 PUSHINT	//  _0 _1=1215 _2=1213
-    OVER	//  _0 _1=1215 _2=1213 _3=1215
+    1217 PUSHINT	//  _0 _1=1217
+    1213 PUSHINT	//  _0 _1=1217 _2=1213
+    OVER	//  _0 _1=1217 _2=1213 _3=1217
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_192 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_194_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1235 PUSHINT	//  _0 _1=1235
-    1216 PUSHINT	//  _0 _1=1235 _2=1216
-    OVER	//  _0 _1=1235 _2=1216 _3=1235
+    1261 PUSHINT	//  _0 _1=1261
+    1216 PUSHINT	//  _0 _1=1261 _2=1216
+    OVER	//  _0 _1=1261 _2=1216 _3=1261
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_194 PROC:<{
@@ -2118,9 +2117,9 @@ PROGRAM{
   test_change_196_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1259 PUSHINT	//  _0 _1=1259
-    1219 PUSHINT	//  _0 _1=1259 _2=1219
-    OVER	//  _0 _1=1259 _2=1219 _3=1259
+    1263 PUSHINT	//  _0 _1=1263
+    1219 PUSHINT	//  _0 _1=1263 _2=1219
+    OVER	//  _0 _1=1263 _2=1219 _3=1263
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_196 PROC:<{
@@ -2132,9 +2131,9 @@ PROGRAM{
   test_change_198_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1244 PUSHINT	//  _0 _1=1244
-    1222 PUSHINT	//  _0 _1=1244 _2=1222
-    OVER	//  _0 _1=1244 _2=1222 _3=1244
+    1225 PUSHINT	//  _0 _1=1225
+    1222 PUSHINT	//  _0 _1=1225 _2=1222
+    OVER	//  _0 _1=1225 _2=1222 _3=1225
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_198 PROC:<{
@@ -2145,10 +2144,10 @@ PROGRAM{
   }>
   test_change_200_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1239 PUSHINT	//  _0 _1=1239
-    1225 PUSHINT	//  _0 _1=1239 _2=1225
-    OVER	//  _0 _1=1239 _2=1225 _3=1239
+    public_key1 INLINECALLDICT	//  _0
+    1264 PUSHINT	//  _0 _1=1264
+    1225 PUSHINT	//  _0 _1=1264 _2=1225
+    OVER	//  _0 _1=1264 _2=1225 _3=1264
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_200 PROC:<{
@@ -2159,10 +2158,10 @@ PROGRAM{
   }>
   test_change_202_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1278 PUSHINT	//  _0 _1=1278
-    1228 PUSHINT	//  _0 _1=1278 _2=1228
-    OVER	//  _0 _1=1278 _2=1228 _3=1278
+    public_key1 INLINECALLDICT	//  _0
+    1229 PUSHINT	//  _0 _1=1229
+    1228 PUSHINT	//  _0 _1=1229 _2=1228
+    OVER	//  _0 _1=1229 _2=1228 _3=1229
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_202 PROC:<{
@@ -2174,9 +2173,9 @@ PROGRAM{
   test_change_204_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1239 PUSHINT	//  _0 _1=1239
-    1231 PUSHINT	//  _0 _1=1239 _2=1231
-    OVER	//  _0 _1=1239 _2=1231 _3=1239
+    1271 PUSHINT	//  _0 _1=1271
+    1231 PUSHINT	//  _0 _1=1271 _2=1231
+    OVER	//  _0 _1=1271 _2=1231 _3=1271
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_204 PROC:<{
@@ -2187,10 +2186,10 @@ PROGRAM{
   }>
   test_change_206_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1260 PUSHINT	//  _0 _1=1260
-    1234 PUSHINT	//  _0 _1=1260 _2=1234
-    OVER	//  _0 _1=1260 _2=1234 _3=1260
+    public_key2 INLINECALLDICT	//  _0
+    1275 PUSHINT	//  _0 _1=1275
+    1234 PUSHINT	//  _0 _1=1275 _2=1234
+    OVER	//  _0 _1=1275 _2=1234 _3=1275
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_206 PROC:<{
@@ -2201,10 +2200,10 @@ PROGRAM{
   }>
   test_change_208_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1292 PUSHINT	//  _0 _1=1292
-    1237 PUSHINT	//  _0 _1=1292 _2=1237
-    OVER	//  _0 _1=1292 _2=1237 _3=1292
+    public_key2 INLINECALLDICT	//  _0
+    1250 PUSHINT	//  _0 _1=1250
+    1237 PUSHINT	//  _0 _1=1250 _2=1237
+    OVER	//  _0 _1=1250 _2=1237 _3=1250
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_208 PROC:<{
@@ -2215,10 +2214,10 @@ PROGRAM{
   }>
   test_change_210_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1245 PUSHINT	//  _0 _1=1245
-    1240 PUSHINT	//  _0 _1=1245 _2=1240
-    OVER	//  _0 _1=1245 _2=1240 _3=1245
+    public_key2 INLINECALLDICT	//  _0
+    1283 PUSHINT	//  _0 _1=1283
+    1240 PUSHINT	//  _0 _1=1283 _2=1240
+    OVER	//  _0 _1=1283 _2=1240 _3=1283
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_210 PROC:<{
@@ -2229,52 +2228,52 @@ PROGRAM{
   }>
   test_change_212_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1293 PUSHINT	//  _0 _1=1293
-    1243 PUSHINT	//  _0 _1=1293 _2=1243
-    OVER	//  _0 _1=1293 _2=1243 _3=1293
+    public_key2 INLINECALLDICT	//  _0
+    1285 PUSHINT	//  _0 _1=1285
+    1243 PUSHINT	//  _0 _1=1285 _2=1243
+    OVER	//  _0 _1=1285 _2=1243 _3=1285
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_212 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_214_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1281 PUSHINT	//  _0 _1=1281
-    1246 PUSHINT	//  _0 _1=1281 _2=1246
-    OVER	//  _0 _1=1281 _2=1246 _3=1281
+    public_key1 INLINECALLDICT	//  _0
+    1294 PUSHINT	//  _0 _1=1294
+    1246 PUSHINT	//  _0 _1=1294 _2=1246
+    OVER	//  _0 _1=1294 _2=1246 _3=1294
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_214 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_216_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1303 PUSHINT	//  _0 _1=1303
-    1249 PUSHINT	//  _0 _1=1303 _2=1249
-    OVER	//  _0 _1=1303 _2=1249 _3=1303
+    1279 PUSHINT	//  _0 _1=1279
+    1249 PUSHINT	//  _0 _1=1279 _2=1249
+    OVER	//  _0 _1=1279 _2=1249 _3=1279
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_216 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_218_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1285 PUSHINT	//  _0 _1=1285
-    1252 PUSHINT	//  _0 _1=1285 _2=1252
-    OVER	//  _0 _1=1285 _2=1252 _3=1285
+    public_key2 INLINECALLDICT	//  _0
+    1268 PUSHINT	//  _0 _1=1268
+    1252 PUSHINT	//  _0 _1=1268 _2=1252
+    OVER	//  _0 _1=1268 _2=1252 _3=1268
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_218 PROC:<{
@@ -2285,10 +2284,10 @@ PROGRAM{
   }>
   test_change_220_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1285 PUSHINT	//  _0 _1=1285
-    1255 PUSHINT	//  _0 _1=1285 _2=1255
-    OVER	//  _0 _1=1285 _2=1255 _3=1285
+    public_key2 INLINECALLDICT	//  _0
+    1263 PUSHINT	//  _0 _1=1263
+    1255 PUSHINT	//  _0 _1=1263 _2=1255
+    OVER	//  _0 _1=1263 _2=1255 _3=1263
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_220 PROC:<{
@@ -2300,9 +2299,9 @@ PROGRAM{
   test_change_222_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1295 PUSHINT	//  _0 _1=1295
-    1258 PUSHINT	//  _0 _1=1295 _2=1258
-    OVER	//  _0 _1=1295 _2=1258 _3=1295
+    1289 PUSHINT	//  _0 _1=1289
+    1258 PUSHINT	//  _0 _1=1289 _2=1258
+    OVER	//  _0 _1=1289 _2=1258 _3=1289
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_222 PROC:<{
@@ -2314,9 +2313,9 @@ PROGRAM{
   test_change_224_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1272 PUSHINT	//  _0 _1=1272
-    1261 PUSHINT	//  _0 _1=1272 _2=1261
-    OVER	//  _0 _1=1272 _2=1261 _3=1272
+    1273 PUSHINT	//  _0 _1=1273
+    1261 PUSHINT	//  _0 _1=1273 _2=1261
+    OVER	//  _0 _1=1273 _2=1261 _3=1273
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_224 PROC:<{
@@ -2328,9 +2327,9 @@ PROGRAM{
   test_change_226_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1274 PUSHINT	//  _0 _1=1274
-    1264 PUSHINT	//  _0 _1=1274 _2=1264
-    OVER	//  _0 _1=1274 _2=1264 _3=1274
+    1301 PUSHINT	//  _0 _1=1301
+    1264 PUSHINT	//  _0 _1=1301 _2=1264
+    OVER	//  _0 _1=1301 _2=1264 _3=1301
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_226 PROC:<{
@@ -2341,10 +2340,10 @@ PROGRAM{
   }>
   test_change_228_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1318 PUSHINT	//  _0 _1=1318
-    1267 PUSHINT	//  _0 _1=1318 _2=1267
-    OVER	//  _0 _1=1318 _2=1267 _3=1318
+    public_key2 INLINECALLDICT	//  _0
+    1274 PUSHINT	//  _0 _1=1274
+    1267 PUSHINT	//  _0 _1=1274 _2=1267
+    OVER	//  _0 _1=1274 _2=1267 _3=1274
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_228 PROC:<{
@@ -2355,24 +2354,24 @@ PROGRAM{
   }>
   test_change_230_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1304 PUSHINT	//  _0 _1=1304
-    1270 PUSHINT	//  _0 _1=1304 _2=1270
-    OVER	//  _0 _1=1304 _2=1270 _3=1304
+    public_key1 INLINECALLDICT	//  _0
+    1275 PUSHINT	//  _0 _1=1275
+    1270 PUSHINT	//  _0 _1=1275 _2=1270
+    OVER	//  _0 _1=1275 _2=1270 _3=1275
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_230 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_232_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1319 PUSHINT	//  _0 _1=1319
-    1273 PUSHINT	//  _0 _1=1319 _2=1273
-    OVER	//  _0 _1=1319 _2=1273 _3=1319
+    public_key1 INLINECALLDICT	//  _0
+    1309 PUSHINT	//  _0 _1=1309
+    1273 PUSHINT	//  _0 _1=1309 _2=1273
+    OVER	//  _0 _1=1309 _2=1273 _3=1309
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_232 PROC:<{
@@ -2384,9 +2383,9 @@ PROGRAM{
   test_change_234_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1304 PUSHINT	//  _0 _1=1304
-    1276 PUSHINT	//  _0 _1=1304 _2=1276
-    OVER	//  _0 _1=1304 _2=1276 _3=1304
+    1287 PUSHINT	//  _0 _1=1287
+    1276 PUSHINT	//  _0 _1=1287 _2=1276
+    OVER	//  _0 _1=1287 _2=1276 _3=1287
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_234 PROC:<{
@@ -2398,9 +2397,9 @@ PROGRAM{
   test_change_236_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1321 PUSHINT	//  _0 _1=1321
-    1279 PUSHINT	//  _0 _1=1321 _2=1279
-    OVER	//  _0 _1=1321 _2=1279 _3=1321
+    1308 PUSHINT	//  _0 _1=1308
+    1279 PUSHINT	//  _0 _1=1308 _2=1279
+    OVER	//  _0 _1=1308 _2=1279 _3=1308
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_236 PROC:<{
@@ -2411,10 +2410,10 @@ PROGRAM{
   }>
   test_change_238_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1297 PUSHINT	//  _0 _1=1297
-    1282 PUSHINT	//  _0 _1=1297 _2=1282
-    OVER	//  _0 _1=1297 _2=1282 _3=1297
+    public_key1 INLINECALLDICT	//  _0
+    1293 PUSHINT	//  _0 _1=1293
+    1282 PUSHINT	//  _0 _1=1293 _2=1282
+    OVER	//  _0 _1=1293 _2=1282 _3=1293
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_238 PROC:<{
@@ -2425,38 +2424,38 @@ PROGRAM{
   }>
   test_change_240_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1333 PUSHINT	//  _0 _1=1333
-    1285 PUSHINT	//  _0 _1=1333 _2=1285
-    OVER	//  _0 _1=1333 _2=1285 _3=1333
+    public_key1 INLINECALLDICT	//  _0
+    1331 PUSHINT	//  _0 _1=1331
+    1285 PUSHINT	//  _0 _1=1331 _2=1285
+    OVER	//  _0 _1=1331 _2=1285 _3=1331
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_240 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_242_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1319 PUSHINT	//  _0 _1=1319
-    1288 PUSHINT	//  _0 _1=1319 _2=1288
-    OVER	//  _0 _1=1319 _2=1288 _3=1319
+    1337 PUSHINT	//  _0 _1=1337
+    1288 PUSHINT	//  _0 _1=1337 _2=1288
+    OVER	//  _0 _1=1337 _2=1288 _3=1337
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_242 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_244_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1322 PUSHINT	//  _0 _1=1322
-    1291 PUSHINT	//  _0 _1=1322 _2=1291
-    OVER	//  _0 _1=1322 _2=1291 _3=1322
+    1294 PUSHINT	//  _0 _1=1294
+    1291 PUSHINT	//  _0 _1=1294 _2=1291
+    OVER	//  _0 _1=1294 _2=1291 _3=1294
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_244 PROC:<{
@@ -2467,10 +2466,10 @@ PROGRAM{
   }>
   test_change_246_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1328 PUSHINT	//  _0 _1=1328
-    1294 PUSHINT	//  _0 _1=1328 _2=1294
-    OVER	//  _0 _1=1328 _2=1294 _3=1328
+    public_key1 INLINECALLDICT	//  _0
+    1300 PUSHINT	//  _0 _1=1300
+    1294 PUSHINT	//  _0 _1=1300 _2=1294
+    OVER	//  _0 _1=1300 _2=1294 _3=1300
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_246 PROC:<{
@@ -2481,10 +2480,10 @@ PROGRAM{
   }>
   test_change_248_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1346 PUSHINT	//  _0 _1=1346
-    1297 PUSHINT	//  _0 _1=1346 _2=1297
-    OVER	//  _0 _1=1346 _2=1297 _3=1346
+    public_key2 INLINECALLDICT	//  _0
+    1328 PUSHINT	//  _0 _1=1328
+    1297 PUSHINT	//  _0 _1=1328 _2=1297
+    OVER	//  _0 _1=1328 _2=1297 _3=1328
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_248 PROC:<{
@@ -2496,8 +2495,9 @@ PROGRAM{
   test_change_250_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1300 PUSHINT	//  _0 _1=1300
-    s0 s0 PUSH2	//  _0 _1=1300 _2=1300 _3=1300
+    1326 PUSHINT	//  _0 _1=1326
+    1300 PUSHINT	//  _0 _1=1326 _2=1300
+    OVER	//  _0 _1=1326 _2=1300 _3=1326
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_250 PROC:<{
@@ -2509,9 +2509,9 @@ PROGRAM{
   test_change_252_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1349 PUSHINT	//  _0 _1=1349
-    1303 PUSHINT	//  _0 _1=1349 _2=1303
-    OVER	//  _0 _1=1349 _2=1303 _3=1349
+    1338 PUSHINT	//  _0 _1=1338
+    1303 PUSHINT	//  _0 _1=1338 _2=1303
+    OVER	//  _0 _1=1338 _2=1303 _3=1338
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_252 PROC:<{
@@ -2523,9 +2523,9 @@ PROGRAM{
   test_change_254_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1339 PUSHINT	//  _0 _1=1339
-    1306 PUSHINT	//  _0 _1=1339 _2=1306
-    OVER	//  _0 _1=1339 _2=1306 _3=1339
+    1310 PUSHINT	//  _0 _1=1310
+    1306 PUSHINT	//  _0 _1=1310 _2=1306
+    OVER	//  _0 _1=1310 _2=1306 _3=1310
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_254 PROC:<{
@@ -2536,24 +2536,24 @@ PROGRAM{
   }>
   test_change_256_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1333 PUSHINT	//  _0 _1=1333
-    1309 PUSHINT	//  _0 _1=1333 _2=1309
-    OVER	//  _0 _1=1333 _2=1309 _3=1333
+    public_key2 INLINECALLDICT	//  _0
+    1326 PUSHINT	//  _0 _1=1326
+    1309 PUSHINT	//  _0 _1=1326 _2=1309
+    OVER	//  _0 _1=1326 _2=1309 _3=1326
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_256 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_258_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1348 PUSHINT	//  _0 _1=1348
-    1312 PUSHINT	//  _0 _1=1348 _2=1312
-    OVER	//  _0 _1=1348 _2=1312 _3=1348
+    public_key2 INLINECALLDICT	//  _0
+    1349 PUSHINT	//  _0 _1=1349
+    1312 PUSHINT	//  _0 _1=1349 _2=1312
+    OVER	//  _0 _1=1349 _2=1312 _3=1349
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_258 PROC:<{
@@ -2565,37 +2565,37 @@ PROGRAM{
   test_change_260_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1317 PUSHINT	//  _0 _1=1317
-    1315 PUSHINT	//  _0 _1=1317 _2=1315
-    OVER	//  _0 _1=1317 _2=1315 _3=1317
+    1358 PUSHINT	//  _0 _1=1358
+    1315 PUSHINT	//  _0 _1=1358 _2=1315
+    OVER	//  _0 _1=1358 _2=1315 _3=1358
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_260 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_262_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1350 PUSHINT	//  _0 _1=1350
-    1318 PUSHINT	//  _0 _1=1350 _2=1318
-    OVER	//  _0 _1=1350 _2=1318 _3=1350
+    public_key2 INLINECALLDICT	//  _0
+    1355 PUSHINT	//  _0 _1=1355
+    1318 PUSHINT	//  _0 _1=1355 _2=1318
+    OVER	//  _0 _1=1355 _2=1318 _3=1355
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_262 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_264_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1344 PUSHINT	//  _0 _1=1344
-    1321 PUSHINT	//  _0 _1=1344 _2=1321
-    OVER	//  _0 _1=1344 _2=1321 _3=1344
+    public_key1 INLINECALLDICT	//  _0
+    1348 PUSHINT	//  _0 _1=1348
+    1321 PUSHINT	//  _0 _1=1348 _2=1321
+    OVER	//  _0 _1=1348 _2=1321 _3=1348
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_264 PROC:<{
@@ -2607,23 +2607,23 @@ PROGRAM{
   test_change_266_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1348 PUSHINT	//  _0 _1=1348
-    1324 PUSHINT	//  _0 _1=1348 _2=1324
-    OVER	//  _0 _1=1348 _2=1324 _3=1348
+    1337 PUSHINT	//  _0 _1=1337
+    1324 PUSHINT	//  _0 _1=1337 _2=1324
+    OVER	//  _0 _1=1337 _2=1324 _3=1337
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_266 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_268_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1350 PUSHINT	//  _0 _1=1350
-    1327 PUSHINT	//  _0 _1=1350 _2=1327
-    OVER	//  _0 _1=1350 _2=1327 _3=1350
+    1376 PUSHINT	//  _0 _1=1376
+    1327 PUSHINT	//  _0 _1=1376 _2=1327
+    OVER	//  _0 _1=1376 _2=1327 _3=1376
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_268 PROC:<{
@@ -2634,7 +2634,7 @@ PROGRAM{
   }>
   test_change_270_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
+    public_key1 INLINECALLDICT	//  _0
     1350 PUSHINT	//  _0 _1=1350
     1330 PUSHINT	//  _0 _1=1350 _2=1330
     OVER	//  _0 _1=1350 _2=1330 _3=1350
@@ -2649,9 +2649,9 @@ PROGRAM{
   test_change_272_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1370 PUSHINT	//  _0 _1=1370
-    1333 PUSHINT	//  _0 _1=1370 _2=1333
-    OVER	//  _0 _1=1370 _2=1333 _3=1370
+    1363 PUSHINT	//  _0 _1=1363
+    1333 PUSHINT	//  _0 _1=1363 _2=1333
+    OVER	//  _0 _1=1363 _2=1333 _3=1363
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_272 PROC:<{
@@ -2663,9 +2663,8 @@ PROGRAM{
   test_change_274_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1354 PUSHINT	//  _0 _1=1354
-    1336 PUSHINT	//  _0 _1=1354 _2=1336
-    OVER	//  _0 _1=1354 _2=1336 _3=1354
+    1336 PUSHINT	//  _0 _1=1336
+    s0 s0 PUSH2	//  _0 _1=1336 _2=1336 _3=1336
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_274 PROC:<{
@@ -2677,9 +2676,9 @@ PROGRAM{
   test_change_276_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1353 PUSHINT	//  _0 _1=1353
-    1339 PUSHINT	//  _0 _1=1353 _2=1339
-    OVER	//  _0 _1=1353 _2=1339 _3=1353
+    1355 PUSHINT	//  _0 _1=1355
+    1339 PUSHINT	//  _0 _1=1355 _2=1339
+    OVER	//  _0 _1=1355 _2=1339 _3=1355
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_276 PROC:<{
@@ -2691,9 +2690,9 @@ PROGRAM{
   test_change_278_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1372 PUSHINT	//  _0 _1=1372
-    1342 PUSHINT	//  _0 _1=1372 _2=1342
-    OVER	//  _0 _1=1372 _2=1342 _3=1372
+    1351 PUSHINT	//  _0 _1=1351
+    1342 PUSHINT	//  _0 _1=1351 _2=1342
+    OVER	//  _0 _1=1351 _2=1342 _3=1351
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_278 PROC:<{
@@ -2705,9 +2704,9 @@ PROGRAM{
   test_change_280_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1404 PUSHINT	//  _0 _1=1404
-    1345 PUSHINT	//  _0 _1=1404 _2=1345
-    OVER	//  _0 _1=1404 _2=1345 _3=1404
+    1400 PUSHINT	//  _0 _1=1400
+    1345 PUSHINT	//  _0 _1=1400 _2=1345
+    OVER	//  _0 _1=1400 _2=1345 _3=1400
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_280 PROC:<{
@@ -2719,9 +2718,9 @@ PROGRAM{
   test_change_282_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1377 PUSHINT	//  _0 _1=1377
-    1348 PUSHINT	//  _0 _1=1377 _2=1348
-    OVER	//  _0 _1=1377 _2=1348 _3=1377
+    1404 PUSHINT	//  _0 _1=1404
+    1348 PUSHINT	//  _0 _1=1404 _2=1348
+    OVER	//  _0 _1=1404 _2=1348 _3=1404
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_282 PROC:<{
@@ -2732,10 +2731,10 @@ PROGRAM{
   }>
   test_change_284_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1408 PUSHINT	//  _0 _1=1408
-    1351 PUSHINT	//  _0 _1=1408 _2=1351
-    OVER	//  _0 _1=1408 _2=1351 _3=1408
+    public_key1 INLINECALLDICT	//  _0
+    1359 PUSHINT	//  _0 _1=1359
+    1351 PUSHINT	//  _0 _1=1359 _2=1351
+    OVER	//  _0 _1=1359 _2=1351 _3=1359
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_284 PROC:<{
@@ -2747,9 +2746,9 @@ PROGRAM{
   test_change_286_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1355 PUSHINT	//  _0 _1=1355
-    1354 PUSHINT	//  _0 _1=1355 _2=1354
-    OVER	//  _0 _1=1355 _2=1354 _3=1355
+    1357 PUSHINT	//  _0 _1=1357
+    1354 PUSHINT	//  _0 _1=1357 _2=1354
+    OVER	//  _0 _1=1357 _2=1354 _3=1357
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_286 PROC:<{
@@ -2760,10 +2759,10 @@ PROGRAM{
   }>
   test_change_288_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1412 PUSHINT	//  _0 _1=1412
-    1357 PUSHINT	//  _0 _1=1412 _2=1357
-    OVER	//  _0 _1=1412 _2=1357 _3=1412
+    public_key1 INLINECALLDICT	//  _0
+    1374 PUSHINT	//  _0 _1=1374
+    1357 PUSHINT	//  _0 _1=1374 _2=1357
+    OVER	//  _0 _1=1374 _2=1357 _3=1374
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_288 PROC:<{
@@ -2774,10 +2773,10 @@ PROGRAM{
   }>
   test_change_290_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1370 PUSHINT	//  _0 _1=1370
-    1360 PUSHINT	//  _0 _1=1370 _2=1360
-    OVER	//  _0 _1=1370 _2=1360 _3=1370
+    public_key2 INLINECALLDICT	//  _0
+    1361 PUSHINT	//  _0 _1=1361
+    1360 PUSHINT	//  _0 _1=1361 _2=1360
+    OVER	//  _0 _1=1361 _2=1360 _3=1361
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_290 PROC:<{
@@ -2788,10 +2787,10 @@ PROGRAM{
   }>
   test_change_292_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1401 PUSHINT	//  _0 _1=1401
-    1363 PUSHINT	//  _0 _1=1401 _2=1363
-    OVER	//  _0 _1=1401 _2=1363 _3=1401
+    public_key2 INLINECALLDICT	//  _0
+    1416 PUSHINT	//  _0 _1=1416
+    1363 PUSHINT	//  _0 _1=1416 _2=1363
+    OVER	//  _0 _1=1416 _2=1363 _3=1416
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_292 PROC:<{
@@ -2802,10 +2801,10 @@ PROGRAM{
   }>
   test_change_294_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1378 PUSHINT	//  _0 _1=1378
-    1366 PUSHINT	//  _0 _1=1378 _2=1366
-    OVER	//  _0 _1=1378 _2=1366 _3=1378
+    public_key2 INLINECALLDICT	//  _0
+    1392 PUSHINT	//  _0 _1=1392
+    1366 PUSHINT	//  _0 _1=1392 _2=1366
+    OVER	//  _0 _1=1392 _2=1366 _3=1392
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_294 PROC:<{
@@ -2816,10 +2815,10 @@ PROGRAM{
   }>
   test_change_296_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1409 PUSHINT	//  _0 _1=1409
-    1369 PUSHINT	//  _0 _1=1409 _2=1369
-    OVER	//  _0 _1=1409 _2=1369 _3=1409
+    public_key1 INLINECALLDICT	//  _0
+    1371 PUSHINT	//  _0 _1=1371
+    1369 PUSHINT	//  _0 _1=1371 _2=1369
+    OVER	//  _0 _1=1371 _2=1369 _3=1371
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_296 PROC:<{
@@ -2830,10 +2829,10 @@ PROGRAM{
   }>
   test_change_298_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1413 PUSHINT	//  _0 _1=1413
-    1372 PUSHINT	//  _0 _1=1413 _2=1372
-    OVER	//  _0 _1=1413 _2=1372 _3=1413
+    public_key1 INLINECALLDICT	//  _0
+    1391 PUSHINT	//  _0 _1=1391
+    1372 PUSHINT	//  _0 _1=1391 _2=1372
+    OVER	//  _0 _1=1391 _2=1372 _3=1391
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_298 PROC:<{
@@ -2845,9 +2844,9 @@ PROGRAM{
   test_change_300_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1416 PUSHINT	//  _0 _1=1416
-    1375 PUSHINT	//  _0 _1=1416 _2=1375
-    OVER	//  _0 _1=1416 _2=1375 _3=1416
+    1402 PUSHINT	//  _0 _1=1402
+    1375 PUSHINT	//  _0 _1=1402 _2=1375
+    OVER	//  _0 _1=1402 _2=1375 _3=1402
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_300 PROC:<{
@@ -2859,9 +2858,9 @@ PROGRAM{
   test_change_302_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1433 PUSHINT	//  _0 _1=1433
-    1378 PUSHINT	//  _0 _1=1433 _2=1378
-    OVER	//  _0 _1=1433 _2=1378 _3=1433
+    1381 PUSHINT	//  _0 _1=1381
+    1378 PUSHINT	//  _0 _1=1381 _2=1378
+    OVER	//  _0 _1=1381 _2=1378 _3=1381
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_302 PROC:<{
@@ -2873,9 +2872,9 @@ PROGRAM{
   test_change_304_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1420 PUSHINT	//  _0 _1=1420
-    1381 PUSHINT	//  _0 _1=1420 _2=1381
-    OVER	//  _0 _1=1420 _2=1381 _3=1420
+    1426 PUSHINT	//  _0 _1=1426
+    1381 PUSHINT	//  _0 _1=1426 _2=1381
+    OVER	//  _0 _1=1426 _2=1381 _3=1426
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_304 PROC:<{
@@ -2887,9 +2886,9 @@ PROGRAM{
   test_change_306_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1442 PUSHINT	//  _0 _1=1442
-    1384 PUSHINT	//  _0 _1=1442 _2=1384
-    OVER	//  _0 _1=1442 _2=1384 _3=1442
+    1438 PUSHINT	//  _0 _1=1438
+    1384 PUSHINT	//  _0 _1=1438 _2=1384
+    OVER	//  _0 _1=1438 _2=1384 _3=1438
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_306 PROC:<{
@@ -2901,65 +2900,65 @@ PROGRAM{
   test_change_308_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1405 PUSHINT	//  _0 _1=1405
-    1387 PUSHINT	//  _0 _1=1405 _2=1387
-    OVER	//  _0 _1=1405 _2=1387 _3=1405
+    1411 PUSHINT	//  _0 _1=1411
+    1387 PUSHINT	//  _0 _1=1411 _2=1387
+    OVER	//  _0 _1=1411 _2=1387 _3=1411
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_308 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_310_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1395 PUSHINT	//  _0 _1=1395
-    1390 PUSHINT	//  _0 _1=1395 _2=1390
-    OVER	//  _0 _1=1395 _2=1390 _3=1395
+    public_key2 INLINECALLDICT	//  _0
+    1427 PUSHINT	//  _0 _1=1427
+    1390 PUSHINT	//  _0 _1=1427 _2=1390
+    OVER	//  _0 _1=1427 _2=1390 _3=1427
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_310 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_312_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1396 PUSHINT	//  _0 _1=1396
-    1393 PUSHINT	//  _0 _1=1396 _2=1393
-    OVER	//  _0 _1=1396 _2=1393 _3=1396
+    1446 PUSHINT	//  _0 _1=1446
+    1393 PUSHINT	//  _0 _1=1446 _2=1393
+    OVER	//  _0 _1=1446 _2=1393 _3=1446
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_312 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_314_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1438 PUSHINT	//  _0 _1=1438
-    1396 PUSHINT	//  _0 _1=1438 _2=1396
-    OVER	//  _0 _1=1438 _2=1396 _3=1438
+    1417 PUSHINT	//  _0 _1=1417
+    1396 PUSHINT	//  _0 _1=1417 _2=1396
+    OVER	//  _0 _1=1417 _2=1396 _3=1417
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_314 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_316_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1427 PUSHINT	//  _0 _1=1427
-    1399 PUSHINT	//  _0 _1=1427 _2=1399
-    OVER	//  _0 _1=1427 _2=1399 _3=1427
+    public_key2 INLINECALLDICT	//  _0
+    1411 PUSHINT	//  _0 _1=1411
+    1399 PUSHINT	//  _0 _1=1411 _2=1399
+    OVER	//  _0 _1=1411 _2=1399 _3=1411
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_316 PROC:<{
@@ -2971,9 +2970,9 @@ PROGRAM{
   test_change_318_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1432 PUSHINT	//  _0 _1=1432
-    1402 PUSHINT	//  _0 _1=1432 _2=1402
-    OVER	//  _0 _1=1432 _2=1402 _3=1432
+    1448 PUSHINT	//  _0 _1=1448
+    1402 PUSHINT	//  _0 _1=1448 _2=1402
+    OVER	//  _0 _1=1448 _2=1402 _3=1448
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_318 PROC:<{
@@ -2984,10 +2983,10 @@ PROGRAM{
   }>
   test_change_320_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1449 PUSHINT	//  _0 _1=1449
-    1405 PUSHINT	//  _0 _1=1449 _2=1405
-    OVER	//  _0 _1=1449 _2=1405 _3=1449
+    public_key2 INLINECALLDICT	//  _0
+    1423 PUSHINT	//  _0 _1=1423
+    1405 PUSHINT	//  _0 _1=1423 _2=1405
+    OVER	//  _0 _1=1423 _2=1405 _3=1423
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_320 PROC:<{
@@ -2999,37 +2998,37 @@ PROGRAM{
   test_change_322_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1429 PUSHINT	//  _0 _1=1429
-    1408 PUSHINT	//  _0 _1=1429 _2=1408
-    OVER	//  _0 _1=1429 _2=1408 _3=1429
+    1464 PUSHINT	//  _0 _1=1464
+    1408 PUSHINT	//  _0 _1=1464 _2=1408
+    OVER	//  _0 _1=1464 _2=1408 _3=1464
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_322 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_324_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1427 PUSHINT	//  _0 _1=1427
-    1411 PUSHINT	//  _0 _1=1427 _2=1411
-    OVER	//  _0 _1=1427 _2=1411 _3=1427
+    1471 PUSHINT	//  _0 _1=1471
+    1411 PUSHINT	//  _0 _1=1471 _2=1411
+    OVER	//  _0 _1=1471 _2=1411 _3=1471
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_324 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_326_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1463 PUSHINT	//  _0 _1=1463
-    1414 PUSHINT	//  _0 _1=1463 _2=1414
-    OVER	//  _0 _1=1463 _2=1414 _3=1463
+    public_key1 INLINECALLDICT	//  _0
+    1424 PUSHINT	//  _0 _1=1424
+    1414 PUSHINT	//  _0 _1=1424 _2=1414
+    OVER	//  _0 _1=1424 _2=1414 _3=1424
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_326 PROC:<{
@@ -3040,10 +3039,10 @@ PROGRAM{
   }>
   test_change_328_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1446 PUSHINT	//  _0 _1=1446
-    1417 PUSHINT	//  _0 _1=1446 _2=1417
-    OVER	//  _0 _1=1446 _2=1417 _3=1446
+    public_key2 INLINECALLDICT	//  _0
+    1426 PUSHINT	//  _0 _1=1426
+    1417 PUSHINT	//  _0 _1=1426 _2=1417
+    OVER	//  _0 _1=1426 _2=1417 _3=1426
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_328 PROC:<{
@@ -3055,9 +3054,9 @@ PROGRAM{
   test_change_330_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1429 PUSHINT	//  _0 _1=1429
-    1420 PUSHINT	//  _0 _1=1429 _2=1420
-    OVER	//  _0 _1=1429 _2=1420 _3=1429
+    1480 PUSHINT	//  _0 _1=1480
+    1420 PUSHINT	//  _0 _1=1480 _2=1420
+    OVER	//  _0 _1=1480 _2=1420 _3=1480
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_330 PROC:<{
@@ -3068,10 +3067,10 @@ PROGRAM{
   }>
   test_change_332_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1430 PUSHINT	//  _0 _1=1430
-    1423 PUSHINT	//  _0 _1=1430 _2=1423
-    OVER	//  _0 _1=1430 _2=1423 _3=1430
+    public_key1 INLINECALLDICT	//  _0
+    1463 PUSHINT	//  _0 _1=1463
+    1423 PUSHINT	//  _0 _1=1463 _2=1423
+    OVER	//  _0 _1=1463 _2=1423 _3=1463
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_332 PROC:<{
@@ -3082,10 +3081,10 @@ PROGRAM{
   }>
   test_change_334_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1437 PUSHINT	//  _0 _1=1437
-    1426 PUSHINT	//  _0 _1=1437 _2=1426
-    OVER	//  _0 _1=1437 _2=1426 _3=1437
+    public_key1 INLINECALLDICT	//  _0
+    1475 PUSHINT	//  _0 _1=1475
+    1426 PUSHINT	//  _0 _1=1475 _2=1426
+    OVER	//  _0 _1=1475 _2=1426 _3=1475
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_334 PROC:<{
@@ -3097,9 +3096,9 @@ PROGRAM{
   test_change_336_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1438 PUSHINT	//  _0 _1=1438
-    1429 PUSHINT	//  _0 _1=1438 _2=1429
-    OVER	//  _0 _1=1438 _2=1429 _3=1438
+    1473 PUSHINT	//  _0 _1=1473
+    1429 PUSHINT	//  _0 _1=1473 _2=1429
+    OVER	//  _0 _1=1473 _2=1429 _3=1473
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_336 PROC:<{
@@ -3111,9 +3110,9 @@ PROGRAM{
   test_change_338_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1456 PUSHINT	//  _0 _1=1456
-    1432 PUSHINT	//  _0 _1=1456 _2=1432
-    OVER	//  _0 _1=1456 _2=1432 _3=1456
+    1475 PUSHINT	//  _0 _1=1475
+    1432 PUSHINT	//  _0 _1=1475 _2=1432
+    OVER	//  _0 _1=1475 _2=1432 _3=1475
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_338 PROC:<{
@@ -3124,10 +3123,10 @@ PROGRAM{
   }>
   test_change_340_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1476 PUSHINT	//  _0 _1=1476
-    1435 PUSHINT	//  _0 _1=1476 _2=1435
-    OVER	//  _0 _1=1476 _2=1435 _3=1476
+    public_key1 INLINECALLDICT	//  _0
+    1460 PUSHINT	//  _0 _1=1460
+    1435 PUSHINT	//  _0 _1=1460 _2=1435
+    OVER	//  _0 _1=1460 _2=1435 _3=1460
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_340 PROC:<{
@@ -3138,10 +3137,10 @@ PROGRAM{
   }>
   test_change_342_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1470 PUSHINT	//  _0 _1=1470
-    1438 PUSHINT	//  _0 _1=1470 _2=1438
-    OVER	//  _0 _1=1470 _2=1438 _3=1470
+    public_key1 INLINECALLDICT	//  _0
+    1477 PUSHINT	//  _0 _1=1477
+    1438 PUSHINT	//  _0 _1=1477 _2=1438
+    OVER	//  _0 _1=1477 _2=1438 _3=1477
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_342 PROC:<{
@@ -3152,10 +3151,9 @@ PROGRAM{
   }>
   test_change_344_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1466 PUSHINT	//  _0 _1=1466
-    1441 PUSHINT	//  _0 _1=1466 _2=1441
-    OVER	//  _0 _1=1466 _2=1441 _3=1466
+    public_key1 INLINECALLDICT	//  _0
+    1441 PUSHINT	//  _0 _1=1441
+    s0 s0 PUSH2	//  _0 _1=1441 _2=1441 _3=1441
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_344 PROC:<{
@@ -3167,9 +3165,9 @@ PROGRAM{
   test_change_346_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1499 PUSHINT	//  _0 _1=1499
-    1444 PUSHINT	//  _0 _1=1499 _2=1444
-    OVER	//  _0 _1=1499 _2=1444 _3=1499
+    1461 PUSHINT	//  _0 _1=1461
+    1444 PUSHINT	//  _0 _1=1461 _2=1444
+    OVER	//  _0 _1=1461 _2=1444 _3=1461
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_346 PROC:<{
@@ -3189,15 +3187,15 @@ PROGRAM{
   test_change_348 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_350_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1456 PUSHINT	//  _0 _1=1456
-    1450 PUSHINT	//  _0 _1=1456 _2=1450
-    OVER	//  _0 _1=1456 _2=1450 _3=1456
+    public_key2 INLINECALLDICT	//  _0
+    1510 PUSHINT	//  _0 _1=1510
+    1450 PUSHINT	//  _0 _1=1510 _2=1450
+    OVER	//  _0 _1=1510 _2=1450 _3=1510
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_350 PROC:<{
@@ -3208,10 +3206,10 @@ PROGRAM{
   }>
   test_change_352_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1504 PUSHINT	//  _0 _1=1504
-    1453 PUSHINT	//  _0 _1=1504 _2=1453
-    OVER	//  _0 _1=1504 _2=1453 _3=1504
+    public_key2 INLINECALLDICT	//  _0
+    1489 PUSHINT	//  _0 _1=1489
+    1453 PUSHINT	//  _0 _1=1489 _2=1453
+    OVER	//  _0 _1=1489 _2=1453 _3=1489
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_352 PROC:<{
@@ -3222,38 +3220,38 @@ PROGRAM{
   }>
   test_change_354_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1504 PUSHINT	//  _0 _1=1504
-    1456 PUSHINT	//  _0 _1=1504 _2=1456
-    OVER	//  _0 _1=1504 _2=1456 _3=1504
+    public_key1 INLINECALLDICT	//  _0
+    1483 PUSHINT	//  _0 _1=1483
+    1456 PUSHINT	//  _0 _1=1483 _2=1456
+    OVER	//  _0 _1=1483 _2=1456 _3=1483
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_354 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_356_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1506 PUSHINT	//  _0 _1=1506
-    1459 PUSHINT	//  _0 _1=1506 _2=1459
-    OVER	//  _0 _1=1506 _2=1459 _3=1506
+    public_key2 INLINECALLDICT	//  _0
+    1488 PUSHINT	//  _0 _1=1488
+    1459 PUSHINT	//  _0 _1=1488 _2=1459
+    OVER	//  _0 _1=1488 _2=1459 _3=1488
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_356 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_358_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1489 PUSHINT	//  _0 _1=1489
-    1462 PUSHINT	//  _0 _1=1489 _2=1462
-    OVER	//  _0 _1=1489 _2=1462 _3=1489
+    1470 PUSHINT	//  _0 _1=1470
+    1462 PUSHINT	//  _0 _1=1470 _2=1462
+    OVER	//  _0 _1=1470 _2=1462 _3=1470
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_358 PROC:<{
@@ -3264,10 +3262,10 @@ PROGRAM{
   }>
   test_change_360_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1494 PUSHINT	//  _0 _1=1494
-    1465 PUSHINT	//  _0 _1=1494 _2=1465
-    OVER	//  _0 _1=1494 _2=1465 _3=1494
+    public_key2 INLINECALLDICT	//  _0
+    1485 PUSHINT	//  _0 _1=1485
+    1465 PUSHINT	//  _0 _1=1485 _2=1465
+    OVER	//  _0 _1=1485 _2=1465 _3=1485
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_360 PROC:<{
@@ -3278,10 +3276,10 @@ PROGRAM{
   }>
   test_change_362_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1478 PUSHINT	//  _0 _1=1478
-    1468 PUSHINT	//  _0 _1=1478 _2=1468
-    OVER	//  _0 _1=1478 _2=1468 _3=1478
+    public_key2 INLINECALLDICT	//  _0
+    1525 PUSHINT	//  _0 _1=1525
+    1468 PUSHINT	//  _0 _1=1525 _2=1468
+    OVER	//  _0 _1=1525 _2=1468 _3=1525
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_362 PROC:<{
@@ -3292,10 +3290,10 @@ PROGRAM{
   }>
   test_change_364_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1473 PUSHINT	//  _0 _1=1473
-    1471 PUSHINT	//  _0 _1=1473 _2=1471
-    OVER	//  _0 _1=1473 _2=1471 _3=1473
+    public_key1 INLINECALLDICT	//  _0
+    1500 PUSHINT	//  _0 _1=1500
+    1471 PUSHINT	//  _0 _1=1500 _2=1471
+    OVER	//  _0 _1=1500 _2=1471 _3=1500
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_364 PROC:<{
@@ -3307,23 +3305,23 @@ PROGRAM{
   test_change_366_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1506 PUSHINT	//  _0 _1=1506
-    1474 PUSHINT	//  _0 _1=1506 _2=1474
-    OVER	//  _0 _1=1506 _2=1474 _3=1506
+    1511 PUSHINT	//  _0 _1=1511
+    1474 PUSHINT	//  _0 _1=1511 _2=1474
+    OVER	//  _0 _1=1511 _2=1474 _3=1511
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_366 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_368_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1508 PUSHINT	//  _0 _1=1508
-    1477 PUSHINT	//  _0 _1=1508 _2=1477
-    OVER	//  _0 _1=1508 _2=1477 _3=1508
+    1490 PUSHINT	//  _0 _1=1490
+    1477 PUSHINT	//  _0 _1=1490 _2=1477
+    OVER	//  _0 _1=1490 _2=1477 _3=1490
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_368 PROC:<{
@@ -3334,10 +3332,10 @@ PROGRAM{
   }>
   test_change_370_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1528 PUSHINT	//  _0 _1=1528
-    1480 PUSHINT	//  _0 _1=1528 _2=1480
-    OVER	//  _0 _1=1528 _2=1480 _3=1528
+    public_key1 INLINECALLDICT	//  _0
+    1519 PUSHINT	//  _0 _1=1519
+    1480 PUSHINT	//  _0 _1=1519 _2=1480
+    OVER	//  _0 _1=1519 _2=1480 _3=1519
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_370 PROC:<{
@@ -3349,9 +3347,9 @@ PROGRAM{
   test_change_372_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1524 PUSHINT	//  _0 _1=1524
-    1483 PUSHINT	//  _0 _1=1524 _2=1483
-    OVER	//  _0 _1=1524 _2=1483 _3=1524
+    1492 PUSHINT	//  _0 _1=1492
+    1483 PUSHINT	//  _0 _1=1492 _2=1483
+    OVER	//  _0 _1=1492 _2=1483 _3=1492
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_372 PROC:<{
@@ -3362,10 +3360,10 @@ PROGRAM{
   }>
   test_change_374_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1503 PUSHINT	//  _0 _1=1503
-    1486 PUSHINT	//  _0 _1=1503 _2=1486
-    OVER	//  _0 _1=1503 _2=1486 _3=1503
+    public_key1 INLINECALLDICT	//  _0
+    1516 PUSHINT	//  _0 _1=1516
+    1486 PUSHINT	//  _0 _1=1516 _2=1486
+    OVER	//  _0 _1=1516 _2=1486 _3=1516
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_374 PROC:<{
@@ -3377,22 +3375,23 @@ PROGRAM{
   test_change_376_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1489 PUSHINT	//  _0 _1=1489
-    s0 s0 PUSH2	//  _0 _1=1489 _2=1489 _3=1489
+    1505 PUSHINT	//  _0 _1=1505
+    1489 PUSHINT	//  _0 _1=1505 _2=1489
+    OVER	//  _0 _1=1505 _2=1489 _3=1505
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_376 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_378_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1511 PUSHINT	//  _0 _1=1511
-    1492 PUSHINT	//  _0 _1=1511 _2=1492
-    OVER	//  _0 _1=1511 _2=1492 _3=1511
+    1548 PUSHINT	//  _0 _1=1548
+    1492 PUSHINT	//  _0 _1=1548 _2=1492
+    OVER	//  _0 _1=1548 _2=1492 _3=1548
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_378 PROC:<{
@@ -3403,10 +3402,10 @@ PROGRAM{
   }>
   test_change_380_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1518 PUSHINT	//  _0 _1=1518
-    1495 PUSHINT	//  _0 _1=1518 _2=1495
-    OVER	//  _0 _1=1518 _2=1495 _3=1518
+    public_key2 INLINECALLDICT	//  _0
+    1500 PUSHINT	//  _0 _1=1500
+    1495 PUSHINT	//  _0 _1=1500 _2=1495
+    OVER	//  _0 _1=1500 _2=1495 _3=1500
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_380 PROC:<{
@@ -3418,9 +3417,9 @@ PROGRAM{
   test_change_382_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1542 PUSHINT	//  _0 _1=1542
-    1498 PUSHINT	//  _0 _1=1542 _2=1498
-    OVER	//  _0 _1=1542 _2=1498 _3=1542
+    1534 PUSHINT	//  _0 _1=1534
+    1498 PUSHINT	//  _0 _1=1534 _2=1498
+    OVER	//  _0 _1=1534 _2=1498 _3=1534
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_382 PROC:<{
@@ -3432,9 +3431,9 @@ PROGRAM{
   test_change_384_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1527 PUSHINT	//  _0 _1=1527
-    1501 PUSHINT	//  _0 _1=1527 _2=1501
-    OVER	//  _0 _1=1527 _2=1501 _3=1527
+    1509 PUSHINT	//  _0 _1=1509
+    1501 PUSHINT	//  _0 _1=1509 _2=1501
+    OVER	//  _0 _1=1509 _2=1501 _3=1509
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_384 PROC:<{
@@ -3446,9 +3445,9 @@ PROGRAM{
   test_change_386_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1562 PUSHINT	//  _0 _1=1562
-    1504 PUSHINT	//  _0 _1=1562 _2=1504
-    OVER	//  _0 _1=1562 _2=1504 _3=1562
+    1564 PUSHINT	//  _0 _1=1564
+    1504 PUSHINT	//  _0 _1=1564 _2=1504
+    OVER	//  _0 _1=1564 _2=1504 _3=1564
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_386 PROC:<{
@@ -3460,9 +3459,9 @@ PROGRAM{
   test_change_388_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1564 PUSHINT	//  _0 _1=1564
-    1507 PUSHINT	//  _0 _1=1564 _2=1507
-    OVER	//  _0 _1=1564 _2=1507 _3=1564
+    1551 PUSHINT	//  _0 _1=1551
+    1507 PUSHINT	//  _0 _1=1551 _2=1507
+    OVER	//  _0 _1=1551 _2=1507 _3=1551
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_388 PROC:<{
@@ -3473,10 +3472,10 @@ PROGRAM{
   }>
   test_change_390_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1556 PUSHINT	//  _0 _1=1556
-    1510 PUSHINT	//  _0 _1=1556 _2=1510
-    OVER	//  _0 _1=1556 _2=1510 _3=1556
+    public_key2 INLINECALLDICT	//  _0
+    1532 PUSHINT	//  _0 _1=1532
+    1510 PUSHINT	//  _0 _1=1532 _2=1510
+    OVER	//  _0 _1=1532 _2=1510 _3=1532
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_390 PROC:<{
@@ -3487,10 +3486,10 @@ PROGRAM{
   }>
   test_change_392_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1551 PUSHINT	//  _0 _1=1551
-    1513 PUSHINT	//  _0 _1=1551 _2=1513
-    OVER	//  _0 _1=1551 _2=1513 _3=1551
+    public_key1 INLINECALLDICT	//  _0
+    1569 PUSHINT	//  _0 _1=1569
+    1513 PUSHINT	//  _0 _1=1569 _2=1513
+    OVER	//  _0 _1=1569 _2=1513 _3=1569
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_392 PROC:<{
@@ -3501,10 +3500,10 @@ PROGRAM{
   }>
   test_change_394_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1533 PUSHINT	//  _0 _1=1533
-    1516 PUSHINT	//  _0 _1=1533 _2=1516
-    OVER	//  _0 _1=1533 _2=1516 _3=1533
+    public_key2 INLINECALLDICT	//  _0
+    1546 PUSHINT	//  _0 _1=1546
+    1516 PUSHINT	//  _0 _1=1546 _2=1516
+    OVER	//  _0 _1=1546 _2=1516 _3=1546
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_394 PROC:<{
@@ -3516,9 +3515,9 @@ PROGRAM{
   test_change_396_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1562 PUSHINT	//  _0 _1=1562
-    1519 PUSHINT	//  _0 _1=1562 _2=1519
-    OVER	//  _0 _1=1562 _2=1519 _3=1562
+    1578 PUSHINT	//  _0 _1=1578
+    1519 PUSHINT	//  _0 _1=1578 _2=1519
+    OVER	//  _0 _1=1578 _2=1519 _3=1578
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_396 PROC:<{
@@ -3530,9 +3529,9 @@ PROGRAM{
   test_change_398_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1537 PUSHINT	//  _0 _1=1537
-    1522 PUSHINT	//  _0 _1=1537 _2=1522
-    OVER	//  _0 _1=1537 _2=1522 _3=1537
+    1563 PUSHINT	//  _0 _1=1563
+    1522 PUSHINT	//  _0 _1=1563 _2=1522
+    OVER	//  _0 _1=1563 _2=1522 _3=1563
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_398 PROC:<{
@@ -3544,23 +3543,23 @@ PROGRAM{
   test_change_400_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1563 PUSHINT	//  _0 _1=1563
-    1525 PUSHINT	//  _0 _1=1563 _2=1525
-    OVER	//  _0 _1=1563 _2=1525 _3=1563
+    1573 PUSHINT	//  _0 _1=1573
+    1525 PUSHINT	//  _0 _1=1573 _2=1525
+    OVER	//  _0 _1=1573 _2=1525 _3=1573
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_400 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_402_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1529 PUSHINT	//  _0 _1=1529
-    1528 PUSHINT	//  _0 _1=1529 _2=1528
-    OVER	//  _0 _1=1529 _2=1528 _3=1529
+    public_key2 INLINECALLDICT	//  _0
+    1558 PUSHINT	//  _0 _1=1558
+    1528 PUSHINT	//  _0 _1=1558 _2=1528
+    OVER	//  _0 _1=1558 _2=1528 _3=1558
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_402 PROC:<{
@@ -3571,52 +3570,52 @@ PROGRAM{
   }>
   test_change_404_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1534 PUSHINT	//  _0 _1=1534
-    1531 PUSHINT	//  _0 _1=1534 _2=1531
-    OVER	//  _0 _1=1534 _2=1531 _3=1534
+    public_key2 INLINECALLDICT	//  _0
+    1580 PUSHINT	//  _0 _1=1580
+    1531 PUSHINT	//  _0 _1=1580 _2=1531
+    OVER	//  _0 _1=1580 _2=1531 _3=1580
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_404 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_406_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1559 PUSHINT	//  _0 _1=1559
-    1534 PUSHINT	//  _0 _1=1559 _2=1534
-    OVER	//  _0 _1=1559 _2=1534 _3=1559
+    1551 PUSHINT	//  _0 _1=1551
+    1534 PUSHINT	//  _0 _1=1551 _2=1534
+    OVER	//  _0 _1=1551 _2=1534 _3=1551
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_406 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_408_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1553 PUSHINT	//  _0 _1=1553
-    1537 PUSHINT	//  _0 _1=1553 _2=1537
-    OVER	//  _0 _1=1553 _2=1537 _3=1553
+    1546 PUSHINT	//  _0 _1=1546
+    1537 PUSHINT	//  _0 _1=1546 _2=1537
+    OVER	//  _0 _1=1546 _2=1537 _3=1546
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_408 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_410_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1547 PUSHINT	//  _0 _1=1547
-    1540 PUSHINT	//  _0 _1=1547 _2=1540
-    OVER	//  _0 _1=1547 _2=1540 _3=1547
+    1561 PUSHINT	//  _0 _1=1561
+    1540 PUSHINT	//  _0 _1=1561 _2=1540
+    OVER	//  _0 _1=1561 _2=1540 _3=1561
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_410 PROC:<{
@@ -3628,9 +3627,9 @@ PROGRAM{
   test_change_412_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1558 PUSHINT	//  _0 _1=1558
-    1543 PUSHINT	//  _0 _1=1558 _2=1543
-    OVER	//  _0 _1=1558 _2=1543 _3=1558
+    1571 PUSHINT	//  _0 _1=1571
+    1543 PUSHINT	//  _0 _1=1571 _2=1543
+    OVER	//  _0 _1=1571 _2=1543 _3=1571
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_412 PROC:<{
@@ -3642,23 +3641,23 @@ PROGRAM{
   test_change_414_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1554 PUSHINT	//  _0 _1=1554
-    1546 PUSHINT	//  _0 _1=1554 _2=1546
-    OVER	//  _0 _1=1554 _2=1546 _3=1554
+    1580 PUSHINT	//  _0 _1=1580
+    1546 PUSHINT	//  _0 _1=1580 _2=1546
+    OVER	//  _0 _1=1580 _2=1546 _3=1580
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_414 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
+    0 EQINT	//  _7
     100 THROWIF
   }>
   test_change_416_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1609 PUSHINT	//  _0 _1=1609
-    1549 PUSHINT	//  _0 _1=1609 _2=1549
-    OVER	//  _0 _1=1609 _2=1549 _3=1609
+    public_key2 INLINECALLDICT	//  _0
+    1555 PUSHINT	//  _0 _1=1555
+    1549 PUSHINT	//  _0 _1=1555 _2=1549
+    OVER	//  _0 _1=1555 _2=1549 _3=1555
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_416 PROC:<{
@@ -3669,10 +3668,10 @@ PROGRAM{
   }>
   test_change_418_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1610 PUSHINT	//  _0 _1=1610
-    1552 PUSHINT	//  _0 _1=1610 _2=1552
-    OVER	//  _0 _1=1610 _2=1552 _3=1610
+    public_key1 INLINECALLDICT	//  _0
+    1587 PUSHINT	//  _0 _1=1587
+    1552 PUSHINT	//  _0 _1=1587 _2=1552
+    OVER	//  _0 _1=1587 _2=1552 _3=1587
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_418 PROC:<{
@@ -3684,9 +3683,9 @@ PROGRAM{
   test_change_420_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1584 PUSHINT	//  _0 _1=1584
-    1555 PUSHINT	//  _0 _1=1584 _2=1555
-    OVER	//  _0 _1=1584 _2=1555 _3=1584
+    1613 PUSHINT	//  _0 _1=1613
+    1555 PUSHINT	//  _0 _1=1613 _2=1555
+    OVER	//  _0 _1=1613 _2=1555 _3=1613
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_420 PROC:<{
@@ -3698,9 +3697,9 @@ PROGRAM{
   test_change_422_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1588 PUSHINT	//  _0 _1=1588
-    1558 PUSHINT	//  _0 _1=1588 _2=1558
-    OVER	//  _0 _1=1588 _2=1558 _3=1588
+    1610 PUSHINT	//  _0 _1=1610
+    1558 PUSHINT	//  _0 _1=1610 _2=1558
+    OVER	//  _0 _1=1610 _2=1558 _3=1610
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_422 PROC:<{
@@ -3711,24 +3710,24 @@ PROGRAM{
   }>
   test_change_424_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1610 PUSHINT	//  _0 _1=1610
-    1561 PUSHINT	//  _0 _1=1610 _2=1561
-    OVER	//  _0 _1=1610 _2=1561 _3=1610
+    public_key1 INLINECALLDICT	//  _0
+    1571 PUSHINT	//  _0 _1=1571
+    1561 PUSHINT	//  _0 _1=1571 _2=1561
+    OVER	//  _0 _1=1571 _2=1561 _3=1571
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_424 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_426_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1615 PUSHINT	//  _0 _1=1615
-    1564 PUSHINT	//  _0 _1=1615 _2=1564
-    OVER	//  _0 _1=1615 _2=1564 _3=1615
+    1611 PUSHINT	//  _0 _1=1611
+    1564 PUSHINT	//  _0 _1=1611 _2=1564
+    OVER	//  _0 _1=1611 _2=1564 _3=1611
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_426 PROC:<{
@@ -3739,10 +3738,10 @@ PROGRAM{
   }>
   test_change_428_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1625 PUSHINT	//  _0 _1=1625
-    1567 PUSHINT	//  _0 _1=1625 _2=1567
-    OVER	//  _0 _1=1625 _2=1567 _3=1625
+    public_key2 INLINECALLDICT	//  _0
+    1614 PUSHINT	//  _0 _1=1614
+    1567 PUSHINT	//  _0 _1=1614 _2=1567
+    OVER	//  _0 _1=1614 _2=1567 _3=1614
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_428 PROC:<{
@@ -3754,9 +3753,9 @@ PROGRAM{
   test_change_430_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1575 PUSHINT	//  _0 _1=1575
-    1570 PUSHINT	//  _0 _1=1575 _2=1570
-    OVER	//  _0 _1=1575 _2=1570 _3=1575
+    1616 PUSHINT	//  _0 _1=1616
+    1570 PUSHINT	//  _0 _1=1616 _2=1570
+    OVER	//  _0 _1=1616 _2=1570 _3=1616
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_430 PROC:<{
@@ -3768,9 +3767,9 @@ PROGRAM{
   test_change_432_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1605 PUSHINT	//  _0 _1=1605
-    1573 PUSHINT	//  _0 _1=1605 _2=1573
-    OVER	//  _0 _1=1605 _2=1573 _3=1605
+    1608 PUSHINT	//  _0 _1=1608
+    1573 PUSHINT	//  _0 _1=1608 _2=1573
+    OVER	//  _0 _1=1608 _2=1573 _3=1608
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_432 PROC:<{
@@ -3782,9 +3781,8 @@ PROGRAM{
   test_change_434_data PROC:<{
     // 
     public_key2 INLINECALLDICT	//  _0
-    1599 PUSHINT	//  _0 _1=1599
-    1576 PUSHINT	//  _0 _1=1599 _2=1576
-    OVER	//  _0 _1=1599 _2=1576 _3=1599
+    1576 PUSHINT	//  _0 _1=1576
+    s0 s0 PUSH2	//  _0 _1=1576 _2=1576 _3=1576
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_434 PROC:<{
@@ -3795,10 +3793,10 @@ PROGRAM{
   }>
   test_change_436_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1588 PUSHINT	//  _0 _1=1588
-    1579 PUSHINT	//  _0 _1=1588 _2=1579
-    OVER	//  _0 _1=1588 _2=1579 _3=1588
+    public_key2 INLINECALLDICT	//  _0
+    1598 PUSHINT	//  _0 _1=1598
+    1579 PUSHINT	//  _0 _1=1598 _2=1579
+    OVER	//  _0 _1=1598 _2=1579 _3=1598
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_436 PROC:<{
@@ -3809,10 +3807,10 @@ PROGRAM{
   }>
   test_change_438_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1629 PUSHINT	//  _0 _1=1629
-    1582 PUSHINT	//  _0 _1=1629 _2=1582
-    OVER	//  _0 _1=1629 _2=1582 _3=1629
+    public_key2 INLINECALLDICT	//  _0
+    1626 PUSHINT	//  _0 _1=1626
+    1582 PUSHINT	//  _0 _1=1626 _2=1582
+    OVER	//  _0 _1=1626 _2=1582 _3=1626
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_438 PROC:<{
@@ -3824,9 +3822,9 @@ PROGRAM{
   test_change_440_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1635 PUSHINT	//  _0 _1=1635
-    1585 PUSHINT	//  _0 _1=1635 _2=1585
-    OVER	//  _0 _1=1635 _2=1585 _3=1635
+    1598 PUSHINT	//  _0 _1=1598
+    1585 PUSHINT	//  _0 _1=1598 _2=1585
+    OVER	//  _0 _1=1598 _2=1585 _3=1598
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_440 PROC:<{
@@ -3837,10 +3835,10 @@ PROGRAM{
   }>
   test_change_442_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1648 PUSHINT	//  _0 _1=1648
-    1588 PUSHINT	//  _0 _1=1648 _2=1588
-    OVER	//  _0 _1=1648 _2=1588 _3=1648
+    public_key2 INLINECALLDICT	//  _0
+    1642 PUSHINT	//  _0 _1=1642
+    1588 PUSHINT	//  _0 _1=1642 _2=1588
+    OVER	//  _0 _1=1642 _2=1588 _3=1642
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_442 PROC:<{
@@ -3851,10 +3849,10 @@ PROGRAM{
   }>
   test_change_444_data PROC:<{
     // 
-    public_key1 INLINECALLDICT	//  _0
-    1598 PUSHINT	//  _0 _1=1598
-    1591 PUSHINT	//  _0 _1=1598 _2=1591
-    OVER	//  _0 _1=1598 _2=1591 _3=1598
+    public_key2 INLINECALLDICT	//  _0
+    1608 PUSHINT	//  _0 _1=1608
+    1591 PUSHINT	//  _0 _1=1608 _2=1591
+    OVER	//  _0 _1=1608 _2=1591 _3=1608
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_444 PROC:<{
@@ -3866,40 +3864,26 @@ PROGRAM{
   test_change_446_data PROC:<{
     // 
     public_key1 INLINECALLDICT	//  _0
-    1605 PUSHINT	//  _0 _1=1605
-    1594 PUSHINT	//  _0 _1=1605 _2=1594
-    OVER	//  _0 _1=1605 _2=1594 _3=1605
+    1642 PUSHINT	//  _0 _1=1642
+    1594 PUSHINT	//  _0 _1=1642 _2=1594
+    OVER	//  _0 _1=1642 _2=1594 _3=1642
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_446 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
-    0 EQINT	//  _7
+    0 NEQINT	//  _7
     100 THROWIF
   }>
   test_change_448_data PROC:<{
     // 
-    public_key2 INLINECALLDICT	//  _0
-    1598 PUSHINT	//  _0 _1=1598
-    1597 PUSHINT	//  _0 _1=1598 _2=1597
-    OVER	//  _0 _1=1598 _2=1597 _3=1598
+    public_key1 INLINECALLDICT	//  _0
+    1657 PUSHINT	//  _0 _1=1657
+    1597 PUSHINT	//  _0 _1=1657 _2=1597
+    OVER	//  _0 _1=1657 _2=1597 _3=1657
     gen_test_now INLINECALLDICT	//  _4
   }>
   test_change_448 PROC:<{
-    //  exit_code data stack actions gas
-    4 BLKDROP	//  exit_code
-    0 NEQINT	//  _7
-    100 THROWIF
-  }>
-  test_change_450_data PROC:<{
-    // 
-    public_key2 INLINECALLDICT	//  _0
-    1618 PUSHINT	//  _0 _1=1618
-    1600 PUSHINT	//  _0 _1=1618 _2=1600
-    OVER	//  _0 _1=1618 _2=1600 _3=1618
-    gen_test_now INLINECALLDICT	//  _4
-  }>
-  test_change_450 PROC:<{
     //  exit_code data stack actions gas
     4 BLKDROP	//  exit_code
     0 NEQINT	//  _7

@@ -28,11 +28,13 @@ _ test_change_{test_id}(int exit_code, cell data, tuple stack, cell actions, int
 
 import random
 
+random.seed(787788)
+
 now = 1000
 
 values = {}
 
-for _ in range(200):
+for _ in range(199):
     now += 3
     who = random.randint(0, 1)
     who_mask = 1 << who
