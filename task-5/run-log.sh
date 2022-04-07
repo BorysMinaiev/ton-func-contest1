@@ -1,0 +1,1 @@
+toncli run_tests 2>/dev/null | awk '{print $3 " " $NF}' > log.txt

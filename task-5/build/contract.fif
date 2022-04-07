@@ -549,7 +549,7 @@ PROGRAM{
     //  in_msg_body
     256 LDU	//  public_key in_msg_body
     9 PUSHPOW2	//  public_key in_msg_body _7=512
-    LDSLICEX	//  public_key _176 _175
+    LDSLICEX	//  public_key _170 _169
     NIP	//  public_key in_msg_body
     LDREF	//  public_key request_cell in_msg_body
     ENDS
@@ -600,12 +600,8 @@ PROGRAM{
     256 STU	//  public_key2 request_cell valid_until request key_mask pos cnt full_mask valid_untils tree _61
     s1 s10 XCHG	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils public_key2 _61
     256 STU	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
-    8888888888 PUSHINT	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree _64=8888888888
-    s0 DUMP DROP
     s4 PUSH	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree pos
-    s0 DUMP DROP
-    s4 PUSH	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree pos
-    0 LESSINT	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree _68
+    0 LESSINT	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree _65
     IF:<{	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
       s4 POP
       s5 POP	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask
@@ -614,13 +610,13 @@ PROGRAM{
       0 PUSHINT	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos=0
       WHILE:<{
         s0 s4 PUSH2	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos npos cnt
-        LESS	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos _74
+        LESS	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos _71
       }>DO<{	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos
         SWAP	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos valid_untils_copy
-        32 LDU	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _75 valid_untils_copy
+        32 LDU	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _72 valid_untils_copy
         SWAP
-        NOW	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos valid_untils_copy _75 _78
-        LESS	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos valid_untils_copy _79
+        NOW	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos valid_untils_copy _72 _75
+        LESS	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos valid_untils_copy _76
         IF:<{	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos valid_untils_copy
           s1 s4 XCPU	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos cnt
           ADD	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos
@@ -631,30 +627,30 @@ PROGRAM{
       }>	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils valid_untils_copy npos
       NIP	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos
       s0 s3 PUSH2	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos npos cnt
-      GREATER	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _83
+      GREATER	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _80
       IF:<{	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos
         s3 PUSH	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos cnt
-        INC	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _85
+        INC	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _82
         SUB	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos
       }>	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos
       DUP	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos npos
-      10 EQINT	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _89
+      10 EQINT	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _86
       104 THROWIF
       DUP	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos npos
-      5 LSHIFT#	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _93
-      s1 s7 XCHG	//  tree request_cell valid_until npos key_mask new_tree cnt full_mask new_valid_untils valid_untils _93
-      LDSLICEX	//  tree request_cell valid_until npos key_mask new_tree cnt full_mask new_valid_untils _91 valid_untils
-      -ROT	//  tree request_cell valid_until npos key_mask new_tree cnt full_mask valid_untils new_valid_untils _91
+      5 LSHIFT#	//  tree request_cell valid_until valid_untils key_mask new_tree cnt full_mask new_valid_untils npos _90
+      s1 s7 XCHG	//  tree request_cell valid_until npos key_mask new_tree cnt full_mask new_valid_untils valid_untils _90
+      LDSLICEX	//  tree request_cell valid_until npos key_mask new_tree cnt full_mask new_valid_untils _88 valid_untils
+      -ROT	//  tree request_cell valid_until npos key_mask new_tree cnt full_mask valid_untils new_valid_untils _88
       STSLICER	//  tree request_cell valid_until npos key_mask new_tree cnt full_mask valid_untils new_valid_untils
       s1 s7 XCHG	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask valid_until new_valid_untils
       32 STU	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils
       s5 PUSH	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils npos
-      INC	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils _100
-      s3 PUSH	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils _100 cnt
-      LESS	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils _101
+      INC	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils _97
+      s3 PUSH	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils _97 cnt
+      LESS	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils _98
       IF:<{	//  tree request_cell valid_untils npos key_mask new_tree cnt full_mask new_valid_untils
         s0 s6 XCHG	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask valid_untils
-        32 LDU	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask _195 _194
+        32 LDU	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask _189 _188
         NIP	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask valid_untils
         s1 s6 XCHG	//  tree request_cell full_mask npos key_mask new_tree cnt new_valid_untils valid_untils
         STSLICER	//  tree request_cell full_mask npos key_mask new_tree cnt new_valid_untils
@@ -663,55 +659,51 @@ PROGRAM{
         s6 POP	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask
       }>
       s4 PUSH	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask npos
-      INC	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask _108
-      s1 s2 XCHG	//  tree request_cell new_valid_untils npos key_mask new_tree full_mask cnt _108
+      INC	//  tree request_cell new_valid_untils npos key_mask new_tree cnt full_mask _105
+      s1 s2 XCHG	//  tree request_cell new_valid_untils npos key_mask new_tree full_mask cnt _105
       MAX	//  tree request_cell new_valid_untils npos key_mask new_tree full_mask ncnt
       ROT	//  tree request_cell new_valid_untils npos key_mask full_mask ncnt new_tree
       5 STU	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree
-      3 PUSHINT	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _114=3
-      s4 PUSH	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _114=3 npos
-      1 LSHIFT#	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _114=3 _116
-      LSHIFT	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _117
-      NOT	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _118
-      s1 s2 XCHG	//  tree request_cell new_valid_untils npos key_mask new_tree full_mask _118
+      3 PUSHINT	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _111=3
+      s4 PUSH	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _111=3 npos
+      1 LSHIFT#	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _111=3 _113
+      LSHIFT	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _114
+      NOT	//  tree request_cell new_valid_untils npos key_mask full_mask new_tree _115
+      s1 s2 XCHG	//  tree request_cell new_valid_untils npos key_mask new_tree full_mask _115
       AND	//  tree request_cell new_valid_untils npos key_mask new_tree next_full_mask
       s3 PUSH	//  tree request_cell new_valid_untils npos key_mask new_tree next_full_mask npos
-      1 LSHIFT#	//  tree request_cell new_valid_untils npos key_mask new_tree next_full_mask _121
-      s1 s3 XCHG	//  tree request_cell new_valid_untils npos next_full_mask new_tree key_mask _121
-      LSHIFT	//  tree request_cell new_valid_untils npos next_full_mask new_tree _122
-      s1 s2 XCHG	//  tree request_cell new_valid_untils npos new_tree next_full_mask _122
+      1 LSHIFT#	//  tree request_cell new_valid_untils npos key_mask new_tree next_full_mask _118
+      s1 s3 XCHG	//  tree request_cell new_valid_untils npos next_full_mask new_tree key_mask _118
+      LSHIFT	//  tree request_cell new_valid_untils npos next_full_mask new_tree _119
+      s1 s2 XCHG	//  tree request_cell new_valid_untils npos new_tree next_full_mask _119
       OR	//  tree request_cell new_valid_untils npos new_tree next_full_mask
       SWAP	//  tree request_cell new_valid_untils npos next_full_mask new_tree
       20 STU	//  tree request_cell new_valid_untils npos new_tree
       s1 s2 XCHG	//  tree request_cell npos new_valid_untils new_tree
       STB	//  tree request_cell npos new_tree
-      OVER	//  tree request_cell npos new_tree npos
-      s0 DUMP DROP
       s3 s1 s3 XCHG3	//  new_tree tree npos request_cell
       replace_request INLINECALLDICT	//  root
-      4444444444 PUSHINT	//  root _131=4444444444
-      s0 DUMP DROP
       c4 POP
     }>ELSE<{	//  tree request_cell valid_until request key_mask pos cnt full_mask valid_untils new_tree
       s7 POP
       s7 POP	//  tree valid_untils new_tree request key_mask pos cnt full_mask
       s2 PUSH	//  tree valid_untils new_tree request key_mask pos cnt full_mask pos
-      1 LSHIFT#	//  tree valid_untils new_tree request key_mask pos cnt full_mask _136
-      s1 s(-1) PUXC	//  tree valid_untils new_tree request key_mask pos cnt full_mask full_mask _136
-      RSHIFT	//  tree valid_untils new_tree request key_mask pos cnt full_mask _137
-      3 PUSHINT	//  tree valid_untils new_tree request key_mask pos cnt full_mask _137 _138=3
+      1 LSHIFT#	//  tree valid_untils new_tree request key_mask pos cnt full_mask _130
+      s1 s(-1) PUXC	//  tree valid_untils new_tree request key_mask pos cnt full_mask full_mask _130
+      RSHIFT	//  tree valid_untils new_tree request key_mask pos cnt full_mask _131
+      3 PUSHINT	//  tree valid_untils new_tree request key_mask pos cnt full_mask _131 _132=3
       AND	//  tree valid_untils new_tree request key_mask pos cnt full_mask cur_mask
       s0 s4 PUXC	//  tree valid_untils new_tree request cur_mask pos cnt full_mask cur_mask key_mask
       OR	//  tree valid_untils new_tree request cur_mask pos cnt full_mask next_mask
       s4 s4 XCPU	//  tree valid_untils new_tree request next_mask pos cnt full_mask cur_mask next_mask
-      EQUAL	//  tree valid_untils new_tree request next_mask pos cnt full_mask _143
+      EQUAL	//  tree valid_untils new_tree request next_mask pos cnt full_mask _137
       105 THROWIF
       s3 PUSH	//  tree valid_untils new_tree request next_mask pos cnt full_mask next_mask
-      3 EQINT	//  tree valid_untils new_tree request next_mask pos cnt full_mask _146
+      3 EQINT	//  tree valid_untils new_tree request next_mask pos cnt full_mask _140
       IF:<{	//  tree valid_untils new_tree request next_mask pos cnt full_mask
         s0 s4 XCHG	//  tree valid_untils new_tree full_mask next_mask pos cnt request
         8 LDU	//  tree valid_untils new_tree full_mask next_mask pos cnt mode request
-        LDREF	//  tree valid_untils new_tree full_mask next_mask pos cnt mode _199 _198
+        LDREF	//  tree valid_untils new_tree full_mask next_mask pos cnt mode _193 _192
         DROP	//  tree valid_untils new_tree full_mask next_mask pos cnt mode msg_to_send
         SWAP	//  tree valid_untils new_tree full_mask next_mask pos cnt msg_to_send mode
         SENDRAWMSG
@@ -719,10 +711,10 @@ PROGRAM{
         s4 POP	//  tree valid_untils new_tree full_mask next_mask pos cnt
       }>
       SWAP	//  tree valid_untils new_tree full_mask next_mask cnt pos
-      1 LSHIFT#	//  tree valid_untils new_tree full_mask next_mask cnt _157
-      s1 s2 XCHG	//  tree valid_untils new_tree full_mask cnt next_mask _157
-      LSHIFT	//  tree valid_untils new_tree full_mask cnt _158
-      s1 s2 XCHG	//  tree valid_untils new_tree cnt full_mask _158
+      1 LSHIFT#	//  tree valid_untils new_tree full_mask next_mask cnt _151
+      s1 s2 XCHG	//  tree valid_untils new_tree full_mask cnt next_mask _151
+      LSHIFT	//  tree valid_untils new_tree full_mask cnt _152
+      s1 s2 XCHG	//  tree valid_untils new_tree cnt full_mask _152
       OR	//  tree valid_untils new_tree cnt next_full_mask
       s0 s2 XCHG	//  tree valid_untils next_full_mask cnt new_tree
       5 STU	//  tree valid_untils next_full_mask new_tree
@@ -730,15 +722,15 @@ PROGRAM{
       SWAP	//  tree new_tree valid_untils
       STSLICER	//  tree new_tree
       OVER	//  tree new_tree tree
-      SREFS	//  tree new_tree _167
+      SREFS	//  tree new_tree _161
       REPEAT:<{	//  tree new_tree
         SWAP	//  new_tree tree
-        LDREF	//  new_tree _168 tree
-        s0 s2 XCHG	//  tree _168 new_tree
+        LDREF	//  new_tree _162 tree
+        s0 s2 XCHG	//  tree _162 new_tree
         STREF	//  tree new_tree
       }>
       NIP	//  new_tree
-      ENDC	//  _171
+      ENDC	//  _165
       c4 POP
     }>
   }>
