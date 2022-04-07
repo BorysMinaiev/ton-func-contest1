@@ -292,7 +292,7 @@ builder store_builder(builder to, builder what) asm(what to) "STB";
   slice request = request_cell.begin_parse();
 
   ;; TODO: uncomment it
-  ;; throw_if(100, ~ check_data_signature(request, signature, public_key));
+  throw_if(100, ~ check_data_signature(request, signature, public_key));
   int valid_until = request~load_uint(32);
   throw_if(101, valid_until < now());
   throw_if(102, valid_until > now() + 60);
