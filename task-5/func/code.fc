@@ -42,8 +42,22 @@ cell pack_data(int public_key1, int public_key2) method_id {
 
 {-
 
-First 3 requests are stored in-place.
+First 3 requests are stored in-place, others are stored recursively in another node.
 
+We have at most 3 tree cells:
+
+[0 1 2 * ]
+       |
+       v
+      [3 4 5 * ]
+             |
+             v
+            [6 7  8 9]
+
+Root cell also contains some additional information:
+ - cnt requests (5 bit integer)
+ - 10x (2 bits) - if request was approved by public_key1 & public_key2
+ - cnt * (32 bits) - valid untils for stored requests
 -}
 
 (slice, int, int) load_data() inline {
@@ -53,6 +67,7 @@ First 3 requests are stored in-place.
   return (ds, public_key1, public_key2);
 }
 
+;; Not used, faster version below
 int find_request_old(slice s, int hash) inline {
   int pos = -1;
   int size = 0;
@@ -158,7 +173,7 @@ int find_request(slice s, int hash) inline_ref {
   return find_request_inline(s, hash);
 }
 
-;; inline_ref ???
+;; not used, faster version below
 cell replace_request_old(builder b, slice old_slice, int pos, int lvl, cell request) {
   int cnt_inplace = 3;
   if (lvl == 2) {
