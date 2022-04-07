@@ -113,8 +113,8 @@ _ test_get_30(int exit_code, cell data, tuple stack, cell actions, int gas) meth
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(219, 256) ;; key
-      .store_uint(1017, 64) ;; valid until
+      .store_uint(90, 256) ;; key
+      .store_uint(1048, 64) ;; valid until
       .store_uint(10, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
@@ -139,35 +139,7 @@ _ test_change_32(int exit_code, cell data, tuple stack, cell actions, int gas) m
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_34_data() method_id(34) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([243]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_34(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(35) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_get_36_data() method_id(36) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([748]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_36(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(37) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_38_data() method_id(38) {
+[int, tuple, cell, tuple, int] test_remove_34_data() method_id(34) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -188,15 +160,183 @@ _ test_get_36(int exit_code, cell data, tuple stack, cell actions, int gas) meth
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1004), null()];
+    return [function_selector, stack, data, get_c7_now(1034), null()];
 }
 
 
-_ test_remove_38(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(39) {
+_ test_remove_34(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(35) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_40_data() method_id(40) {
+[int, tuple, cell, tuple, int] test_remove_36_data() method_id(36) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1049), null()];
+}
+
+
+_ test_remove_36(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(37) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_38_data() method_id(38) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(314, 256) ;; key
+      .store_uint(1005, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_38(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(39) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_40_data() method_id(40) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(643, 256) ;; key
+      .store_uint(1025, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_40(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(41) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_42_data() method_id(42) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1083), null()];
+}
+
+
+_ test_remove_42(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(43) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_44_data() method_id(44) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([547]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_44(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(45) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_46_data() method_id(46) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(595, 256) ;; key
+      .store_uint(1066, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_46(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(47) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_48_data() method_id(48) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -221,117 +361,7 @@ _ test_remove_38(int exit_code, cell data, tuple stack, cell actions, int gas) m
 }
 
 
-_ test_remove_40(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(41) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_42_data() method_id(42) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(89, 256) ;; key
-      .store_uint(1079, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_42(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(43) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_44_data() method_id(44) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(850, 256) ;; key
-      .store_uint(1019, 64) ;; valid until
-      .store_uint(3, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_44(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(45) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_46_data() method_id(46) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([346]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_46(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(47) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_48_data() method_id(48) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(891, 256) ;; key
-      .store_uint(1036, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_48(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(49) {
+_ test_remove_48(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(49) {
     throw_if(100, exit_code != 0);
 }
     
@@ -341,9 +371,9 @@ _ test_change_48(int exit_code, cell data, tuple stack, cell actions, int gas) m
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(248, 256) ;; key
-      .store_uint(1021, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(595, 256) ;; key
+      .store_uint(1079, 64) ;; valid until
+      .store_uint(5, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -367,15 +397,12 @@ _ test_change_50(int exit_code, cell data, tuple stack, cell actions, int gas) m
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_52_data() method_id(52) {
+[int, tuple, cell, tuple, int] test_remove_52_data() method_id(52) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(9, 256) ;; key
-      .store_uint(1077, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -391,18 +418,18 @@ _ test_change_50(int exit_code, cell data, tuple stack, cell actions, int gas) m
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1066), null()];
 }
 
 
-_ test_change_52(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(53) {
+_ test_remove_52(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(53) {
     throw_if(100, exit_code != 0);
 }
     
 [int, tuple, cell, tuple, int] test_get_54_data() method_id(54) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([897]);
+    tuple stack = unsafe_tuple([385]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -419,9 +446,9 @@ _ test_get_54(int exit_code, cell data, tuple stack, cell actions, int gas) meth
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(94, 256) ;; key
-      .store_uint(1026, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(607, 256) ;; key
+      .store_uint(1090, 64) ;; valid until
+      .store_uint(5, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -445,21 +472,7 @@ _ test_change_56(int exit_code, cell data, tuple stack, cell actions, int gas) m
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_58_data() method_id(58) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([465]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_58(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(59) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_60_data() method_id(60) {
+[int, tuple, cell, tuple, int] test_remove_58_data() method_id(58) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -480,11 +493,43 @@ _ test_get_58(int exit_code, cell data, tuple stack, cell actions, int gas) meth
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1038), null()];
+    return [function_selector, stack, data, get_c7_now(1042), null()];
 }
 
 
-_ test_remove_60(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(61) {
+_ test_remove_58(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(59) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_60_data() method_id(60) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(770, 256) ;; key
+      .store_uint(1062, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_60(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(61) {
     throw_if(100, exit_code != 0);
 }
     
@@ -494,8 +539,8 @@ _ test_remove_60(int exit_code, cell data, tuple stack, cell actions, int gas) m
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(635, 256) ;; key
-      .store_uint(1083, 64) ;; valid until
+      .store_uint(232, 256) ;; key
+      .store_uint(1046, 64) ;; valid until
       .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
@@ -520,21 +565,67 @@ _ test_change_62(int exit_code, cell data, tuple stack, cell actions, int gas) m
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_64_data() method_id(64) {
+[int, tuple, cell, tuple, int] test_change_64_data() method_id(64) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(699, 256) ;; key
+      .store_uint(1037, 64) ;; valid until
+      .store_uint(3, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_64(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(65) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_66_data() method_id(66) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([57]);
+    tuple stack = unsafe_tuple([949]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_64(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(65) {
+_ test_get_66(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(67) {
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_remove_66_data() method_id(66) {
+[int, tuple, cell, tuple, int] test_get_68_data() method_id(68) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([407]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_68(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(69) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_remove_70_data() method_id(70) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -555,56 +646,46 @@ _ test_get_64(int exit_code, cell data, tuple stack, cell actions, int gas) meth
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1018), null()];
+    return [function_selector, stack, data, get_c7_now(1002), null()];
 }
 
 
-_ test_remove_66(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(67) {
+_ test_remove_70(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(71) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_68_data() method_id(68) {
-    int function_selector = 127977;
+[int, tuple, cell, tuple, int] test_change_72_data() method_id(72) {
+    int function_selector = 0;
 
-    tuple stack = unsafe_tuple([606]);
-    cell data = begin_cell().end_cell();
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(566, 256) ;; key
+      .store_uint(1002, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
+      .end_cell().begin_parse();
 
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_get_68(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(69) {
-    throw_if(100, exit_code == 0);
+_ test_change_72(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(73) {
+    throw_if(100, exit_code != 0);
 }
-
-[int, tuple, cell, tuple, int] test_get_70_data() method_id(70) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([891]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_70(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(71) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_get_72_data() method_id(72) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([577]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_72(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(73) {
-    throw_if(100, exit_code == 0);
-}
-
+    
 [int, tuple, cell, tuple, int] test_remove_74_data() method_id(74) {
     int function_selector = 0;
 
@@ -626,7 +707,7 @@ _ test_get_72(int exit_code, cell data, tuple stack, cell actions, int gas) meth
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1030), null()];
+    return [function_selector, stack, data, get_c7_now(1038), null()];
 }
 
 
@@ -655,7 +736,7 @@ _ test_remove_74(int exit_code, cell data, tuple stack, cell actions, int gas) m
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1041), null()];
+    return [function_selector, stack, data, get_c7_now(1004), null()];
 }
 
 
@@ -663,15 +744,12 @@ _ test_remove_76(int exit_code, cell data, tuple stack, cell actions, int gas) m
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_78_data() method_id(78) {
+[int, tuple, cell, tuple, int] test_remove_78_data() method_id(78) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(697, 256) ;; key
-      .store_uint(1082, 64) ;; valid until
-      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -687,55 +765,37 @@ _ test_remove_76(int exit_code, cell data, tuple stack, cell actions, int gas) m
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1067), null()];
 }
 
 
-_ test_change_78(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(79) {
+_ test_remove_78(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(79) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_80_data() method_id(80) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_80_data() method_id(80) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(695, 256) ;; key
-      .store_uint(1052, 64) ;; valid until
-      .store_uint(6, 128) ;; 128-bit value
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([693]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_change_80(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(81) {
-    throw_if(100, exit_code != 0);
+_ test_get_80(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(81) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_change_82_data() method_id(82) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(432, 256) ;; key
-      .store_uint(1091, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(327, 256) ;; key
+      .store_uint(1002, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -759,15 +819,26 @@ _ test_change_82(int exit_code, cell data, tuple stack, cell actions, int gas) m
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_84_data() method_id(84) {
+[int, tuple, cell, tuple, int] test_get_84_data() method_id(84) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([887]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_84(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(85) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_remove_86_data() method_id(86) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(607, 256) ;; key
-      .store_uint(1025, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -783,15 +854,102 @@ _ test_change_82(int exit_code, cell data, tuple stack, cell actions, int gas) m
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1028), null()];
 }
 
 
-_ test_change_84(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(85) {
+_ test_remove_86(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(87) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_86_data() method_id(86) {
+[int, tuple, cell, tuple, int] test_remove_88_data() method_id(88) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1061), null()];
+}
+
+
+_ test_remove_88(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(89) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_90_data() method_id(90) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1054), null()];
+}
+
+
+_ test_remove_90(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(91) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_92_data() method_id(92) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1079), null()];
+}
+
+
+_ test_remove_92(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(93) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_94_data() method_id(94) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -816,153 +974,11 @@ _ test_change_84(int exit_code, cell data, tuple stack, cell actions, int gas) m
 }
 
 
-_ test_remove_86(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(87) {
+_ test_remove_94(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(95) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_88_data() method_id(88) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([282]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_88(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(89) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_90_data() method_id(90) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(362, 256) ;; key
-      .store_uint(1097, 64) ;; valid until
-      .store_uint(8, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_90(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(91) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_92_data() method_id(92) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(560, 256) ;; key
-      .store_uint(1057, 64) ;; valid until
-      .store_uint(0, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_92(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(93) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_94_data() method_id(94) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(652, 256) ;; key
-      .store_uint(1074, 64) ;; valid until
-      .store_uint(9, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_94(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(95) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_96_data() method_id(96) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(489, 256) ;; key
-      .store_uint(1049, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_96(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(97) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_98_data() method_id(98) {
+[int, tuple, cell, tuple, int] test_remove_96_data() method_id(96) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -983,23 +999,23 @@ _ test_change_96(int exit_code, cell data, tuple stack, cell actions, int gas) m
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1098), null()];
+    return [function_selector, stack, data, get_c7_now(1081), null()];
 }
 
 
-_ test_remove_98(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(99) {
+_ test_remove_96(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(97) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_100_data() method_id(100) {
+[int, tuple, cell, tuple, int] test_change_98_data() method_id(98) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(654, 256) ;; key
-      .store_uint(1089, 64) ;; valid until
-      .store_uint(2, 128) ;; 128-bit value
+      .store_uint(529, 256) ;; key
+      .store_uint(1075, 64) ;; valid until
+      .store_uint(10, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1019,33 +1035,65 @@ _ test_remove_98(int exit_code, cell data, tuple stack, cell actions, int gas) m
 }
 
 
-_ test_change_100(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(101) {
+_ test_change_98(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(99) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_102_data() method_id(102) {
+[int, tuple, cell, tuple, int] test_get_100_data() method_id(100) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([610]);
+    tuple stack = unsafe_tuple([501]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_102(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(103) {
+_ test_get_100(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(101) {
     throw_if(100, exit_code == 0);
 }
 
+[int, tuple, cell, tuple, int] test_change_102_data() method_id(102) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(737, 256) ;; key
+      .store_uint(1018, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_102(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(103) {
+    throw_if(100, exit_code != 0);
+}
+    
 [int, tuple, cell, tuple, int] test_change_104_data() method_id(104) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(354, 256) ;; key
-      .store_uint(1017, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(531, 256) ;; key
+      .store_uint(1023, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1069,7 +1117,81 @@ _ test_change_104(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_106_data() method_id(106) {
+[int, tuple, cell, tuple, int] test_get_106_data() method_id(106) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([919]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_106(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(107) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_108_data() method_id(108) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(699, 256) ;; key
+      .store_uint(1082, 64) ;; valid until
+      .store_uint(10, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_108(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(109) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_110_data() method_id(110) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([236]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_110(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(111) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_get_112_data() method_id(112) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([626]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_112(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(113) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_remove_114_data() method_id(114) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -1090,115 +1212,23 @@ _ test_change_104(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1100), null()];
+    return [function_selector, stack, data, get_c7_now(1054), null()];
 }
 
 
-_ test_remove_106(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(107) {
+_ test_remove_114(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(115) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_108_data() method_id(108) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([472]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_108(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(109) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_110_data() method_id(110) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(368, 256) ;; key
-      .store_uint(1064, 64) ;; valid until
-      .store_uint(4, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_110(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(111) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_112_data() method_id(112) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(972, 256) ;; key
-      .store_uint(1077, 64) ;; valid until
-      .store_uint(8, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_112(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(113) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_114_data() method_id(114) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([756]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_114(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(115) {
-    throw_if(100, exit_code == 0);
-}
-
 [int, tuple, cell, tuple, int] test_change_116_data() method_id(116) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(734, 256) ;; key
-      .store_uint(1100, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(646, 256) ;; key
+      .store_uint(1029, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1228,8 +1258,8 @@ _ test_change_116(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(39, 256) ;; key
-      .store_uint(1030, 64) ;; valid until
+      .store_uint(378, 256) ;; key
+      .store_uint(1027, 64) ;; valid until
       .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
@@ -1254,21 +1284,7 @@ _ test_change_118(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_120_data() method_id(120) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([41]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_120(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(121) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_122_data() method_id(122) {
+[int, tuple, cell, tuple, int] test_remove_120_data() method_id(120) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -1289,37 +1305,37 @@ _ test_get_120(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1051), null()];
+    return [function_selector, stack, data, get_c7_now(1050), null()];
 }
 
 
-_ test_remove_122(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(123) {
+_ test_remove_120(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(121) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_124_data() method_id(124) {
+[int, tuple, cell, tuple, int] test_get_122_data() method_id(122) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([508]);
+    tuple stack = unsafe_tuple([611]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_124(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(125) {
+_ test_get_122(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(123) {
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_126_data() method_id(126) {
+[int, tuple, cell, tuple, int] test_change_124_data() method_id(124) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(378, 256) ;; key
-      .store_uint(1096, 64) ;; valid until
-      .store_uint(4, 128) ;; 128-bit value
+      .store_uint(108, 256) ;; key
+      .store_uint(1098, 64) ;; valid until
+      .store_uint(9, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1339,75 +1355,25 @@ _ test_get_124(int exit_code, cell data, tuple stack, cell actions, int gas) met
 }
 
 
-_ test_change_126(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(127) {
+_ test_change_124(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(125) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_128_data() method_id(128) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_126_data() method_id(126) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(589, 256) ;; key
-      .store_uint(1043, 64) ;; valid until
-      .store_uint(0, 128) ;; 128-bit value
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([16]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_change_128(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(129) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_130_data() method_id(130) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(893, 256) ;; key
-      .store_uint(1085, 64) ;; valid until
-      .store_uint(2, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+_ test_get_126(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(127) {
+    throw_if(100, exit_code == 0);
 }
 
-
-_ test_change_130(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(131) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_132_data() method_id(132) {
+[int, tuple, cell, tuple, int] test_remove_128_data() method_id(128) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -1428,37 +1394,98 @@ _ test_change_130(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1037), null()];
+    return [function_selector, stack, data, get_c7_now(1024), null()];
 }
 
 
-_ test_remove_132(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(133) {
+_ test_remove_128(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(129) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_134_data() method_id(134) {
+[int, tuple, cell, tuple, int] test_remove_130_data() method_id(130) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1079), null()];
+}
+
+
+_ test_remove_130(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(131) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_132_data() method_id(132) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([150]);
+    tuple stack = unsafe_tuple([588]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_134(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(135) {
+_ test_get_132(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(133) {
     throw_if(100, exit_code == 0);
 }
 
+[int, tuple, cell, tuple, int] test_change_134_data() method_id(134) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(600, 256) ;; key
+      .store_uint(1023, 64) ;; valid until
+      .store_uint(9, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_134(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(135) {
+    throw_if(100, exit_code != 0);
+}
+    
 [int, tuple, cell, tuple, int] test_change_136_data() method_id(136) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(38, 256) ;; key
-      .store_uint(1092, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(22, 256) ;; key
+      .store_uint(1046, 64) ;; valid until
+      .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1482,12 +1509,15 @@ _ test_change_136(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_138_data() method_id(138) {
+[int, tuple, cell, tuple, int] test_change_138_data() method_id(138) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
+      .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
+      .store_uint(226, 256) ;; key
+      .store_uint(1035, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1503,20 +1533,23 @@ _ test_change_136(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1086), null()];
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_remove_138(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(139) {
+_ test_change_138(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(139) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_140_data() method_id(140) {
+[int, tuple, cell, tuple, int] test_change_140_data() method_id(140) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
+      .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
+      .store_uint(498, 256) ;; key
+      .store_uint(1088, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1532,11 +1565,11 @@ _ test_remove_138(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1036), null()];
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_remove_140(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(141) {
+_ test_change_140(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(141) {
     throw_if(100, exit_code != 0);
 }
     
@@ -1546,9 +1579,9 @@ _ test_remove_140(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(87, 256) ;; key
-      .store_uint(1093, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(578, 256) ;; key
+      .store_uint(1086, 64) ;; valid until
+      .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1575,7 +1608,7 @@ _ test_change_142(int exit_code, cell data, tuple stack, cell actions, int gas) 
 [int, tuple, cell, tuple, int] test_get_144_data() method_id(144) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([962]);
+    tuple stack = unsafe_tuple([699]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -1583,70 +1616,42 @@ _ test_change_142(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
 
 _ test_get_144(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(145) {
+    throw_if(100, exit_code != 0);
+
+    var valid_until = first(stack);
+    throw_if(101, valid_until != 1082);
+    var value = second(stack);
+    throw_if(102, value~load_uint(128) != 10);
+}
+
+[int, tuple, cell, tuple, int] test_get_146_data() method_id(146) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([33]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_146(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(147) {
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_146_data() method_id(146) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_148_data() method_id(148) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(110, 256) ;; key
-      .store_uint(1060, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([540]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_change_146(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(147) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_148_data() method_id(148) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1060), null()];
+_ test_get_148(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(149) {
+    throw_if(100, exit_code == 0);
 }
 
-
-_ test_remove_148(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(149) {
-    throw_if(100, exit_code != 0);
-}
-    
 [int, tuple, cell, tuple, int] test_remove_150_data() method_id(150) {
     int function_selector = 0;
 
@@ -1668,7 +1673,7 @@ _ test_remove_148(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1068), null()];
+    return [function_selector, stack, data, get_c7_now(1080), null()];
 }
 
 
@@ -1697,7 +1702,7 @@ _ test_remove_150(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1007), null()];
+    return [function_selector, stack, data, get_c7_now(1060), null()];
 }
 
 
@@ -1705,42 +1710,24 @@ _ test_remove_152(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_154_data() method_id(154) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_154_data() method_id(154) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(662, 256) ;; key
-      .store_uint(1096, 64) ;; valid until
-      .store_uint(2, 128) ;; 128-bit value
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([752]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_change_154(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(155) {
-    throw_if(100, exit_code != 0);
+_ test_get_154(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(155) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_get_156_data() method_id(156) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([57]);
+    tuple stack = unsafe_tuple([371]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -1751,29 +1738,15 @@ _ test_get_156(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_get_158_data() method_id(158) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([647]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_158(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(159) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_160_data() method_id(160) {
+[int, tuple, cell, tuple, int] test_change_158_data() method_id(158) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(178, 256) ;; key
-      .store_uint(1024, 64) ;; valid until
-      .store_uint(3, 128) ;; 128-bit value
+      .store_uint(672, 256) ;; key
+      .store_uint(1083, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1793,10 +1766,24 @@ _ test_get_158(int exit_code, cell data, tuple stack, cell actions, int gas) met
 }
 
 
-_ test_change_160(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(161) {
+_ test_change_158(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(159) {
     throw_if(100, exit_code != 0);
 }
     
+[int, tuple, cell, tuple, int] test_get_160_data() method_id(160) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([151]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_160(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(161) {
+    throw_if(100, exit_code == 0);
+}
+
 [int, tuple, cell, tuple, int] test_remove_162_data() method_id(162) {
     int function_selector = 0;
 
@@ -1818,7 +1805,7 @@ _ test_change_160(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1024), null()];
+    return [function_selector, stack, data, get_c7_now(1090), null()];
 }
 
 
@@ -1826,12 +1813,15 @@ _ test_remove_162(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_164_data() method_id(164) {
+[int, tuple, cell, tuple, int] test_change_164_data() method_id(164) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
+      .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
+      .store_uint(109, 256) ;; key
+      .store_uint(1002, 64) ;; valid until
+      .store_uint(8, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1847,18 +1837,18 @@ _ test_remove_162(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1100), null()];
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_remove_164(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(165) {
+_ test_change_164(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(165) {
     throw_if(100, exit_code != 0);
 }
     
 [int, tuple, cell, tuple, int] test_get_166_data() method_id(166) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([70]);
+    tuple stack = unsafe_tuple([794]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -1872,7 +1862,7 @@ _ test_get_166(int exit_code, cell data, tuple stack, cell actions, int gas) met
 [int, tuple, cell, tuple, int] test_get_168_data() method_id(168) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([757]);
+    tuple stack = unsafe_tuple([122]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -1889,9 +1879,9 @@ _ test_get_168(int exit_code, cell data, tuple stack, cell actions, int gas) met
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(403, 256) ;; key
-      .store_uint(1017, 64) ;; valid until
-      .store_uint(2, 128) ;; 128-bit value
+      .store_uint(562, 256) ;; key
+      .store_uint(1059, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1915,43 +1905,15 @@ _ test_change_170(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_172_data() method_id(172) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([464]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_172(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(173) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_get_174_data() method_id(174) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([444]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_174(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(175) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_176_data() method_id(176) {
+[int, tuple, cell, tuple, int] test_change_172_data() method_id(172) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(961, 256) ;; key
-      .store_uint(1031, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
+      .store_uint(816, 256) ;; key
+      .store_uint(1070, 64) ;; valid until
+      .store_uint(1, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -1971,19 +1933,47 @@ _ test_get_174(int exit_code, cell data, tuple stack, cell actions, int gas) met
 }
 
 
-_ test_change_176(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(177) {
+_ test_change_172(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(173) {
     throw_if(100, exit_code != 0);
 }
     
+[int, tuple, cell, tuple, int] test_get_174_data() method_id(174) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([952]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_174(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(175) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_get_176_data() method_id(176) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([628]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_176(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(177) {
+    throw_if(100, exit_code == 0);
+}
+
 [int, tuple, cell, tuple, int] test_change_178_data() method_id(178) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(700, 256) ;; key
-      .store_uint(1011, 64) ;; valid until
-      .store_uint(4, 128) ;; 128-bit value
+      .store_uint(254, 256) ;; key
+      .store_uint(1073, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2007,7 +1997,53 @@ _ test_change_178(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_180_data() method_id(180) {
+[int, tuple, cell, tuple, int] test_get_180_data() method_id(180) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([372]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_180(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(181) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_182_data() method_id(182) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(414, 256) ;; key
+      .store_uint(1009, 64) ;; valid until
+      .store_uint(7, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_182(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(183) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_184_data() method_id(184) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -2028,57 +2064,11 @@ _ test_change_178(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1043), null()];
+    return [function_selector, stack, data, get_c7_now(1035), null()];
 }
 
 
-_ test_remove_180(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(181) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_182_data() method_id(182) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([854]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_182(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(183) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_184_data() method_id(184) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(894, 256) ;; key
-      .store_uint(1053, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_184(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(185) {
+_ test_remove_184(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(185) {
     throw_if(100, exit_code != 0);
 }
     
@@ -2088,9 +2078,9 @@ _ test_change_184(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(294, 256) ;; key
-      .store_uint(1048, 64) ;; valid until
-      .store_uint(3, 128) ;; 128-bit value
+      .store_uint(127, 256) ;; key
+      .store_uint(1079, 64) ;; valid until
+      .store_uint(10, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2117,7 +2107,7 @@ _ test_change_186(int exit_code, cell data, tuple stack, cell actions, int gas) 
 [int, tuple, cell, tuple, int] test_get_188_data() method_id(188) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([148]);
+    tuple stack = unsafe_tuple([63]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -2128,15 +2118,12 @@ _ test_get_188(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_190_data() method_id(190) {
+[int, tuple, cell, tuple, int] test_remove_190_data() method_id(190) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(768, 256) ;; key
-      .store_uint(1037, 64) ;; valid until
-      .store_uint(3, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2152,18 +2139,18 @@ _ test_get_188(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1017), null()];
 }
 
 
-_ test_change_190(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(191) {
+_ test_remove_190(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(191) {
     throw_if(100, exit_code != 0);
 }
     
 [int, tuple, cell, tuple, int] test_get_192_data() method_id(192) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([508]);
+    tuple stack = unsafe_tuple([684]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -2174,15 +2161,12 @@ _ test_get_192(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_194_data() method_id(194) {
+[int, tuple, cell, tuple, int] test_remove_194_data() method_id(194) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(488, 256) ;; key
-      .store_uint(1037, 64) ;; valid until
-      .store_uint(4, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2198,11 +2182,11 @@ _ test_get_192(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1091), null()];
 }
 
 
-_ test_change_194(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(195) {
+_ test_remove_194(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(195) {
     throw_if(100, exit_code != 0);
 }
     
@@ -2212,9 +2196,9 @@ _ test_change_194(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(380, 256) ;; key
-      .store_uint(1007, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(406, 256) ;; key
+      .store_uint(1029, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2238,15 +2222,29 @@ _ test_change_196(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_198_data() method_id(198) {
+[int, tuple, cell, tuple, int] test_get_198_data() method_id(198) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([810]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_198(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(199) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_200_data() method_id(200) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(22, 256) ;; key
-      .store_uint(1085, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(303, 256) ;; key
+      .store_uint(1096, 64) ;; valid until
+      .store_uint(10, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2266,11 +2264,25 @@ _ test_change_196(int exit_code, cell data, tuple stack, cell actions, int gas) 
 }
 
 
-_ test_change_198(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(199) {
+_ test_change_200(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(201) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_200_data() method_id(200) {
+[int, tuple, cell, tuple, int] test_get_202_data() method_id(202) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([422]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_202(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(203) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_remove_204_data() method_id(204) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -2291,60 +2303,14 @@ _ test_change_198(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1051), null()];
+    return [function_selector, stack, data, get_c7_now(1021), null()];
 }
 
 
-_ test_remove_200(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(201) {
+_ test_remove_204(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(205) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_202_data() method_id(202) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(299, 256) ;; key
-      .store_uint(1029, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_202(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(203) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_204_data() method_id(204) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([901]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_204(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(205) {
-    throw_if(100, exit_code == 0);
-}
-
 [int, tuple, cell, tuple, int] test_remove_206_data() method_id(206) {
     int function_selector = 0;
 
@@ -2366,7 +2332,7 @@ _ test_get_204(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1066), null()];
+    return [function_selector, stack, data, get_c7_now(1026), null()];
 }
 
 
@@ -2377,7 +2343,7 @@ _ test_remove_206(int exit_code, cell data, tuple stack, cell actions, int gas) 
 [int, tuple, cell, tuple, int] test_get_208_data() method_id(208) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([452]);
+    tuple stack = unsafe_tuple([153]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -2388,92 +2354,28 @@ _ test_get_208(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_210_data() method_id(210) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(138, 256) ;; key
-      .store_uint(1028, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_210(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(211) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_212_data() method_id(212) {
+[int, tuple, cell, tuple, int] test_get_210_data() method_id(210) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([634]);
+    tuple stack = unsafe_tuple([916]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_212(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(213) {
+_ test_get_210(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(211) {
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_214_data() method_id(214) {
+[int, tuple, cell, tuple, int] test_change_212_data() method_id(212) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(345, 256) ;; key
-      .store_uint(1018, 64) ;; valid until
-      .store_uint(4, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_214(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(215) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_216_data() method_id(216) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(966, 256) ;; key
-      .store_uint(1051, 64) ;; valid until
+      .store_uint(191, 256) ;; key
+      .store_uint(1009, 64) ;; valid until
       .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
@@ -2494,19 +2396,47 @@ _ test_change_214(int exit_code, cell data, tuple stack, cell actions, int gas) 
 }
 
 
-_ test_change_216(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(217) {
+_ test_change_212(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(213) {
     throw_if(100, exit_code != 0);
 }
     
+[int, tuple, cell, tuple, int] test_get_214_data() method_id(214) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([557]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_214(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(215) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_get_216_data() method_id(216) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([290]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_216(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(217) {
+    throw_if(100, exit_code == 0);
+}
+
 [int, tuple, cell, tuple, int] test_change_218_data() method_id(218) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(144, 256) ;; key
-      .store_uint(1023, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(75, 256) ;; key
+      .store_uint(1038, 64) ;; valid until
+      .store_uint(5, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2530,29 +2460,15 @@ _ test_change_218(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_220_data() method_id(220) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([725]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_220(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(221) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_222_data() method_id(222) {
+[int, tuple, cell, tuple, int] test_change_220_data() method_id(220) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(460, 256) ;; key
-      .store_uint(1051, 64) ;; valid until
-      .store_uint(3, 128) ;; 128-bit value
+      .store_uint(200, 256) ;; key
+      .store_uint(1053, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2572,11 +2488,86 @@ _ test_get_220(int exit_code, cell data, tuple stack, cell actions, int gas) met
 }
 
 
-_ test_change_222(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(223) {
+_ test_change_220(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(221) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_224_data() method_id(224) {
+[int, tuple, cell, tuple, int] test_remove_222_data() method_id(222) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1009), null()];
+}
+
+
+_ test_remove_222(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(223) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_224_data() method_id(224) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(350, 256) ;; key
+      .store_uint(1037, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_224(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(225) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_226_data() method_id(226) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([958]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_226(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(227) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_remove_228_data() method_id(228) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -2601,53 +2592,7 @@ _ test_change_222(int exit_code, cell data, tuple stack, cell actions, int gas) 
 }
 
 
-_ test_remove_224(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(225) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_226_data() method_id(226) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([942]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_226(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(227) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_228_data() method_id(228) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(239, 256) ;; key
-      .store_uint(1043, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_228(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(229) {
+_ test_remove_228(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(229) {
     throw_if(100, exit_code != 0);
 }
     
@@ -2657,9 +2602,9 @@ _ test_change_228(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(608, 256) ;; key
-      .store_uint(1009, 64) ;; valid until
-      .store_uint(8, 128) ;; 128-bit value
+      .store_uint(447, 256) ;; key
+      .store_uint(1067, 64) ;; valid until
+      .store_uint(1, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2683,26 +2628,15 @@ _ test_change_230(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_232_data() method_id(232) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([526]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_232(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(233) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_234_data() method_id(234) {
+[int, tuple, cell, tuple, int] test_change_232_data() method_id(232) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
+      .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
+      .store_uint(232, 256) ;; key
+      .store_uint(1033, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2718,11 +2652,43 @@ _ test_get_232(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1073), null()];
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_remove_234(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(235) {
+_ test_change_232(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(233) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_234_data() method_id(234) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(436, 256) ;; key
+      .store_uint(1024, 64) ;; valid until
+      .store_uint(3, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_234(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(235) {
     throw_if(100, exit_code != 0);
 }
     
@@ -2732,9 +2698,9 @@ _ test_remove_234(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(950, 256) ;; key
-      .store_uint(1045, 64) ;; valid until
-      .store_uint(5, 128) ;; 128-bit value
+      .store_uint(509, 256) ;; key
+      .store_uint(1076, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2761,7 +2727,7 @@ _ test_change_236(int exit_code, cell data, tuple stack, cell actions, int gas) 
 [int, tuple, cell, tuple, int] test_get_238_data() method_id(238) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([897]);
+    tuple stack = unsafe_tuple([870]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -2772,44 +2738,29 @@ _ test_get_238(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_remove_240_data() method_id(240) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_240_data() method_id(240) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([95]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1094), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_remove_240(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(241) {
-    throw_if(100, exit_code != 0);
+_ test_get_240(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(241) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_change_242_data() method_id(242) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(657, 256) ;; key
-      .store_uint(1082, 64) ;; valid until
-      .store_uint(8, 128) ;; 128-bit value
+      .store_uint(130, 256) ;; key
+      .store_uint(1009, 64) ;; valid until
+      .store_uint(1, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2833,44 +2784,29 @@ _ test_change_242(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_244_data() method_id(244) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_244_data() method_id(244) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([751]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1058), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_remove_244(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(245) {
-    throw_if(100, exit_code != 0);
+_ test_get_244(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(245) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_change_246_data() method_id(246) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(176, 256) ;; key
-      .store_uint(1053, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
+      .store_uint(101, 256) ;; key
+      .store_uint(1060, 64) ;; valid until
+      .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2900,9 +2836,9 @@ _ test_change_246(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(942, 256) ;; key
-      .store_uint(1041, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(902, 256) ;; key
+      .store_uint(1006, 64) ;; valid until
+      .store_uint(10, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2926,29 +2862,47 @@ _ test_change_248(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_250_data() method_id(250) {
-    int function_selector = 127977;
+[int, tuple, cell, tuple, int] test_change_250_data() method_id(250) {
+    int function_selector = 0;
 
-    tuple stack = unsafe_tuple([337]);
-    cell data = begin_cell().end_cell();
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(549, 256) ;; key
+      .store_uint(1039, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
+      .end_cell().begin_parse();
 
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_get_250(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(251) {
-    throw_if(100, exit_code == 0);
+_ test_change_250(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(251) {
+    throw_if(100, exit_code != 0);
 }
-
+    
 [int, tuple, cell, tuple, int] test_change_252_data() method_id(252) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(363, 256) ;; key
-      .store_uint(1080, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
+      .store_uint(888, 256) ;; key
+      .store_uint(1040, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -2972,20 +2926,38 @@ _ test_change_252(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_254_data() method_id(254) {
-    int function_selector = 127977;
+[int, tuple, cell, tuple, int] test_change_254_data() method_id(254) {
+    int function_selector = 0;
 
-    tuple stack = unsafe_tuple([847]);
-    cell data = begin_cell().end_cell();
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(314, 256) ;; key
+      .store_uint(1011, 64) ;; valid until
+      .store_uint(10, 128) ;; 128-bit value
+      .end_cell().begin_parse();
 
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_get_254(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(255) {
-    throw_if(100, exit_code == 0);
+_ test_change_254(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(255) {
+    throw_if(100, exit_code != 0);
 }
-
+    
 [int, tuple, cell, tuple, int] test_remove_256_data() method_id(256) {
     int function_selector = 0;
 
@@ -3007,7 +2979,7 @@ _ test_get_254(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1009), null()];
+    return [function_selector, stack, data, get_c7_now(1072), null()];
 }
 
 
@@ -3015,42 +2987,24 @@ _ test_remove_256(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_258_data() method_id(258) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_258_data() method_id(258) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(243, 256) ;; key
-      .store_uint(1061, 64) ;; valid until
-      .store_uint(8, 128) ;; 128-bit value
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([845]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_change_258(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(259) {
-    throw_if(100, exit_code != 0);
+_ test_get_258(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(259) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_get_260_data() method_id(260) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([723]);
+    tuple stack = unsafe_tuple([123]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -3064,7 +3018,7 @@ _ test_get_260(int exit_code, cell data, tuple stack, cell actions, int gas) met
 [int, tuple, cell, tuple, int] test_get_262_data() method_id(262) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([111]);
+    tuple stack = unsafe_tuple([145]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -3075,15 +3029,12 @@ _ test_get_262(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_264_data() method_id(264) {
+[int, tuple, cell, tuple, int] test_remove_264_data() method_id(264) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(18, 256) ;; key
-      .store_uint(1025, 64) ;; valid until
-      .store_uint(5, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3099,11 +3050,11 @@ _ test_get_262(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1097), null()];
 }
 
 
-_ test_change_264(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(265) {
+_ test_remove_264(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(265) {
     throw_if(100, exit_code != 0);
 }
     
@@ -3128,7 +3079,7 @@ _ test_change_264(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1086), null()];
+    return [function_selector, stack, data, get_c7_now(1000), null()];
 }
 
 
@@ -3142,9 +3093,9 @@ _ test_remove_266(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(746, 256) ;; key
-      .store_uint(1043, 64) ;; valid until
-      .store_uint(4, 128) ;; 128-bit value
+      .store_uint(957, 256) ;; key
+      .store_uint(1067, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3174,9 +3125,9 @@ _ test_change_268(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(275, 256) ;; key
-      .store_uint(1049, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(56, 256) ;; key
+      .store_uint(1004, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3200,7 +3151,39 @@ _ test_change_270(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_272_data() method_id(272) {
+[int, tuple, cell, tuple, int] test_change_272_data() method_id(272) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(882, 256) ;; key
+      .store_uint(1043, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_272(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(273) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_274_data() method_id(274) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -3221,43 +3204,11 @@ _ test_change_270(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1080), null()];
+    return [function_selector, stack, data, get_c7_now(1060), null()];
 }
 
 
-_ test_remove_272(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(273) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_274_data() method_id(274) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(366, 256) ;; key
-      .store_uint(1071, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_274(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(275) {
+_ test_remove_274(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(275) {
     throw_if(100, exit_code != 0);
 }
     
@@ -3267,9 +3218,9 @@ _ test_change_274(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(844, 256) ;; key
-      .store_uint(1043, 64) ;; valid until
-      .store_uint(6, 128) ;; 128-bit value
+      .store_uint(697, 256) ;; key
+      .store_uint(1044, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3314,7 +3265,7 @@ _ test_change_276(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1031), null()];
+    return [function_selector, stack, data, get_c7_now(1024), null()];
 }
 
 
@@ -3325,7 +3276,7 @@ _ test_remove_278(int exit_code, cell data, tuple stack, cell actions, int gas) 
 [int, tuple, cell, tuple, int] test_get_280_data() method_id(280) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([641]);
+    tuple stack = unsafe_tuple([239]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -3357,7 +3308,7 @@ _ test_get_280(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1017), null()];
+    return [function_selector, stack, data, get_c7_now(1000), null()];
 }
 
 
@@ -3365,26 +3316,15 @@ _ test_remove_282(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_284_data() method_id(284) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([379]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_284(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(285) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_286_data() method_id(286) {
+[int, tuple, cell, tuple, int] test_change_284_data() method_id(284) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
+      .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
+      .store_uint(375, 256) ;; key
+      .store_uint(1041, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3400,18 +3340,50 @@ _ test_get_284(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1082), null()];
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_remove_286(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(287) {
+_ test_change_284(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(285) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_286_data() method_id(286) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(350, 256) ;; key
+      .store_uint(1056, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_286(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(287) {
     throw_if(100, exit_code != 0);
 }
     
 [int, tuple, cell, tuple, int] test_get_288_data() method_id(288) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([528]);
+    tuple stack = unsafe_tuple([445]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -3428,9 +3400,9 @@ _ test_get_288(int exit_code, cell data, tuple stack, cell actions, int gas) met
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(677, 256) ;; key
-      .store_uint(1028, 64) ;; valid until
-      .store_uint(6, 128) ;; 128-bit value
+      .store_uint(173, 256) ;; key
+      .store_uint(1053, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3454,67 +3426,7 @@ _ test_change_290(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_292_data() method_id(292) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([272]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_292(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(293) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_get_294_data() method_id(294) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([162]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_294(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(295) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_296_data() method_id(296) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(359, 256) ;; key
-      .store_uint(1034, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_296(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(297) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_298_data() method_id(298) {
+[int, tuple, cell, tuple, int] test_remove_292_data() method_id(292) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -3535,23 +3447,95 @@ _ test_change_296(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1034), null()];
+    return [function_selector, stack, data, get_c7_now(1028), null()];
 }
 
 
-_ test_remove_298(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(299) {
+_ test_remove_292(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(293) {
     throw_if(100, exit_code != 0);
 }
     
+[int, tuple, cell, tuple, int] test_remove_294_data() method_id(294) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1091), null()];
+}
+
+
+_ test_remove_294(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(295) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_296_data() method_id(296) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1054), null()];
+}
+
+
+_ test_remove_296(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(297) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_298_data() method_id(298) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([277]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_298(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(299) {
+    throw_if(100, exit_code == 0);
+}
+
 [int, tuple, cell, tuple, int] test_change_300_data() method_id(300) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(979, 256) ;; key
-      .store_uint(1049, 64) ;; valid until
-      .store_uint(2, 128) ;; 128-bit value
+      .store_uint(733, 256) ;; key
+      .store_uint(1057, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3575,12 +3559,15 @@ _ test_change_300(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_302_data() method_id(302) {
+[int, tuple, cell, tuple, int] test_change_302_data() method_id(302) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
+      .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
+      .store_uint(976, 256) ;; key
+      .store_uint(1066, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3596,52 +3583,37 @@ _ test_change_300(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1072), null()];
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_remove_302(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(303) {
+_ test_change_302(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(303) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_304_data() method_id(304) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_304_data() method_id(304) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([466]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1050), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_remove_304(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(305) {
-    throw_if(100, exit_code != 0);
+_ test_get_304(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(305) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_change_306_data() method_id(306) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(369, 256) ;; key
-      .store_uint(1068, 64) ;; valid until
-      .store_uint(0, 128) ;; 128-bit value
+      .store_uint(311, 256) ;; key
+      .store_uint(1044, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -3686,7 +3658,7 @@ _ test_change_306(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1086), null()];
+    return [function_selector, stack, data, get_c7_now(1082), null()];
 }
 
 
@@ -3694,492 +3666,14 @@ _ test_remove_308(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_310_data() method_id(310) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([282]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_310(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(311) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_get_312_data() method_id(312) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([620]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_312(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(313) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_314_data() method_id(314) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1058), null()];
-}
-
-
-_ test_remove_314(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(315) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_316_data() method_id(316) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1098), null()];
-}
-
-
-_ test_remove_316(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(317) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_318_data() method_id(318) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([423]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_318(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(319) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_320_data() method_id(320) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1065), null()];
-}
-
-
-_ test_remove_320(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(321) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_322_data() method_id(322) {
+[int, tuple, cell, tuple, int] test_change_310_data() method_id(310) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(699, 256) ;; key
-      .store_uint(1086, 64) ;; valid until
-      .store_uint(5, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_322(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(323) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_324_data() method_id(324) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1003), null()];
-}
-
-
-_ test_remove_324(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(325) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_326_data() method_id(326) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(440, 256) ;; key
-      .store_uint(1040, 64) ;; valid until
-      .store_uint(0, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_326(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(327) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_328_data() method_id(328) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([988]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_328(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(329) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_330_data() method_id(330) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(235, 256) ;; key
-      .store_uint(1039, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_330(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(331) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_332_data() method_id(332) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1030), null()];
-}
-
-
-_ test_remove_332(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(333) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_334_data() method_id(334) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([954]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_334(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(335) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_336_data() method_id(336) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(765, 256) ;; key
-      .store_uint(1090, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_336(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(337) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_338_data() method_id(338) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(389, 256) ;; key
-      .store_uint(1029, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_338(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(339) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_remove_340_data() method_id(340) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1003), null()];
-}
-
-
-_ test_remove_340(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(341) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_342_data() method_id(342) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(272, 256) ;; key
-      .store_uint(1046, 64) ;; valid until
-      .store_uint(6, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_342(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(343) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_344_data() method_id(344) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([480]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_344(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(345) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_get_346_data() method_id(346) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([123]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_346(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(347) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_get_348_data() method_id(348) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([154]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_348(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(349) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_350_data() method_id(350) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(57, 256) ;; key
-      .store_uint(1075, 64) ;; valid until
+      .store_uint(16, 256) ;; key
+      .store_uint(1035, 64) ;; valid until
       .store_uint(8, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
@@ -4200,11 +3694,11 @@ _ test_get_348(int exit_code, cell data, tuple stack, cell actions, int gas) met
 }
 
 
-_ test_change_350(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(351) {
+_ test_change_310(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(311) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_352_data() method_id(352) {
+[int, tuple, cell, tuple, int] test_remove_312_data() method_id(312) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -4225,15 +3719,318 @@ _ test_change_350(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1089), null()];
+    return [function_selector, stack, data, get_c7_now(1014), null()];
 }
 
 
-_ test_remove_352(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(353) {
+_ test_remove_312(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(313) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_354_data() method_id(354) {
+[int, tuple, cell, tuple, int] test_get_314_data() method_id(314) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([796]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_314(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(315) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_316_data() method_id(316) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(266, 256) ;; key
+      .store_uint(1032, 64) ;; valid until
+      .store_uint(3, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_316(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(317) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_318_data() method_id(318) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(751, 256) ;; key
+      .store_uint(1098, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_318(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(319) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_320_data() method_id(320) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(166, 256) ;; key
+      .store_uint(1045, 64) ;; valid until
+      .store_uint(1, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_320(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(321) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_322_data() method_id(322) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1077), null()];
+}
+
+
+_ test_remove_322(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(323) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_324_data() method_id(324) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([149]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_324(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(325) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_get_326_data() method_id(326) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([480]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_326(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(327) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_remove_328_data() method_id(328) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1068), null()];
+}
+
+
+_ test_remove_328(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(329) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_330_data() method_id(330) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([490]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_330(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(331) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_332_data() method_id(332) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(654, 256) ;; key
+      .store_uint(1070, 64) ;; valid until
+      .store_uint(1, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_332(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(333) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_334_data() method_id(334) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(342, 256) ;; key
+      .store_uint(1001, 64) ;; valid until
+      .store_uint(7, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_334(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(335) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_336_data() method_id(336) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1017), null()];
+}
+
+
+_ test_remove_336(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(337) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_338_data() method_id(338) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -4258,11 +4055,11 @@ _ test_remove_352(int exit_code, cell data, tuple stack, cell actions, int gas) 
 }
 
 
-_ test_remove_354(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(355) {
+_ test_remove_338(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(339) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_356_data() method_id(356) {
+[int, tuple, cell, tuple, int] test_remove_340_data() method_id(340) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -4283,23 +4080,240 @@ _ test_remove_354(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1002), null()];
+    return [function_selector, stack, data, get_c7_now(1001), null()];
 }
 
 
-_ test_remove_356(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(357) {
+_ test_remove_340(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(341) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_358_data() method_id(358) {
+[int, tuple, cell, tuple, int] test_change_342_data() method_id(342) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
       .store_uint(439, 256) ;; key
-      .store_uint(1077, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(1011, 64) ;; valid until
+      .store_uint(2, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_342(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(343) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_344_data() method_id(344) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(699, 256) ;; key
+      .store_uint(1002, 64) ;; valid until
+      .store_uint(6, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_344(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(345) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_346_data() method_id(346) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([692]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_346(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(347) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_348_data() method_id(348) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(174, 256) ;; key
+      .store_uint(1076, 64) ;; valid until
+      .store_uint(3, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_348(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(349) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_remove_350_data() method_id(350) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1080), null()];
+}
+
+
+_ test_remove_350(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(351) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_352_data() method_id(352) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(79, 256) ;; key
+      .store_uint(1063, 64) ;; valid until
+      .store_uint(9, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_352(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(353) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_change_354_data() method_id(354) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(294, 256) ;; key
+      .store_uint(1022, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_354(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(355) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_356_data() method_id(356) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([64]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_356(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(357) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_358_data() method_id(358) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(412, 256) ;; key
+      .store_uint(1052, 64) ;; valid until
+      .store_uint(1, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4326,7 +4340,7 @@ _ test_change_358(int exit_code, cell data, tuple stack, cell actions, int gas) 
 [int, tuple, cell, tuple, int] test_get_360_data() method_id(360) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([694]);
+    tuple stack = unsafe_tuple([610]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -4337,44 +4351,29 @@ _ test_get_360(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_remove_362_data() method_id(362) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_362_data() method_id(362) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([841]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1041), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_remove_362(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(363) {
-    throw_if(100, exit_code != 0);
+_ test_get_362(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(363) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_change_364_data() method_id(364) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(313, 256) ;; key
-      .store_uint(1012, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(257, 256) ;; key
+      .store_uint(1052, 64) ;; valid until
+      .store_uint(3, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4398,15 +4397,12 @@ _ test_change_364(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_366_data() method_id(366) {
+[int, tuple, cell, tuple, int] test_remove_366_data() method_id(366) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(586, 256) ;; key
-      .store_uint(1082, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4422,23 +4418,20 @@ _ test_change_364(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1068), null()];
 }
 
 
-_ test_change_366(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(367) {
+_ test_remove_366(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(367) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_368_data() method_id(368) {
+[int, tuple, cell, tuple, int] test_remove_368_data() method_id(368) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
+      .store_uint(2, 32) ;; remove old
       .store_uint(12345, 64) ;; query id
-      .store_uint(651, 256) ;; key
-      .store_uint(1061, 64) ;; valid until
-      .store_uint(6, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4454,18 +4447,18 @@ _ test_change_366(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, data, get_c7_now(1000), null()];
 }
 
 
-_ test_change_368(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(369) {
+_ test_remove_368(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(369) {
     throw_if(100, exit_code != 0);
 }
     
 [int, tuple, cell, tuple, int] test_get_370_data() method_id(370) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([799]);
+    tuple stack = unsafe_tuple([605]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -4497,7 +4490,7 @@ _ test_get_370(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1007), null()];
+    return [function_selector, stack, data, get_c7_now(1009), null()];
 }
 
 
@@ -4511,9 +4504,9 @@ _ test_remove_372(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(207, 256) ;; key
-      .store_uint(1013, 64) ;; valid until
-      .store_uint(3, 128) ;; 128-bit value
+      .store_uint(43, 256) ;; key
+      .store_uint(1047, 64) ;; valid until
+      .store_uint(5, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4537,42 +4530,24 @@ _ test_change_374(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_376_data() method_id(376) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_376_data() method_id(376) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(329, 256) ;; key
-      .store_uint(1009, 64) ;; valid until
-      .store_uint(9, 128) ;; 128-bit value
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([192]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_change_376(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(377) {
-    throw_if(100, exit_code != 0);
+_ test_get_376(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(377) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_get_378_data() method_id(378) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([367]);
+    tuple stack = unsafe_tuple([934]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -4583,85 +4558,7 @@ _ test_get_378(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_380_data() method_id(380) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(118, 256) ;; key
-      .store_uint(1047, 64) ;; valid until
-      .store_uint(2, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_380(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(381) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_change_382_data() method_id(382) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(903, 256) ;; key
-      .store_uint(1029, 64) ;; valid until
-      .store_uint(6, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_382(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(383) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_384_data() method_id(384) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([630]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_384(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(385) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_386_data() method_id(386) {
+[int, tuple, cell, tuple, int] test_remove_380_data() method_id(380) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -4682,28 +4579,85 @@ _ test_get_384(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1015), null()];
+    return [function_selector, stack, data, get_c7_now(1069), null()];
 }
 
 
-_ test_remove_386(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(387) {
+_ test_remove_380(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(381) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_388_data() method_id(388) {
+[int, tuple, cell, tuple, int] test_get_382_data() method_id(382) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([972]);
+    tuple stack = unsafe_tuple([897]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_388(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(389) {
+_ test_get_382(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(383) {
     throw_if(100, exit_code == 0);
 }
 
+[int, tuple, cell, tuple, int] test_get_384_data() method_id(384) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([890]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_384(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(385) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_get_386_data() method_id(386) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([441]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_386(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(387) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_remove_388_data() method_id(388) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(2, 32) ;; remove old
+      .store_uint(12345, 64) ;; query id
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7_now(1058), null()];
+}
+
+
+_ test_remove_388(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(389) {
+    throw_if(100, exit_code != 0);
+}
+    
 [int, tuple, cell, tuple, int] test_remove_390_data() method_id(390) {
     int function_selector = 0;
 
@@ -4725,7 +4679,7 @@ _ test_get_388(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1053), null()];
+    return [function_selector, stack, data, get_c7_now(1021), null()];
 }
 
 
@@ -4733,24 +4687,42 @@ _ test_remove_390(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_392_data() method_id(392) {
-    int function_selector = 127977;
+[int, tuple, cell, tuple, int] test_change_392_data() method_id(392) {
+    int function_selector = 0;
 
-    tuple stack = unsafe_tuple([875]);
-    cell data = begin_cell().end_cell();
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(959, 256) ;; key
+      .store_uint(1097, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
+      .end_cell().begin_parse();
 
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
 }
 
 
-_ test_get_392(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(393) {
-    throw_if(100, exit_code == 0);
+_ test_change_392(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(393) {
+    throw_if(100, exit_code != 0);
 }
-
+    
 [int, tuple, cell, tuple, int] test_get_394_data() method_id(394) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([892]);
+    tuple stack = unsafe_tuple([806]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -4782,7 +4754,7 @@ _ test_get_394(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1030), null()];
+    return [function_selector, stack, data, get_c7_now(1060), null()];
 }
 
 
@@ -4811,7 +4783,7 @@ _ test_remove_396(int exit_code, cell data, tuple stack, cell actions, int gas) 
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1019), null()];
+    return [function_selector, stack, data, get_c7_now(1026), null()];
 }
 
 
@@ -4819,47 +4791,29 @@ _ test_remove_398(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_400_data() method_id(400) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_400_data() method_id(400) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(779, 256) ;; key
-      .store_uint(1051, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([922]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_change_400(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(401) {
-    throw_if(100, exit_code != 0);
+_ test_get_400(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(401) {
+    throw_if(100, exit_code == 0);
 }
-    
+
 [int, tuple, cell, tuple, int] test_change_402_data() method_id(402) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(588, 256) ;; key
-      .store_uint(1078, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
+      .store_uint(682, 256) ;; key
+      .store_uint(1088, 64) ;; valid until
+      .store_uint(0, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4889,9 +4843,9 @@ _ test_change_402(int exit_code, cell data, tuple stack, cell actions, int gas) 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(140, 256) ;; key
-      .store_uint(1088, 64) ;; valid until
-      .store_uint(7, 128) ;; 128-bit value
+      .store_uint(444, 256) ;; key
+      .store_uint(1012, 64) ;; valid until
+      .store_uint(9, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4915,58 +4869,15 @@ _ test_change_404(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_406_data() method_id(406) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1097), null()];
-}
-
-
-_ test_remove_406(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(407) {
-    throw_if(100, exit_code != 0);
-}
-    
-[int, tuple, cell, tuple, int] test_get_408_data() method_id(408) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([859]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_408(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(409) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_change_410_data() method_id(410) {
+[int, tuple, cell, tuple, int] test_change_406_data() method_id(406) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(198, 256) ;; key
-      .store_uint(1040, 64) ;; valid until
-      .store_uint(1, 128) ;; 128-bit value
+      .store_uint(152, 256) ;; key
+      .store_uint(1011, 64) ;; valid until
+      .store_uint(8, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -4986,33 +4897,97 @@ _ test_get_408(int exit_code, cell data, tuple stack, cell actions, int gas) met
 }
 
 
-_ test_change_410(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(411) {
+_ test_change_406(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(407) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_412_data() method_id(412) {
+[int, tuple, cell, tuple, int] test_change_408_data() method_id(408) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(225, 256) ;; key
+      .store_uint(1060, 64) ;; valid until
+      .store_uint(5, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_408(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(409) {
+    throw_if(100, exit_code != 0);
+}
+    
+[int, tuple, cell, tuple, int] test_get_410_data() method_id(410) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([419]);
+    tuple stack = unsafe_tuple([586]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_412(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(413) {
+_ test_get_410(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(411) {
     throw_if(100, exit_code == 0);
 }
 
+[int, tuple, cell, tuple, int] test_change_412_data() method_id(412) {
+    int function_selector = 0;
+
+    slice message_body = begin_cell()
+      .store_uint(1, 32) ;; add key
+      .store_uint(12345, 64) ;; query id
+      .store_uint(422, 256) ;; key
+      .store_uint(1053, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
+      .end_cell().begin_parse();
+
+    cell message = begin_cell()
+            .store_uint(0x18, 6)
+            .store_uint(0, 2) ;; should be contract address
+            .store_grams(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_slice(message_body)
+            .end_cell();
+
+    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
+    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
+
+    cell data = get_prev_c4();
+
+    return [function_selector, stack, data, get_c7(), null()];
+}
+
+
+_ test_change_412(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(413) {
+    throw_if(100, exit_code != 0);
+}
+    
 [int, tuple, cell, tuple, int] test_change_414_data() method_id(414) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(438, 256) ;; key
-      .store_uint(1026, 64) ;; valid until
-      .store_uint(6, 128) ;; 128-bit value
+      .store_uint(166, 256) ;; key
+      .store_uint(1074, 64) ;; valid until
+      .store_uint(4, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -5039,7 +5014,7 @@ _ test_change_414(int exit_code, cell data, tuple stack, cell actions, int gas) 
 [int, tuple, cell, tuple, int] test_get_416_data() method_id(416) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([201]);
+    tuple stack = unsafe_tuple([616]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
@@ -5050,21 +5025,7 @@ _ test_get_416(int exit_code, cell data, tuple stack, cell actions, int gas) met
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_get_418_data() method_id(418) {
-    int function_selector = 127977;
-
-    tuple stack = unsafe_tuple([212]);
-    cell data = begin_cell().end_cell();
-
-    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
-}
-
-
-_ test_get_418(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(419) {
-    throw_if(100, exit_code == 0);
-}
-
-[int, tuple, cell, tuple, int] test_remove_420_data() method_id(420) {
+[int, tuple, cell, tuple, int] test_remove_418_data() method_id(418) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
@@ -5085,22 +5046,50 @@ _ test_get_418(int exit_code, cell data, tuple stack, cell actions, int gas) met
 
     cell data = get_prev_c4();
 
-    return [function_selector, stack, data, get_c7_now(1090), null()];
+    return [function_selector, stack, data, get_c7_now(1028), null()];
 }
 
 
-_ test_remove_420(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(421) {
+_ test_remove_418(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(419) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_change_422_data() method_id(422) {
+[int, tuple, cell, tuple, int] test_get_420_data() method_id(420) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([840]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_420(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(421) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_get_422_data() method_id(422) {
+    int function_selector = 127977;
+
+    tuple stack = unsafe_tuple([690]);
+    cell data = begin_cell().end_cell();
+
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
+}
+
+
+_ test_get_422(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(423) {
+    throw_if(100, exit_code == 0);
+}
+
+[int, tuple, cell, tuple, int] test_change_424_data() method_id(424) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(973, 256) ;; key
-      .store_uint(1024, 64) ;; valid until
+      .store_uint(551, 256) ;; key
+      .store_uint(1061, 64) ;; valid until
       .store_uint(8, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
@@ -5121,65 +5110,33 @@ _ test_remove_420(int exit_code, cell data, tuple stack, cell actions, int gas) 
 }
 
 
-_ test_change_422(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(423) {
+_ test_change_424(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(425) {
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_get_424_data() method_id(424) {
+[int, tuple, cell, tuple, int] test_get_426_data() method_id(426) {
     int function_selector = 127977;
 
-    tuple stack = unsafe_tuple([890]);
+    tuple stack = unsafe_tuple([342]);
     cell data = begin_cell().end_cell();
 
     return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_get_424(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(425) {
+_ test_get_426(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(427) {
     throw_if(100, exit_code == 0);
 }
 
-[int, tuple, cell, tuple, int] test_change_426_data() method_id(426) {
-    int function_selector = 0;
-
-    slice message_body = begin_cell()
-      .store_uint(1, 32) ;; add key
-      .store_uint(12345, 64) ;; query id
-      .store_uint(527, 256) ;; key
-      .store_uint(1060, 64) ;; valid until
-      .store_uint(0, 128) ;; 128-bit value
-      .end_cell().begin_parse();
-
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7(), null()];
-}
-
-
-_ test_change_426(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(427) {
-    throw_if(100, exit_code != 0);
-}
-    
 [int, tuple, cell, tuple, int] test_change_428_data() method_id(428) {
     int function_selector = 0;
 
     slice message_body = begin_cell()
       .store_uint(1, 32) ;; add key
       .store_uint(12345, 64) ;; query id
-      .store_uint(16, 256) ;; key
-      .store_uint(1023, 64) ;; valid until
-      .store_uint(10, 128) ;; 128-bit value
+      .store_uint(291, 256) ;; key
+      .store_uint(1042, 64) ;; valid until
+      .store_uint(5, 128) ;; 128-bit value
       .end_cell().begin_parse();
 
     cell message = begin_cell()
@@ -5203,32 +5160,16 @@ _ test_change_428(int exit_code, cell data, tuple stack, cell actions, int gas) 
     throw_if(100, exit_code != 0);
 }
     
-[int, tuple, cell, tuple, int] test_remove_430_data() method_id(430) {
-    int function_selector = 0;
+[int, tuple, cell, tuple, int] test_get_430_data() method_id(430) {
+    int function_selector = 127977;
 
-    slice message_body = begin_cell()
-      .store_uint(2, 32) ;; remove old
-      .store_uint(12345, 64) ;; query id
-      .end_cell().begin_parse();
+    tuple stack = unsafe_tuple([437]);
+    cell data = begin_cell().end_cell();
 
-    cell message = begin_cell()
-            .store_uint(0x18, 6)
-            .store_uint(0, 2) ;; should be contract address
-            .store_grams(0)
-            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
-            .store_slice(message_body)
-            .end_cell();
-
-    ;; int balance, int msg_value, cell in_msg_full, slice in_msg_body
-    tuple stack = unsafe_tuple([12345, 100, message, message_body]);
-
-    cell data = get_prev_c4();
-
-    return [function_selector, stack, data, get_c7_now(1015), null()];
+    return [function_selector, stack, get_prev_c4(), get_c7(), null()];
 }
 
 
-_ test_remove_430(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(431) {
-    throw_if(100, exit_code != 0);
+_ test_get_430(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(431) {
+    throw_if(100, exit_code == 0);
 }
-    
