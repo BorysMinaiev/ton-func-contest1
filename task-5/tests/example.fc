@@ -199,7 +199,6 @@ _ send_query2(int exit_code, cell data, tuple stack, cell actions, int gas) meth
 
 
   tuple stack = unsafe_tuple([message.begin_parse()]);
-
   return [function_selector, stack, get_prev_c4(), get_c7_now(100), null()];
 }
 

@@ -233,6 +233,8 @@ builder store_builder(builder to, builder what) asm(what to) "STB";
   throw_if(101, valid_until < now());
   throw_if(102, valid_until > now() + 60);
 
+  accept_message();
+
   ;; TODO: validation
   (slice tree, int public_key1, int public_key2) = load_data();
 
@@ -251,40 +253,37 @@ builder store_builder(builder to, builder what) asm(what to) "STB";
   int full_mask = tree~load_uint(20);
   slice valid_untils = tree~load_bits(32 * cnt);
 
-  ;; TODO: do I need it?
-  slice tree_copy = tree;
   int pos = find_request(tree, cell_hash(request_cell));
   builder new_tree = begin_cell().store_uint(public_key1, 256).store_uint(public_key2, 256);
 
   if (pos < 0) {
-    int npos = -1;
-    int check_pos = -1;
-
     builder new_valid_untils = begin_cell();
-    ;; TODO: change to repeat?
-    while (~ valid_untils.slice_empty?()) {
-      check_pos += 1;
-      int cur_valid_until = valid_untils~load_uint(32);
-      if ((npos == -1) & (cur_valid_until < now())) {
-        npos = check_pos;
-        new_valid_untils~store_uint(valid_until, 32);
-      } else {
-        new_valid_untils~store_uint(cur_valid_until, 32);
+    slice valid_untils_copy = valid_untils;
+    int npos = 0;
+    while (npos < cnt) {
+      if (valid_untils_copy~load_uint(32) < now()) {
+        npos += cnt;
       }
+      npos += 1;
     }
-    int ncnt = cnt;
-    if (npos == -1) {
-      throw_if(104, cnt == 10); ;; too many entries already
-      npos = cnt;
-      ncnt += 1;
-      new_valid_untils~store_uint(valid_until, 32);
+    if (npos > cnt) {
+      npos -= cnt + 1;
     }
+    throw_if(104, npos == 10); ;; too many entries already
+    new_valid_untils = new_valid_untils.store_slice(valid_untils~load_bits(npos * 32));
+    new_valid_untils~store_uint(valid_until, 32);
+    if (npos + 1 < cnt) {
+      valid_untils~load_uint(32);
+      new_valid_untils = new_valid_untils.store_slice(valid_untils);
+    }
+
+    int ncnt = max(cnt, npos + 1);
     new_tree~store_uint(ncnt, 5);
     int next_full_mask = full_mask & (~ (3 << (npos * 2)));
     next_full_mask |= (key_mask << (npos * 2));
     new_tree~store_uint(next_full_mask, 20);
     new_tree = new_tree.store_builder(new_valid_untils);
-    cell root = replace_request(new_tree, tree_copy, npos, 0, request_cell);
+    cell root = replace_request(new_tree, tree, npos, 0, request_cell);
     set_data(root);
   } else {
     int cur_mask = (full_mask >> (pos * 2)) & 3;
@@ -299,13 +298,12 @@ builder store_builder(builder to, builder what) asm(what to) "STB";
     new_tree~store_uint(cnt, 5);
     new_tree~store_uint(next_full_mask, 20);
     new_tree = new_tree.store_slice(valid_untils);
-    repeat(tree_copy.slice_refs()) {
-      new_tree = new_tree.store_ref(tree_copy~load_ref());
+    repeat(tree.slice_refs()) {
+      new_tree = new_tree.store_ref(tree~load_ref());
     }
     set_data(new_tree.end_cell());
   }
 
-  accept_message();
 }
 
 ;; just to make toncli tests work
